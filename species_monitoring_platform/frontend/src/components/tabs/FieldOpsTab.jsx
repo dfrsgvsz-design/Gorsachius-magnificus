@@ -71,6 +71,8 @@ import useGeolocation from '../../hooks/useGeolocation'
 import useTrackRecording from '../../hooks/useTrackRecording'
 import useSyncEngine from '../../hooks/useSyncEngine'
 import useProtocolSelection from '../../hooks/useProtocolSelection'
+import useAudioCapture from '../../hooks/useAudioCapture'
+import useCameraCapture from '../../hooks/useCameraCapture'
 import { useTranslation } from 'react-i18next'
 import { applyAttachmentContext } from '../../lib/attachmentContract'
 import {
@@ -124,7 +126,6 @@ import {
 import {
   CameraSource,
   ImpactStyle,
-  capturePhotoAttachment,
   isNativeMobile,
   loadNativeSurveyState,
   pulseFeedback,
@@ -152,8 +153,10 @@ export default function FieldOpsTab({
   const [error, setError] = useState(null)
   const [downloadingTiles, setDownloadingTiles] = useState(false)
   const [importingRoute, setImportingRoute] = useState(false)
+  // `serializingMedia` tracks the file-upload path only; the audio and camera
+  // hooks expose their own `serializingAudio` / `serializingCamera` flags and
+  // we OR them together for the consumer prop below.
   const [serializingMedia, setSerializingMedia] = useState(false)
-  const [audioCaptureStatus, setAudioCaptureStatus] = useState('idle')
   // GPS one-shot acquisition + listeners are encapsulated in `useGeolocation`.
   // `setCurrentPosition` is forwarded to `useTrackRecording` so live tracking
   // can replace the cached position with high-accuracy fixes.
@@ -165,9 +168,23 @@ export default function FieldOpsTab({
     syncDraftIntoUi, setStoredTrackDraft,
     clearTrackWatch, pauseTrackDraft, handleTrackPoint,
   } = useTrackRecording({ setSurveyState, setCurrentPosition, setError })
-  const audioRecorderRef = useRef(null)
-  const audioStreamRef = useRef(null)
-  const audioChunksRef = useRef([])
+  const {
+    audioCaptureStatus,
+    serializingAudio,
+    startAudioCapture: handleStartAudioCapture,
+    stopAudioCapture: handleStopAudioCapture,
+  } = useAudioCapture({
+    onAttachment: (attachment) => appendDraftAttachments([attachment]),
+    onEvidenceType: (type) => setObservationForm((current) => ({ ...current, evidence_type: type })),
+    onError: setError,
+  })
+  const {
+    serializingCamera,
+    capturePhoto,
+  } = useCameraCapture({
+    onAttachment: (attachment) => appendDraftAttachments([attachment]),
+    onError: setError,
+  })
   const defaultProjectInitRef = useRef(false)
   const attachmentsRef = useRef([])
   const [projectForm, setProjectForm] = useState({ name: '', region: '' })
@@ -270,16 +287,6 @@ export default function FieldOpsTab({
     }
   }, [nativeMobile])
 
-
-  useEffect(() => () => {
-    if (audioRecorderRef.current && audioRecorderRef.current.state !== 'inactive') {
-      audioRecorderRef.current.stop()
-    }
-    if (audioStreamRef.current) {
-      audioStreamRef.current.getTracks().forEach((track) => track.stop())
-      audioStreamRef.current = null
-    }
-  }, [])
 
   useEffect(() => () => {
     void clearTrackWatch()
@@ -855,91 +862,7 @@ export default function FieldOpsTab({
     }
   }
 
-  async function handleCapturePhoto() {
-    if (!nativeMobile) return
-    setSerializingMedia(true)
-    setError(null)
-    try {
-      const attachment = await capturePhotoAttachment(CameraSource.Camera)
-      if (!attachment) return
-      await pulseFeedback(ImpactStyle.Light)
-      appendDraftAttachments([attachment])
-    } catch (err) {
-      setError(getApiErrorMessage(err, isZh ? '无法在此设备拍摄照片。' : 'Unable to capture a field photo on this device.'))
-    } finally {
-      setSerializingMedia(false)
-    }
-  }
-
-  async function handleStartAudioCapture() {
-    if (typeof window === 'undefined' || !navigator?.mediaDevices?.getUserMedia || typeof MediaRecorder === 'undefined') {
-      setError(isZh ? '此浏览器或设备不支持录音功能。' : 'Audio recording is not supported in this browser or device.')
-      return
-    }
-    if (audioCaptureStatus === 'recording') return
-    setSerializingMedia(true)
-    setError(null)
-    try {
-      const stream = await navigator.mediaDevices.getUserMedia({ audio: true })
-      const mimeType = MediaRecorder.isTypeSupported?.('audio/webm;codecs=opus')
-        ? 'audio/webm;codecs=opus'
-        : ''
-      const recorder = new MediaRecorder(stream, mimeType ? { mimeType } : undefined)
-      audioChunksRef.current = []
-      audioStreamRef.current = stream
-      audioRecorderRef.current = recorder
-      recorder.ondataavailable = (event) => {
-        if (event.data && event.data.size > 0) audioChunksRef.current.push(event.data)
-      }
-      recorder.onstop = async () => {
-        try {
-          const blob = new Blob(audioChunksRef.current, {
-            type: recorder.mimeType || 'audio/webm',
-          })
-          if (blob.size > 0) {
-            const extension = blob.type.includes('ogg') ? 'ogg' : 'webm'
-            const file = new File([blob], `field-audio-${Date.now()}.${extension}`, {
-              type: blob.type || 'audio/webm',
-            })
-            const attachment = await serializeAttachment(file)
-            appendDraftAttachments([attachment])
-            setObservationForm((current) => ({ ...current, evidence_type: 'audio' }))
-            await pulseFeedback(ImpactStyle.Light)
-          }
-        } catch (err) {
-          setError(getApiErrorMessage(err, isZh ? '无法保存录制的音频证据。' : 'Unable to save the recorded audio evidence.'))
-        } finally {
-          if (audioStreamRef.current) {
-            audioStreamRef.current.getTracks().forEach((track) => track.stop())
-            audioStreamRef.current = null
-          }
-          audioRecorderRef.current = null
-          audioChunksRef.current = []
-          setAudioCaptureStatus('idle')
-          setSerializingMedia(false)
-        }
-      }
-      recorder.start()
-      setObservationForm((current) => ({ ...current, evidence_type: 'audio' }))
-      setAudioCaptureStatus('recording')
-      await pulseFeedback(ImpactStyle.Light)
-    } catch (err) {
-      setSerializingMedia(false)
-      setAudioCaptureStatus('idle')
-      setError(getApiErrorMessage(err, isZh ? '无法在此设备启动录音。' : 'Unable to start audio recording on this device.'))
-    }
-  }
-
-  async function handleStopAudioCapture() {
-    if (!audioRecorderRef.current || audioRecorderRef.current.state === 'inactive') return
-    try {
-      audioRecorderRef.current.stop()
-    } catch (err) {
-      setSerializingMedia(false)
-      setAudioCaptureStatus('idle')
-      setError(getApiErrorMessage(err, isZh ? '无法正常停止录音。' : 'Unable to stop audio recording cleanly.'))
-    }
-  }
+  const handleCapturePhoto = () => capturePhoto(CameraSource.Camera)
 
   async function useCurrentGps() {
     if (nativeMobile) {
@@ -1592,19 +1515,7 @@ export default function FieldOpsTab({
 
   async function handleCameraAndObserve() {
     if (nativeMobile) {
-      setSerializingMedia(true)
-      setError(null)
-      try {
-        const attachment = await capturePhotoAttachment(CameraSource.Camera)
-        if (attachment) {
-          await pulseFeedback(ImpactStyle.Light)
-          appendDraftAttachments([attachment])
-        }
-      } catch (err) {
-        setError(getApiErrorMessage(err, isZh ? '无法拍摄照片' : 'Unable to capture photo'))
-      } finally {
-        setSerializingMedia(false)
-      }
+      await capturePhoto(CameraSource.Camera)
     }
     setShowObservationSheet(true)
   }
@@ -2060,7 +1971,7 @@ export default function FieldOpsTab({
                 protocolState={protocolState}
                 onRecordFieldChange={handleProtocolRecordFieldChange}
                 attachments={attachments}
-                serializingMedia={serializingMedia}
+                serializingMedia={serializingMedia || serializingAudio || serializingCamera}
                 audioCaptureStatus={audioCaptureStatus}
                 nativeMobile={nativeMobile}
                 routeObservations={routeObservations}

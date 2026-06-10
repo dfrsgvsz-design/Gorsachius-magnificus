@@ -3,25 +3,95 @@ import { serializeAttachment } from '../lib/surveyOffline'
 import { getApiErrorMessage } from '../lib/api'
 import { ImpactStyle, pulseFeedback } from '../lib/mobileNative'
 
+// ---------------------------------------------------------------------------
+// Pure helpers — exported for unit-testing without spinning up React or a DOM.
+// ---------------------------------------------------------------------------
+
 /**
- * Encapsulate browser MediaRecorder audio capture logic.
+ * Pick the preferred MIME type for a `MediaRecorder` instance. Prefers Opus
+ * (smallest, browser-supported) and falls back to letting the browser choose.
  *
- * Returns { audioCaptureStatus, startAudioCapture, stopAudioCapture }.
- *
- * `onAttachment(attachment)` is called when a finished recording is serialized.
- * `onEvidenceType(type)` is called to set evidence_type to 'audio'.
- * `onError(message)` is called on failures.
- *
- * Extracted from FieldOpsTab lines 1024, 1031-1033, 1281-1289, 2293-2361.
+ * @param {object} mediaRecorderImpl  the `MediaRecorder` constructor or shim
+ * @returns {string}  the negotiated mime type, or `''` to leave it unset
  */
-export default function useAudioCapture({ onAttachment, onEvidenceType, onError }) {
+export function pickPreferredAudioMimeType(mediaRecorderImpl) {
+  if (!mediaRecorderImpl || typeof mediaRecorderImpl.isTypeSupported !== 'function') {
+    return ''
+  }
+  if (mediaRecorderImpl.isTypeSupported('audio/webm;codecs=opus')) {
+    return 'audio/webm;codecs=opus'
+  }
+  if (mediaRecorderImpl.isTypeSupported('audio/ogg;codecs=opus')) {
+    return 'audio/ogg;codecs=opus'
+  }
+  return ''
+}
+
+/**
+ * Wrap accumulated `MediaRecorder` chunks into a `File` whose extension and
+ * MIME type match the negotiated container. Uses an injectable `timestampMs`
+ * so test runs produce stable filenames.
+ *
+ * @param {Blob[]} chunks
+ * @param {string} mimeType  preferred type (may be empty)
+ * @param {number} [timestampMs]  defaults to `Date.now()`
+ * @returns {File | null}  `null` when there are no audible chunks
+ */
+export function buildAudioFile(chunks, mimeType, timestampMs = Date.now()) {
+  const safeChunks = Array.isArray(chunks) ? chunks.filter(Boolean) : []
+  const effectiveType = mimeType || 'audio/webm'
+  const blob = new Blob(safeChunks, { type: effectiveType })
+  if (blob.size === 0) return null
+  const extension = effectiveType.includes('ogg') ? 'ogg' : 'webm'
+  return new File([blob], `field-audio-${timestampMs}.${extension}`, {
+    type: effectiveType,
+  })
+}
+
+/**
+ * Report whether the current environment can capture audio. Tests inject the
+ * relevant globals via `env` to exercise every branch.
+ *
+ * @returns {{ supported: boolean, reason?: string }}
+ */
+export function checkAudioCaptureSupport(env = {}) {
+  const w = env.window ?? (typeof window === 'undefined' ? null : window)
+  const nav = env.navigator ?? (typeof navigator === 'undefined' ? null : navigator)
+  const recorder = env.MediaRecorder
+    ?? (typeof MediaRecorder === 'undefined' ? null : MediaRecorder)
+  if (!w) return { supported: false, reason: 'no_window' }
+  if (!nav?.mediaDevices?.getUserMedia) return { supported: false, reason: 'no_get_user_media' }
+  if (!recorder) return { supported: false, reason: 'no_media_recorder' }
+  return { supported: true }
+}
+
+// ---------------------------------------------------------------------------
+// Hook
+// ---------------------------------------------------------------------------
+
+/**
+ * Encapsulate browser `MediaRecorder` audio capture for field surveys.
+ *
+ * `onAttachment(attachment)` fires when a finished recording is serialized
+ * into the surveyOffline attachment store.
+ * `onEvidenceType(type)` is called to set `evidence_type` to `'audio'` both at
+ * start and at successful completion.
+ * `onError(messageOrNull)` is called on failures (and with `null` to clear).
+ *
+ * @returns {{
+ *   audioCaptureStatus: 'idle' | 'recording',
+ *   serializingAudio: boolean,
+ *   startAudioCapture: () => Promise<void>,
+ *   stopAudioCapture: () => Promise<void>,
+ * }}
+ */
+export default function useAudioCapture({ onAttachment, onEvidenceType, onError } = {}) {
   const [audioCaptureStatus, setAudioCaptureStatus] = useState('idle')
   const [serializingMedia, setSerializingMedia] = useState(false)
   const audioRecorderRef = useRef(null)
   const audioStreamRef = useRef(null)
   const audioChunksRef = useRef([])
 
-  // cleanup on unmount
   useEffect(() => () => {
     if (audioRecorderRef.current && audioRecorderRef.current.state !== 'inactive') {
       audioRecorderRef.current.stop()
@@ -33,11 +103,8 @@ export default function useAudioCapture({ onAttachment, onEvidenceType, onError 
   }, [])
 
   async function startAudioCapture() {
-    if (
-      typeof window === 'undefined'
-      || !navigator?.mediaDevices?.getUserMedia
-      || typeof MediaRecorder === 'undefined'
-    ) {
+    const support = checkAudioCaptureSupport()
+    if (!support.supported) {
       onError?.('Audio recording is not supported in this browser or device.')
       return
     }
@@ -46,9 +113,7 @@ export default function useAudioCapture({ onAttachment, onEvidenceType, onError 
     onError?.(null)
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true })
-      const mimeType = MediaRecorder.isTypeSupported?.('audio/webm;codecs=opus')
-        ? 'audio/webm;codecs=opus'
-        : ''
+      const mimeType = pickPreferredAudioMimeType(MediaRecorder)
       const recorder = new MediaRecorder(stream, mimeType ? { mimeType } : undefined)
       audioChunksRef.current = []
       audioStreamRef.current = stream
@@ -58,14 +123,9 @@ export default function useAudioCapture({ onAttachment, onEvidenceType, onError 
       }
       recorder.onstop = async () => {
         try {
-          const blob = new Blob(audioChunksRef.current, {
-            type: recorder.mimeType || 'audio/webm',
-          })
-          if (blob.size > 0) {
-            const extension = blob.type.includes('ogg') ? 'ogg' : 'webm'
-            const file = new File([blob], `field-audio-${Date.now()}.${extension}`, {
-              type: blob.type || 'audio/webm',
-            })
+          const negotiated = recorder.mimeType || mimeType || 'audio/webm'
+          const file = buildAudioFile(audioChunksRef.current, negotiated)
+          if (file) {
             const attachment = await serializeAttachment(file)
             onAttachment?.(attachment)
             onEvidenceType?.('audio')
