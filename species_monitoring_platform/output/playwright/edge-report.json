@@ -1,0 +1,60 @@
+{
+  "base_url": "http://127.0.0.1:8000",
+  "checks": [
+    {
+      "label": "desktop-offline-banner",
+      "width": 1440,
+      "height": 1100,
+      "overflowX": 0,
+      "overflowY": 1799
+    },
+    {
+      "label": "desktop-invalid-upload",
+      "width": 1440,
+      "height": 1100,
+      "overflowX": 0,
+      "overflowY": 790
+    },
+    {
+      "label": "mobile-offline-banner",
+      "width": 393,
+      "height": 852,
+      "overflowX": 0,
+      "overflowY": 4720
+    },
+    {
+      "label": "mobile-invalid-upload",
+      "width": 393,
+      "height": 852,
+      "overflowX": 0,
+      "overflowY": 1456
+    },
+    {
+      "label": "mobile-device-form",
+      "width": 393,
+      "height": 852,
+      "overflowX": 0,
+      "overflowY": 1866
+    }
+  ],
+  "console": [
+    {
+      "scope": "desktop",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 400 (Bad Request)"
+    },
+    {
+      "scope": "mobile",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 400 (Bad Request)"
+    }
+  ],
+  "page_errors": [],
+  "screenshots": [
+    "F:\\Gorsachius magnificus\\bird_sound_platform\\output\\playwright\\edge-offline-banner-desktop.png",
+    "F:\\Gorsachius magnificus\\bird_sound_platform\\output\\playwright\\edge-invalid-upload-desktop.png",
+    "F:\\Gorsachius magnificus\\bird_sound_platform\\output\\playwright\\edge-offline-banner-mobile.png",
+    "F:\\Gorsachius magnificus\\bird_sound_platform\\output\\playwright\\edge-invalid-upload-mobile.png",
+    "F:\\Gorsachius magnificus\\bird_sound_platform\\output\\playwright\\edge-mobile-device-form.png"
+  ]
+}

@@ -1,0 +1,40 @@
+﻿=== ASSETS (non-backend) ===
+
+Name                    Size(B)
+----                    -------
+env.production.template     518
+gm-backend.service          597
+README_DEPLOY.md           3293
+start_linux.sh              368
+start_windows.ps1           671
+
+
+
+=== requirements.txt present? ===
+True
+=== backend tree top-level ===
+
+Name       
+----       
+checkpoints
+data       
+middleware 
+routes     
+
+
+
+Name                      
+----                      
+alert_pusher.py           
+audio_processor.py        
+batch_import.py           
+biodiversity.py           
+biodiversity_calculator.py
+birdnet_embeddings.py     
+birdnet_engine.py         
+camera_trap_processor.py  
+cli.py                    
+cnn_model.py              
+
+
+

@@ -1,0 +1,85 @@
+{
+  "version": 1,
+  "skills": {
+    "Test Coverage Analyzer": {
+      "source": "C:\\Users\\Administrator\\.codex\\skills",
+      "sourceType": "local",
+      "computedHash": "7d0dab340197dbdbcea7dfb38e917bb4c740ddb1f7f28fd75af4688dd210dd92"
+    },
+    "capacitor-best-practices": {
+      "source": "C:\\Users\\Administrator\\.agents\\skills",
+      "sourceType": "local",
+      "computedHash": "04167dab2c5beca32a92126590feab19eed0c30412e72dda2b7a5ab7cc503393"
+    },
+    "capacitor-offline-first": {
+      "source": "C:\\Users\\Administrator\\.agents\\skills",
+      "sourceType": "local",
+      "computedHash": "a737bea74df3cac00fcf2f0860576a8ed3f73512442f6190f02bbabbc91db1fc"
+    },
+    "capacitor-performance": {
+      "source": "C:\\Users\\Administrator\\.agents\\skills",
+      "sourceType": "local",
+      "computedHash": "678b3a8db7eea2fde5fbf101950eacd3bb76f18dda592b3543106e6a755fe959"
+    },
+    "ci-cd-and-automation": {
+      "source": "C:\\Users\\Administrator\\.codex\\skills",
+      "sourceType": "local",
+      "computedHash": "578b098a7d2352ccdac8b8abdc40eb6803538e81cf8382f138da6188a655087c"
+    },
+    "code-review-and-quality": {
+      "source": "C:\\Users\\Administrator\\.codex\\skills",
+      "sourceType": "local",
+      "computedHash": "83931d7416bcff73c24d976c1e45f09f80259541d33e9fdfe3ee521d39b27428"
+    },
+    "codebase-cleanup-deps-audit": {
+      "source": "C:\\Users\\Administrator\\.codex\\skills",
+      "sourceType": "local",
+      "computedHash": "6e99b232b1ac337d5f5ba8c545c32600d33b1e290af0089c2d96a8690031a48c"
+    },
+    "docker-deployment": {
+      "source": "C:\\Users\\Administrator\\.agents\\skills",
+      "sourceType": "local",
+      "computedHash": "36827e3baf069aabe5d9032ba7f26bb07647bdd7ea1d8278348a7c4e54a853f8"
+    },
+    "fastapi-python": {
+      "source": "C:\\Users\\Administrator\\.agents\\skills",
+      "sourceType": "local",
+      "computedHash": "4521c6090735152b7b8df670cefe5c1c6d1dcaa115de67bb96e74ebf802d4f24"
+    },
+    "lint-and-validate": {
+      "source": "C:\\Users\\Administrator\\.codex\\skills",
+      "sourceType": "local",
+      "computedHash": "40912280ff6416fb3f8d96197998566aa8e6dfced073e948e637d22a5247819b"
+    },
+    "python-code-quality": {
+      "source": "C:\\Users\\Administrator\\.codex\\skills",
+      "sourceType": "local",
+      "computedHash": "664ec42a380f63aa6de766dd286aad71e9e9fab6d07d6a60424ed5531ee86890"
+    },
+    "qa-testing-android": {
+      "source": "C:\\Users\\Administrator\\.agents\\skills",
+      "sourceType": "local",
+      "computedHash": "0fb5ec8c1a88d8c20d8295623ff1fe6081a5a846d79cae44f9090410767cfd69"
+    },
+    "quality-gates-enforcer": {
+      "source": "C:\\Users\\Administrator\\.codex\\skills",
+      "sourceType": "local",
+      "computedHash": "2bef6c6a92591abfce2d546d97355a5abd3300c3d3d9b7cdc26df9bd42c19a9e"
+    },
+    "semgrep": {
+      "source": "C:\\Users\\Administrator\\.codex\\skills",
+      "sourceType": "local",
+      "computedHash": "2ea1b9502a5cebbc74b5791dcabac00090bb00fc9a67d87a54bbd895c74a1cd6"
+    },
+    "tailwindcss": {
+      "source": "C:\\Users\\Administrator\\.agents\\skills",
+      "sourceType": "local",
+      "computedHash": "1715717d38abba1c4b11f2e95a94681cdb1dddbcb28379637b591a16b50bcd4d"
+    },
+    "vite": {
+      "source": "C:\\Users\\Administrator\\.agents\\skills",
+      "sourceType": "local",
+      "computedHash": "da1111a89202bae046df2db8178aecc237ddcd5de927acb78e41dc2b427051f6"
+    }
+  }
+}

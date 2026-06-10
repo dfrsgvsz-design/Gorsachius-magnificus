@@ -1,0 +1,130 @@
+=== Hybrid Local smoke test [OFFLINE] ===
+target: http://127.0.0.1:5173
+offline: true
+→ navigating
+[browser:debug] [vite] connecting...
+[browser:debug] [vite] connected.
+[browser:info] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold
+→ waiting for hydration (5 s)
+[browser:error] Failed to load resource: the server responded with a status of 422 (Unprocessable Entity)
+[browser:error] Failed to load resource: the server responded with a status of 422 (Unprocessable Entity)
+[browser:log] #### getVersion new res: [{"columns":["user_version"],"values":[[0]]}]
+→ pre-loading modules + ensureSchema (online)
+preloaded: {"apiKeys":["analyzeAudio","analyzeBatch","analyzeBirdNET","analyzeImage","analyzeTrapImage","batchScanDirectory","batchVerifyDetections","compareEngines"],"localSurveyKeys":["__localServiceInternals","buildLocalPullSnapshot","createFieldSurveySite","createOfflineMapPackage","createSurveyDesignAsset","createSurveyEvent","createSurveyExportJob","createSurveyObservation"],"localStoreKeys":["CASCADE_RULES","ENTITY_META","ENTITY_TYPES","__resetForTests__","closeDb","ensureSchema","getById","getEntityMeta"]}
+→ enabling offline mode (context.setOffline=true)
+[reqfailed] GET https://example.com/ :: net::ERR_INTERNET_DISCONNECTED
+[browser:error] Failed to load resource: net::ERR_INTERNET_DISCONNECTED
+offline check: {"ok":false,"error":"Failed to fetch"}
+→ taking screenshot
+→ running local-store flow inside the page
+[browser:log] [flow] phase_import_api {}
+[browser:log] [flow] imported {"keys":["analyzeAudio","analyzeBatch","analyzeBirdNET","analyzeImage","analyzeTrapImage","batchScanDirectory","batchVerifyDetections","compareEngines"]}
+[browser:log] [flow] created {"project":{"name":"LocalStoreSmoke 1777182098525","region":"Test Region","notes":"playwright smoke","project_id":"proj_bf76e3a51c6f","created_at":"2026-04-26T05:41:38.525Z","updated_at":"2026-04-26T05:41:38.525Z","deleted_at":""}}
+[browser:log] [flow] listed_active {"total":2,"contains":true}
+[browser:log] [flow] deleted {"deleted":"proj_bf76e3a51c6f"}
+[browser:log] [flow] listed_after_delete {"total":1,"contains":false}
+[browser:log] [flow] trash_listed {"total":1,"containsProject":true}
+[browser:log] [flow] restored {"restored":"proj_bf76e3a51c6f"}
+[browser:log] [flow] listed_after_restore {"total":2,"contains":true}
+flow result: {
+  "steps": [
+    {
+      "step": "phase_import_api",
+      "payload": {}
+    },
+    {
+      "step": "imported",
+      "payload": {
+        "keys": [
+          "analyzeAudio",
+          "analyzeBatch",
+          "analyzeBirdNET",
+          "analyzeImage",
+          "analyzeTrapImage",
+          "batchScanDirectory",
+          "batchVerifyDetections",
+          "compareEngines"
+        ]
+      }
+    },
+    {
+      "step": "created",
+      "payload": {
+        "project": {
+          "name": "LocalStoreSmoke 1777182098525",
+          "region": "Test Region",
+          "notes": "playwright smoke",
+          "project_id": "proj_bf76e3a51c6f",
+          "created_at": "2026-04-26T05:41:38.525Z",
+          "updated_at": "2026-04-26T05:41:38.525Z",
+          "deleted_at": ""
+        }
+      }
+    },
+    {
+      "step": "listed_active",
+      "payload": {
+        "total": 2,
+        "contains": true
+      }
+    },
+    {
+      "step": "deleted",
+      "payload": {
+        "deleted": "proj_bf76e3a51c6f"
+      }
+    },
+    {
+      "step": "listed_after_delete",
+      "payload": {
+        "total": 1,
+        "contains": false
+      }
+    },
+    {
+      "step": "trash_listed",
+      "payload": {
+        "total": 1,
+        "containsProject": true
+      }
+    },
+    {
+      "step": "restored",
+      "payload": {
+        "restored": "proj_bf76e3a51c6f"
+      }
+    },
+    {
+      "step": "listed_after_restore",
+      "payload": {
+        "total": 2,
+        "contains": true
+      }
+    }
+  ],
+  "success": true
+}
+
+=== console events (last 20) ===
+[debug] [vite] connecting...
+[debug] [vite] connected.
+[info] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold
+[error] Failed to load resource: the server responded with a status of 422 (Unprocessable Entity)
+[error] Failed to load resource: the server responded with a status of 422 (Unprocessable Entity)
+[log] #### getVersion new res: [{"columns":["user_version"],"values":[[0]]}]
+[requestfailed] GET https://example.com/ :: net::ERR_INTERNET_DISCONNECTED
+[error] Failed to load resource: net::ERR_INTERNET_DISCONNECTED
+[log] [flow] phase_import_api {}
+[log] [flow] imported {"keys":["analyzeAudio","analyzeBatch","analyzeBirdNET","analyzeImage","analyzeTrapImage","batchScanDirectory","batchVerifyDetections","compareEngines"]}
+[log] [flow] created {"project":{"name":"LocalStoreSmoke 1777182098525","region":"Test Region","notes":"playwright smoke","project_id":"proj_bf76e3a51c6f","created_at":"2026-04-26T05:41:38.525Z","updated_at":"2026-04-26T05:41:38.525Z","deleted_at":""}}
+[log] [flow] listed_active {"total":2,"contains":true}
+[log] [flow] deleted {"deleted":"proj_bf76e3a51c6f"}
+[log] [flow] listed_after_delete {"total":1,"contains":false}
+[log] [flow] trash_listed {"total":1,"containsProject":true}
+[log] [flow] restored {"restored":"proj_bf76e3a51c6f"}
+[log] [flow] listed_after_restore {"total":2,"contains":true}
+
+=== page errors ===
+(none)
+
+✓ PASS — hybrid local flow succeeded

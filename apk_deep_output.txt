@@ -1,0 +1,63 @@
+﻿
+=== APK deep functional tester ===
+CDP: http://127.0.0.1:9223
+
+URL: https://localhost/
+Title: Biodiversity Field Survey Platform
+        鈫?00-cdp-attached.png
+
+Baseline storage: {"keys":["bird-platform-field-device-id","bird-platform-field-survey-v1","sidebar_collapsed"],"device_id":"device_b136e514-894","raw_size":1748,"projects":1,"sites":0,"routes":0,"observations":0,"tracks":0,"events":0,"syncQueue":1,"mediaInbox":0,"taxonomyPackages":0,"activeProjectId":"proj_48143c0b-522","activeSiteId":"","activeProtocol":"bird_line_transect","activeJurisdiction":"mainland_china"}
+
+--- T1: 9-tab sweep ---
+        鈫?01-tab-overview.png
+  [PASS] T1 nav.overview 鈥?button.mobile-nav-button >> text=鎬昏
+    -- tap miss: fieldops
+        鈫?01-tab-fieldops.png
+  [WARN] T1 nav.fieldops 鈥?tab not visible
+    -- tap miss: species
+        鈫?01-tab-species.png
+  [WARN] T1 nav.species 鈥?tab not visible
+    -- tap miss: monitor
+        鈫?01-tab-monitor.png
+  [WARN] T1 nav.monitor 鈥?tab not visible
+        鈫?01-tab-more.png
+  [PASS] T1 nav.more 鈥?button:has-text("鏇村")
+
+--- T2: Settings 鈫?ProjectManagementPanel ---
+    -- tap miss: more
+        鈫?02-settings-tab.png
+  [PASS] T2 ProjectManagementPanel visible in Settings 鈥?headings: 璁剧疆 | 鏌ョ湅宸插惎鐢ㄨ兘鍔涳紝骞朵繚鎸佸閮ㄨ闂厤缃竻鏅?| 杩愯璀﹀憡 | 绯荤粺淇℃伅 | Xeno-canto API 瀵嗛挜 | eBird API 瀵嗛挜 | 鍔熻兘鍙敤鎬?| 鐗╃鏁版嵁鎵归噺瀵煎叆 | 椤圭洰绠＄悊
+        鈫?03-pmp-expanded.png
+  [WARN] T2 create project mutates storage 鈥?projects: 1 鈫?1, syncQueue: 1 鈫?1
+
+--- T3: FieldOps survey flow ---
+    -- tap miss: fieldops
+        鈫?05-fieldops-on-entry.png
+  [WARN] T3 fill observer name 鈥?input not found
+  [WARN] T3 GPS coordinates rendered
+  [WARN] T3 start survey created event 鈥?events: 0 鈫?0, syncQueue: 1 鈫?1
+
+--- T4: native plugin reachability ---
+    Capacitor: true, native: true, plugins: App,SystemBars,Geolocation,Camera,Haptics,CapacitorCookies,WebView,Filesystem,StatusBar,CapacitorHttp
+    GPS: {"error":"Timeout expired"}
+    Camera: ready=true, perms={"saveGallery":"prompt","readExternalStorage":"prompt","camera":"granted","photos":"granted"}
+    Filesystem: ready=true, perms={"publicStorage":"granted"}
+  [PASS] T4 Capacitor native plugins exposed 鈥?10 plugins, platform=android
+  [FAIL] T4 Geolocation.getCurrentPosition 鈥?Timeout expired
+
+Final storage: {"keys":["bird-platform-field-device-id","bird-platform-field-survey-v1","sidebar_collapsed"],"device_id":"device_b136e514-894","raw_size":1748,"projects":1,"sites":0,"routes":0,"observations":0,"tracks":0,"events":0,"syncQueue":1,"mediaInbox":0,"taxonomyPackages":0,"activeProjectId":"proj_48143c0b-522","activeSiteId":"","activeProtocol":"bird_line_transect","activeJurisdiction":"mainland_china"}
+
+--- T6: backend connectivity test ---
+    /api/health: {"status":200,"ok":true}
+  [PASS] T6 backend reachable from WebView (offline-first design tolerates failure) 鈥?status=200
+
+SW final: {"sw_count":1,"sw_active":["activated"],"cache_names":["bird-platform-v4","bird-api-cache-v4"]}
+
+=== Summary ===
+{
+  "pass": 5,
+  "warn": 7,
+  "fail": 1,
+  "consoleErrors": 0,
+  "pageErrors": 0
+}

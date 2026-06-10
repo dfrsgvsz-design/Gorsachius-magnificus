@@ -1,0 +1,85 @@
+﻿
+=== APK deep functional tester v2 ===
+CDP: http://127.0.0.1:9223
+
+URL: https://localhost/, Title: Biodiversity Field Survey Platform
+        鈫?00-attached.png
+Baseline storage: {"projects":1,"sites":0,"routes":0,"observations":0,"tracks":0,"events":0,"syncQueue":1,"mediaInbox":0,"activeProjectId":"proj_48143c0b-522","activeSiteId":"","activeProtocol":"bird_line_transect","project_names":["Field Survey Region Field Survey"]}
+
+--- T1: mobile bottom-nav 5 slots ---
+        鈫?01-nav-1-鎬昏.png
+  [FAIL] T1 bottom-nav slot 1 (鎬昏) 鈥?no element
+        鈫?01-nav-2-澶栦笟.png
+  [FAIL] T1 bottom-nav slot 2 (澶栦笟) 鈥?no element
+        鈫?01-nav-3-鐗╃.png
+  [FAIL] T1 bottom-nav slot 3 (鐗╃) 鈥?no element
+        鈫?01-nav-4-鐩戞祴.png
+  [FAIL] T1 bottom-nav slot 4 (鐩戞祴) 鈥?no element
+        鈫?01-nav-5-鏇村.png
+  [FAIL] T1 bottom-nav slot 5 (鏇村) 鈥?no element
+
+--- T2: Settings 鈫?ProjectManagementPanel ---
+        鈫?02-settings-loaded.png
+  [PASS] T2 Settings tab opened 鈥?headings: 璁剧疆 | 鏌ョ湅宸插惎鐢ㄨ兘鍔涳紝骞朵繚鎸佸閮ㄨ闂厤缃竻鏅?| 杩愯璀﹀憡 | 绯荤粺淇℃伅 | Xeno-canto API 瀵嗛挜 | eBird API 瀵嗛挜 | 鍔熻兘鍙敤鎬?| 鐗╃鏁版嵁鎵归噺瀵煎叆 | 椤圭洰绠＄悊
+  [PASS] T2 ProjectManagementPanel header present 鈥?h3 椤圭洰绠＄悊 located
+        鈫?03-pmp-visible.png
+  [PASS] T2 "鏂板缓椤圭洰" button visible 鈥?button present
+  [FAIL] T2 click 鏂板缓椤圭洰 鈥?locator.click: Timeout 30000ms exceeded.
+Call log:
+[2m  - waiting for locator('button:has-text("鏂板缓椤圭洰"), button:has-text("New project")').first()[22m
+[2m    - locator resolved to <button disabled class="inline-flex items-center gap-1.5 rounded-[12px] bg-[#0A84FF]/15 px-4 py-[11px] text-[14px] font-medium text-[#0A84FF] active:bg-[#0A84FF]/25 disabled:opacity-40">鈥?/button>[22m
+[2m  - attempting click action[22m
+[2m    2 脳 waiting for element to be visible, enabled and stable[22m
+[2m      - element is not enabled[22m
+[2m    - retrying click action[22m
+[2m    - waiting 20ms[22m
+[2m    2 脳 waiting for element to be visible, enabled and stable[22m
+[2m      - element is not enabled[22m
+[2m    - retrying click action[22m
+[2m      - waiting 100ms[22m
+[2m    56 脳 waiting for element to be visible, enabled and stable[22m
+[2m       - element is not enabled[22m
+[2m     - retrying click action[22m
+[2m       - waiting 500ms[22m
+
+        鈫?05-form-filled.png
+  [FAIL] T2 ProjectManagementPanel actually created project 鈥?projects: 1鈫?, names: Field Survey Region Field Survey
+
+--- T3: FieldOps full survey flow ---
+        鈫?07-fieldops-entered.png
+node : Crash: locator.click: Timeout 30000ms exceeded.
+所在位置 行:1 字符: 1
++ node test-apk-deep-v2.mjs 2>&1 | Out-File -FilePath "f:\Gorsachius ma ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Crash: locator....000ms exceeded.:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+Call log:
+[2m  - waiting for locator('button:has(.lucide-folder-open) span').first()[22m
+[2m    - locator resolved to <span class="nav-label">澶栦笟</span>[22m
+[2m  - attempting click action[22m
+[2m    2 脳 waiting for element to be visible, enabled and stable[22m
+[2m      - element is visible, enabled and stable[22m
+[2m      - scrolling into view if needed[22m
+[2m      - done scrolling[22m
+[2m      - element is outside of the viewport[22m
+[2m    - retrying click action[22m
+[2m    - waiting 20ms[22m
+[2m    2 脳 waiting for element to be visible, enabled and stable[22m
+[2m      - element is visible, enabled and stable[22m
+[2m      - scrolling into view if needed[22m
+[2m      - done scrolling[22m
+[2m      - element is outside of the viewport[22m
+[2m    - retrying click action[22m
+[2m      - waiting 100ms[22m
+[2m    54 脳 waiting for element to be visible, enabled and stable[22m
+[2m       - element is visible, enabled and stable[22m
+[2m       - scrolling into view if needed[22m
+[2m       - done scrolling[22m
+[2m       - element is outside of the viewport[22m
+[2m     - retrying click action[22m
+[2m       - waiting 500ms[22m
+
+    at run (F:\Gorsachius magnificus\species_monitoring_platform\frontend\test-apk-deep-v2.mjs:208:23) {
+  name: 'TimeoutError'
+}

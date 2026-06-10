@@ -1,0 +1,54 @@
+version: "3.9"
+
+services:
+  app:
+    image: biodiversity-field-survey:release
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "${APP_PORT:-8000}:8000"
+    env_file:
+      - .env
+    environment:
+      PORT: 8000
+      WEB_CONCURRENCY: ${WEB_CONCURRENCY:-1}
+      CORS_ORIGINS: ${CORS_ORIGINS:-}
+      BIRD_API_KEY: ${BIRD_API_KEY:-}
+      XC_API_KEY: ${XC_API_KEY:-}
+      BIRD_PLATFORM_DATA_DIR: /app/data
+    volumes:
+      # Writable field release data owned by the VM operator.
+      - type: bind
+        source: ${BSP_APP_DATA_DIR:-./deploy/pilot/volumes/app-data}
+        target: /app/data
+      - type: bind
+        source: ${BSP_BACKEND_DATA_DIR:-./deploy/pilot/volumes/backend-data}
+        target: /app/backend/data
+      - type: bind
+        source: ${BSP_CONFIG_DIR:-./deploy/pilot/volumes/config}
+        target: /home/appuser/.bird_sound_platform
+      - type: bind
+        source: ${BSP_LOG_DIR:-./deploy/pilot/volumes/logs}
+        target: /var/log/bird_sound_platform
+      # Repo-managed model assets: mount read-only so an empty host directory
+      # cannot mask the checkpoints baked into the checkout.
+      - type: bind
+        source: ${BSP_CHECKPOINTS_DIR:-./backend/checkpoints}
+        target: /app/backend/checkpoints
+        read_only: true
+    restart: unless-stopped
+    stop_grace_period: 45s
+    security_opt:
+      - no-new-privileges:true
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://127.0.0.1:8000/api/health || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 90s
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "5"

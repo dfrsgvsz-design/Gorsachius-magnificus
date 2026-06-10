@@ -1,0 +1,24 @@
+﻿[Unit]
+Description=Gorsachius magnificus Survey Backend (FastAPI / uvicorn)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=gm-backend
+Group=gm-backend
+WorkingDirectory=/opt/gm-backend
+EnvironmentFile=/opt/gm-backend/.env
+ExecStart=/opt/gm-backend/start_linux.sh
+Restart=on-failure
+RestartSec=5
+StandardOutput=append:/var/log/gm-backend/stdout.log
+StandardError=append:/var/log/gm-backend/stderr.log
+# Hardening
+ProtectSystem=strict
+ReadWritePaths=/opt/gm-backend /var/log/gm-backend
+PrivateTmp=true
+NoNewPrivileges=true
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,9 @@
+﻿=== AVD list ===
+Pixel_7
+
+=== adb devices ===
+List of devices attached
+
+
+=== java/javac ===
+

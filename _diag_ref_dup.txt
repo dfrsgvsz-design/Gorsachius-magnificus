@@ -1,0 +1,66 @@
+共找到 28 个参考文献段
+
+================================================================================
+文献 #1  P444
+================================================================================
+text = '[1]  Turner BL, Moss RH, Skole DL. Relating land use and global land cover change: a proposal for an IGBP-IHDP core project[R]. International Geosphere-Biosphere Program Report No.24, Stockholm, 1993.'
+runs (2 个):
+  R 0 sz=继承 ea=仿宋 text='[1]  '
+  R 1 sz=继承 ea=仿宋 text='Turner BL, Moss RH, Skole DL. Relating land use and global land cover change: a proposal for an IGBP-IHDP core project[R]. International Geosphere-Biosphere Program Report No.24, Stockholm, 1993.'
+
+================================================================================
+文献 #2  P445
+================================================================================
+text = '[2]  PATEL S K, VERMA P, SHANKAR SINGH G. Agricultural growth and land use land cover change in peri-urban India[J]. Environmental Monitoring and Assessment, 2019, 191(9): 578.'
+runs (2 个):
+  R 0 sz=继承 ea=仿宋 text='[2]  '
+  R 1 sz=继承 ea=仿宋 text='PATEL S K, VERMA P, SHANKAR SINGH G. Agricultural growth and land use land cover change in peri-urban India[J]. Environmental Monitoring and Assessment, 2019, 191(9): 578.'
+
+================================================================================
+文献 #3  P446
+================================================================================
+text = '[3]  李德仁, 张良培, 夏桂松. 遥感大数据自动分析与数据挖掘[J]. 测绘学报, 2014, 43(12): 1211-1216.'
+runs (2 个):
+  R 0 sz=继承 ea=仿宋 text='[3]  李德仁, 张良培, 夏桂松. 遥感大数据自动分析与数据挖掘[J]. 测绘学报, 2014, 43(12): 1211-1216.'
+  R 1 sz=继承 ea=仿宋 text=''
+
+================================================================================
+文献 #4  P447
+================================================================================
+text = '[4]  章志甫. 国土空间规划体系下的"三区三线"划定与"三线"研究[J]. 规划师, 2019, 35(05): 27-31.'
+runs (2 个):
+  R 0 sz=继承 ea=仿宋 text='[4]  '
+  R 1 sz=继承 ea=仿宋 text='章志甫. 国土空间规划体系下的"三区三线"划定与"三线"研究[J]. 规划师, 2019, 35(05): 27-31.'
+
+================================================================================
+文献 #5  P448
+================================================================================
+text = '[5]  肖笃宁, 陈文波, 郭福良. 论生态安全的基本概念和研究内容[J]. 应用生态学报, 2002, (03): 354-358.'
+runs (2 个):
+  R 0 sz=继承 ea=仿宋 text='[5]  '
+  R 1 sz=继承 ea=仿宋 text='肖笃宁, 陈文波, 郭福良. 论生态安全的基本概念和研究内容[J]. 应用生态学报, 2002, (03): 354-358.'
+
+================================================================================
+文献 #28  P471
+================================================================================
+text = '[28]  Liang X, Guan Q, Clarke K C, et al. Understanding the drivers of sustainable land expansion using a patch-generating land use simulation (PLUS) model: A case study in Wuhan, China[J]. Computers, Environment and Urban Systems, 2021, 85: 101569.'
+runs (1 个):
+  R 0 sz=继承 ea=仿宋 text='[28]  Liang X, Guan Q, Clarke K C, et al. Understanding the drivers of sustainable land expansion using a patch-generating land use simulation (PLUS) model: A case study in Wuhan, China[J]. Computers, Environment and Urban Systems, 2021, 85: 101569.'
+
+================================================================================
+段落 numbering/list 属性检查
+================================================================================
+  P444: HAS numPr  -> has children
+    child: {http://schemas.openxmlformats.org/wordprocessingml/2006/main}ilvl {'{http://schemas.openxmlformats.org/wordprocessingml/2006/main}val': '0'}
+    child: {http://schemas.openxmlformats.org/wordprocessingml/2006/main}numId {'{http://schemas.openxmlformats.org/wordprocessingml/2006/main}val': '7'}
+    style.name = '列表段落1'
+  P445: HAS numPr  -> has children
+    child: {http://schemas.openxmlformats.org/wordprocessingml/2006/main}ilvl {'{http://schemas.openxmlformats.org/wordprocessingml/2006/main}val': '0'}
+    child: {http://schemas.openxmlformats.org/wordprocessingml/2006/main}numId {'{http://schemas.openxmlformats.org/wordprocessingml/2006/main}val': '7'}
+    style.name = '列表段落1'
+  P446: HAS numPr  -> has children
+    child: {http://schemas.openxmlformats.org/wordprocessingml/2006/main}ilvl {'{http://schemas.openxmlformats.org/wordprocessingml/2006/main}val': '0'}
+    child: {http://schemas.openxmlformats.org/wordprocessingml/2006/main}numId {'{http://schemas.openxmlformats.org/wordprocessingml/2006/main}val': '7'}
+    style.name = '列表段落1'
+
+完成

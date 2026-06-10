@@ -1,0 +1,17 @@
+__pycache__/
+*.py[cod]
+*.log
+.git/
+.github/
+.windsurf/
+
+frontend/node_modules/
+frontend/dist/
+test_data/
+data/
+checkpoints/
+checkpoints_gpu_baseline/
+checkpoints_gpu_lite/
+checkpoints_gpu_test/
+dist/
+build/

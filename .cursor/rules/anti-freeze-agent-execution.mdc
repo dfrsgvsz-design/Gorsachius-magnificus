@@ -1,0 +1,43 @@
+---
+description: Prevent agent freeze by controlling concurrency and long-running batches.
+globs: *
+alwaysApply: true
+---
+
+# Anti-Freeze Agent Execution Policy
+
+## Goal
+Keep Agent responsive during heavy tasks while still allowing parallel work.
+
+## Mandatory Execution Limits
+- Default maximum parallel subagents per batch: **4**
+- If user explicitly includes `#max-parallel`, raise to **8** subagents per batch.
+- Do not launch a new batch until the current batch has completed and been reported.
+- Prefer batches that finish within **2-6 minutes**.
+- If a task is expected to exceed 6 minutes, split it into multiple batches.
+
+## Long-Task Handling
+- For deep audits, run by modules (for example: backend, frontend, android, ci) instead of one global sweep.
+- Avoid mixing heavy shell commands and many subagents in the same batch.
+- Never run more than one heavyweight shell test command at the same time.
+
+## User Interaction Safety
+- If user sends a new request while a heavy batch is running, first summarize completed results from finished jobs, then start the next batch.
+- Explicitly ask user whether to continue with the next batch only after reporting current batch results.
+
+## Recommended Batch Template
+- Batch A: backend + security + data integrity + ci/deploy
+- Batch B: frontend + android + tests + docs drift
+
+## Max-Parallel Mode
+- Trigger phrase: `#max-parallel`
+- In this mode:
+  - Run up to 8 subagents concurrently
+  - Keep shell heavy commands to max 2 at a time
+  - Return one consolidated report after all subagents finish
+
+## Output Style
+- Report per batch with:
+  1) completed jobs
+  2) failed/interrupted jobs
+  3) next batch proposal

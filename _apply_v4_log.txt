@@ -1,0 +1,55 @@
+开始: v3 -> v4
+SRC: E:\大学\万物春\erci\郑春铃+横州市土地利用变化与生态安全评价(1)_PLUS修订版_最终_格式合规_v3.docx
+DST: E:\大学\万物春\erci\郑春铃+横州市土地利用变化与生态安全评价(1)_PLUS修订版_最终_格式合规_v4.docx
+
+============================================================
+Step 1: 重画图13 (无内嵌标题)
+============================================================
+[F-FIG13] 新图: E:\大学\万物春\erci\_plus_workspace\fig13_esi_clean.png (131581 bytes)
+
+============================================================
+Step 2: 定位图13 在 docx 内的图片资源
+============================================================
+[F-FIG13] 图13 标题段位于 P384: '图13 横州市生态安全指数演变趋势（修订版，2010—2020 年为实测段，2020—2025 年为 PLUS 模拟段，2025 年标记为空心圆）'
+[F-FIG13] 候选 blip rId: [(383, 'rId45')]
+[F-FIG13] 选定 rId=rId45, target=word/media/image23.png
+  docx 内 media 文件 (23):
+    word/media/image19.png  187418 bytes
+    word/media/image18.png  507284 bytes
+    word/media/image17.png  144667 bytes
+    word/media/image16.png  173504 bytes
+    word/media/image15.png  193008 bytes
+    word/media/image14.png  923525 bytes
+    word/media/image13.png  205723 bytes
+    word/media/image12.png  396764 bytes
+    word/media/image11.png  312857 bytes
+    word/media/image10.png  148669 bytes
+    word/media/image9.png  124845 bytes
+    word/media/image8.png  208937 bytes
+    word/media/image7.jpeg  4168670 bytes
+    word/media/image6.jpeg  4175072 bytes
+    word/media/image5.jpeg  4236106 bytes
+    word/media/image4.jpeg  4144540 bytes
+    word/media/image3.png  228066 bytes
+    word/media/image2.png  6698542 bytes
+    word/media/image1.png  201083 bytes
+    word/media/image20.png  317433 bytes
+    word/media/image21.png  1994049 bytes
+    word/media/image22.png  337063 bytes
+    word/media/image23.png  150038 bytes ← 目标
+
+============================================================
+Step 3: F-DUP 移除 28 个文献段 numPr
+============================================================
+[F-DUP] 移除 28 个文献段的 numPr
+[F-DUP] 保存至 E:\大学\万物春\erci\郑春铃+横州市土地利用变化与生态安全评价(1)_PLUS修订版_最终_格式合规_v4_tmp.docx
+
+============================================================
+Step 4: F-FIG13 替换 docx 内的图13 图片
+============================================================
+  [OK] 已替换 word/media/image23.png
+
+最终输出: E:\大学\万物春\erci\郑春铃+横州市土地利用变化与生态安全评价(1)_PLUS修订版_最终_格式合规_v4.docx
+文件大小: 29,267,918 bytes
+
+Done.

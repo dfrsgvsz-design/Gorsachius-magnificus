@@ -1,0 +1,35 @@
+﻿=== STAGING CONTENTS ===
+
+Size(KB) Path                                                       
+-------- ----                                                       
+ 44497.8 deploy\staging\backend\checkpoints\best_model.pth          
+   521.8 deploy\staging\backend\data\china_birds.json               
+   225.4 deploy\staging\backend\survey_store.py                     
+   105.5 deploy\staging\backend\taxonomy_catalog.py                 
+   102.4 deploy\staging\backend\data\vertebrate_export_profiles.json
+    44.5 deploy\staging\backend\main.py                             
+      22 deploy\staging\backend\multimodal_survey.py                
+    20.6 deploy\staging\backend\routes\survey.py                    
+    19.5 deploy\staging\backend\routes\audio.py                     
+    17.7 deploy\staging\backend\taxonomy_release_builder.py         
+    15.2 deploy\staging\backend\detection_store.py                  
+    14.1 deploy\staging\backend\checkpoints\species_mapping.json    
+    13.2 deploy\staging\backend\cli.py                              
+    10.7 deploy\staging\backend\birdnet_embeddings.py               
+    10.6 deploy\staging\backend\realtime.py                         
+    10.1 deploy\staging\backend\survey_report.py                    
+     9.9 deploy\staging\backend\routes\field_ops.py                 
+     9.7 deploy\staging\backend\routes\health.py                    
+     8.9 deploy\staging\backend\routes\taxonomy.py                  
+     8.6 deploy\staging\backend\embedding_engine.py                 
+     7.6 deploy\staging\backend\device_manager.py                   
+     6.9 deploy\staging\backend\routes\realtime.py                  
+     6.5 deploy\staging\backend\routes\biodiversity_routes.py       
+     6.4 deploy\staging\backend\species_survey_planner.py           
+     5.3 deploy\staging\backend\routes\multimodal.py                
+
+
+
+=== STAGING TOTAL ===
+Total: 44.7 MB
+

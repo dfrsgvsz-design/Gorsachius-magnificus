@@ -1,0 +1,9 @@
+﻿=== sdkmanager search ===
+
+=== system-images installed ===
+android-37.0: google_apis_playstore_ps16k/
+
+=== .env.production ===
+(none)
+=== gradlew location ===
+True

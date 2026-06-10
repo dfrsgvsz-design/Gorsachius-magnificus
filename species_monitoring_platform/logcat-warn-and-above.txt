@@ -1,0 +1,227 @@
+﻿--------- beginning of main
+04-26 07:57:49.493   675   858 W AlarmManager: Unrecognized alarm listener com.android.server.timedetector.NetworkTimeUpdateService$ScheduledRefreshAlarmListener@68a0bb2
+04-26 07:57:49.839  4417  4417 W app_process: Unexpected CPU variant for x86: x86_64.
+04-26 07:57:49.839  4417  4417 W app_process: Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, goldmont-without-sha-xsaves, tremont, kabylake, alderlake, pantherlake, default
+04-26 07:57:49.908  4417  4417 W Monkey  : args: [-p, org.biodiversity.speciesmonitoring, -c, android.intent.category.LAUNCHER, 1]
+04-26 07:57:49.956  4417  4417 E FeatureFlagsImplExport: android.os.flagging.AconfigStorageReadException: ERROR_PACKAGE_NOT_FOUND: package android.xr cannot be found on the device
+04-26 07:57:49.964  4417  4417 W Monkey  :  arg: "-p"
+04-26 07:57:49.964  4417  4417 W Monkey  :  arg: "org.biodiversity.speciesmonitoring"
+04-26 07:57:49.964  4417  4417 W Monkey  :  arg: "-c"
+04-26 07:57:49.964  4417  4417 W Monkey  :  arg: "android.intent.category.LAUNCHER"
+04-26 07:57:49.964  4417  4417 W Monkey  :  arg: "1"
+04-26 07:57:49.964  4417  4417 W Monkey  : data="org.biodiversity.speciesmonitoring"
+04-26 07:57:49.964  4417  4417 W Monkey  : data="android.intent.category.LAUNCHER"
+--------- beginning of system
+04-26 07:57:50.035   675  2001 W ActivityManager: registerReceiverWithFeature: no app for null
+04-26 07:57:50.065   675  1657 W ActivityTaskManager: callingPackage for (uid=2000, pid=4417) has no WPC
+04-26 07:57:50.108   928   999 W DisconnectHandler: No disconnect change found in the transition, not handling request.
+04-26 07:57:50.110  2725  2725 W SplitSelectStateCtor: Missing session instanceIds
+04-26 07:57:50.144   675  2005 W InputChannel-JNI: Channel already disposed.
+04-26 07:57:50.181   675   706 W ActivityManager: Slow operation: 73ms so far, now at startProcess: done updating battery stats
+04-26 07:57:50.181   675   706 W ActivityManager: Slow operation: 73ms so far, now at startProcess: building log message
+04-26 07:57:50.181   675   706 W ActivityManager: Slow operation: 73ms so far, now at startProcess: starting to update pids map
+04-26 07:57:50.181   675   706 W ActivityManager: Slow operation: 73ms so far, now at startProcess: done updating pids map
+04-26 07:57:50.210  4428  4428 W eciesmonitoring: Unexpected CPU variant for x86: x86_64.
+04-26 07:57:50.210  4428  4428 W eciesmonitoring: Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, goldmont-without-sha-xsaves, tremont, kabylake, alderlake, pantherlake, default
+04-26 07:57:50.275   675   699 W PermissionService: getPermissionFlags: Unknown user -1
+04-26 07:57:50.275   675   699 W PermissionService: getPermissionFlags: Unknown user -1
+04-26 07:57:50.394   530   572 W skia    : AGTM parsing failed flags.readFromStream(s) at 159
+04-26 07:57:50.394   530   572 W skia    : AGTM parsing failed flags.readFromStream(s) at 159
+04-26 07:57:50.528  2732  2940 W AiAiEcho: LyftNotificationParser Ridesharing ETA not enabled
+04-26 07:57:50.613   530   572 W skia    : AGTM parsing failed flags.readFromStream(s) at 159
+04-26 07:57:50.613   530   572 W skia    : AGTM parsing failed flags.readFromStream(s) at 159
+04-26 07:57:50.613   530   572 W skia    : AGTM parsing failed flags.readFromStream(s) at 159
+04-26 07:57:50.647   928  4447 W libc    : Access denied finding property "vendor.mesa.virtgpu.kumquat"
+04-26 07:57:50.665  4428  4444 W libc    : Access denied finding property "vendor.mesa.virtgpu.kumquat"
+04-26 07:57:50.666   928  4447 W HWUI    : Failed to initialize 101010-2 format, error = EGL_SUCCESS
+04-26 07:57:50.671   928   928 W libc    : Access denied finding property "vendor.mesa.virtgpu.kumquat"
+04-26 07:57:50.683  4428  4444 W HWUI    : Failed to initialize 101010-2 format, error = EGL_SUCCESS
+04-26 07:57:50.727   530   572 W skia    : AGTM parsing failed flags.readFromStream(s) at 159
+04-26 07:57:50.727   530   572 W skia    : AGTM parsing failed flags.readFromStream(s) at 159
+04-26 07:57:50.843   530   572 W skia    : AGTM parsing failed flags.readFromStream(s) at 159
+04-26 07:57:50.944   530   572 W skia    : AGTM parsing failed flags.readFromStream(s) at 159
+04-26 07:57:51.053   988   988 W webview_zygote: Waiting for a thread to finish unregistering
+04-26 07:57:51.069  4457  4457 W ocessService0:0: Unexpected CPU variant for x86: x86_64.
+04-26 07:57:51.069  4457  4457 W ocessService0:0: Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, goldmont-without-sha-xsaves, tremont, kabylake, alderlake, pantherlake, default
+04-26 07:57:51.116  4457  4457 E ActivityThread: ConnectivityService is null in handleBindApplication!
+04-26 07:57:51.286  4428  4428 W chromium: [WARNING:android_webview/browser/network_service/net_helpers.cc:137] HTTP Cache size is: 20971520
+04-26 07:57:51.910  4428  4428 W Capacitor: Unable to read file at path public/plugins
+04-26 07:57:51.946  4428  4477 W cr_media: BLUETOOTH_CONNECT permission is missing.
+04-26 07:57:51.947  4428  4477 W cr_media: getBluetoothAdapter() requires BLUETOOTH permission
+04-26 07:57:51.947  4428  4477 W cr_media: registerBluetoothIntentsIfNeeded: Requires BLUETOOTH permission
+04-26 07:57:51.997  4428  4490 W libc    : Access denied finding property "vendor.mesa.virtgpu.kumquat"
+04-26 07:57:51.998  4428  4490 W libc    : Access denied finding property "vendor.mesa.log"
+04-26 07:57:51.998  4428  4490 W libc    : Access denied finding property "vendor.mesa.log.level"
+04-26 07:57:51.998  4428  4490 W libc    : Access denied finding property "vendor.mesa.log.prefix"
+04-26 07:57:51.998  4428  4490 W libc    : Access denied finding property "vendor.mesa.gallium.print.options"
+04-26 07:57:51.998  4428  4490 W libc    : Access denied finding property "vendor.mesa.log.file.auto"
+04-26 07:57:51.998  4428  4490 W libc    : Access denied finding property "vendor.mesa.log.file"
+04-26 07:57:51.998  4428  4490 E MESA    : Failed to open rendernode: No such file or directory
+04-26 07:57:51.998  4428  4490 W libc    : Access denied finding property "vendor.mesa.virtgpu.kumquat"
+04-26 07:57:51.998  4428  4490 E MESA    : Failed to open rendernode: No such file or directory
+04-26 07:57:52.005  4428  4490 W libc    : Access denied finding property "vendor.mesa.virtgpu.kumquat"
+04-26 07:57:52.005  4428  4490 E MESA    : Failed to open rendernode: No such file or directory
+04-26 07:57:52.005  4428  4490 W libc    : Access denied finding property "vendor.mesa.virtgpu.kumquat"
+04-26 07:57:52.005  4428  4490 E MESA    : Failed to open rendernode: No such file or directory
+04-26 07:57:52.005  4428  4490 W libc    : Access denied finding property "vendor.mesa.virtgpu.kumquat"
+04-26 07:57:52.005  4428  4490 E MESA    : Failed to open rendernode: No such file or directory
+04-26 07:57:52.006  4428  4490 W libc    : Access denied finding property "vendor.mesa.virtgpu.kumquat"
+04-26 07:57:52.006  4428  4490 E MESA    : Failed to open rendernode: No such file or directory
+04-26 07:57:52.006  4428  4490 W libc    : Access denied finding property "vendor.mesa.virtgpu.kumquat"
+04-26 07:57:52.006  4428  4490 E MESA    : Failed to open rendernode: No such file or directory
+04-26 07:57:52.014  4457  4467 W chromium: [WARNING:content/child/runtime_features.cc:564] Fenced frames cannot be enabled in this configuration. Use --enable-features=FencedFrames instead.
+04-26 07:57:52.014  4457  4467 W chromium: [WARNING:content/child/runtime_features.cc:589] Topics cannot be enabled in this configuration. Use --enable-features=BrowsingTopics in addition.
+04-26 07:57:52.014  4457  4467 W chromium: [WARNING:content/child/runtime_features.cc:610] SharedStorage cannot be enabled in this configuration. Use --enable-features=SharedStorageAPI in addition.
+04-26 07:57:52.015  4428  4490 W libc    : Access denied finding property "vendor.mesa.virtgpu.kumquat"
+04-26 07:57:52.018  4428  4428 W HWUI    : Unknown dataspace 0
+04-26 07:57:52.036   675  2001 W InputChannel-JNI: Channel already disposed.
+04-26 07:57:52.042  4428  4500 W libc    : Access denied finding property "vendor.mesa.virtgpu.kumquat"
+04-26 07:57:52.059   530   572 W skia    : AGTM parsing failed flags.readFromStream(s) at 159
+04-26 07:57:52.160   530   572 W skia    : AGTM parsing failed flags.readFromStream(s) at 159
+04-26 07:57:52.178   530   560 W libbinder.ServiceManagerCppClient: Permission failure: android.permission.ACCESS_SURFACE_FLINGER from uid=10230 pid=4428
+04-26 07:57:52.178   530   560 W libbinder.ServiceManagerCppClient: Permission failure: android.permission.ROTATE_SURFACE_FLINGER from uid=10230 pid=4428
+04-26 07:57:52.179   530   560 W libbinder.ServiceManagerCppClient: Permission failure: android.permission.INTERNAL_SYSTEM_WINDOW from uid=10230 pid=4428
+04-26 07:57:52.180   530   560 W libbinder.ServiceManagerCppClient: Permission failure: android.permission.READ_FRAME_BUFFER from uid=10230 pid=4428
+04-26 07:57:52.195  2967  4078 W WakeLock: GCM_HB_ALARM release without a matched acquire! [CONTEXT service_id=259 ]
+04-26 07:57:52.195  2967  4078 W WakeLock: GCM_HB_ALARM counter does not exist
+04-26 07:57:52.253  4457  4467 E ashmem  : readlink(/proc/self/fd/102) failed: Operation not permitted
+04-26 07:57:52.253  4457  4467 E ashmem  : readlink(/proc/self/fd/102) failed: Operation not permitted
+04-26 07:57:52.260   530   572 W skia    : AGTM parsing failed flags.readFromStream(s) at 159
+04-26 07:57:52.337   675  2001 W libbinder.ServiceManagerCppClient: Permission failure: android.permission.ACCESS_SURFACE_FLINGER from uid=10230 pid=0
+04-26 07:57:52.337   675  2001 W libbinder.ServiceManagerCppClient: Permission failure: android.permission.ROTATE_SURFACE_FLINGER from uid=10230 pid=0
+04-26 07:57:52.337   675  2001 W libbinder.ServiceManagerCppClient: Permission failure: android.permission.INTERNAL_SYSTEM_WINDOW from uid=10230 pid=0
+04-26 07:57:52.337   675  2001 W libbinder.ServiceManagerCppClient: Permission failure: android.permission.READ_FRAME_BUFFER from uid=10230 pid=0
+04-26 07:57:52.361   530   572 W skia    : AGTM parsing failed flags.readFromStream(s) at 159
+04-26 07:57:52.379  4457  4467 E ashmem  : readlink(/proc/self/fd/92) failed: Operation not permitted
+04-26 07:57:52.385  4457  4467 E ashmem  : readlink(/proc/self/fd/102) failed: Operation not permitted
+04-26 07:57:52.385  4457  4467 E ashmem  : readlink(/proc/self/fd/113) failed: Operation not permitted
+04-26 07:57:52.387  4457  4502 E ashmem  : readlink(/proc/self/fd/111) failed: Operation not permitted
+04-26 07:57:52.388  4457  4502 E ashmem  : readlink(/proc/self/fd/114) failed: Operation not permitted
+04-26 07:57:52.388  4457  4502 E ashmem  : readlink(/proc/self/fd/116) failed: Operation not permitted
+04-26 07:57:52.412  3073  3289 W TracingHelper: Mismatched RequestContext found for module SECURITY__NONWEARABLE. Module id from RequestContext is MODULEID_UNKNOWN [CONTEXT service_id=259 ratelimit_count=100000 ]
+04-26 07:57:52.464   530   572 W skia    : AGTM parsing failed flags.readFromStream(s) at 159
+04-26 07:57:52.464   530   572 W skia    : AGTM parsing failed flags.readFromStream(s) at 159
+04-26 07:57:52.565   530   572 W skia    : AGTM parsing failed flags.readFromStream(s) at 159
+04-26 07:57:52.565   530   572 W skia    : AGTM parsing failed flags.readFromStream(s) at 159
+04-26 07:57:52.586   675  2008 W InputChannel-JNI: Channel already disposed.
+04-26 07:57:52.611  4428  4428 E Capacitor/Console: File: https://localhost/assets/index-vmosv9kM.js - Line 308 - Msg: [api] Native build requires VITE_API_BASE_URL (absolute https://... URL) to reach backend APIs.
+04-26 07:57:52.618  3327  3327 W AndroidIME: LatinIMEBase.updateInputViewCoverNavigation():317 Null input view, cannot update padding!
+04-26 07:57:52.626   527   535 W GpuWork : Failed to attach bpf program to power/gpu_work_period tracepoint [2(No such file or directory)]
+04-26 07:57:52.632   675  2005 W PackageConfigPersister: App-specific configuration not found for packageName: org.biodiversity.speciesmonitoring and userId: 0
+04-26 07:57:52.666   530   572 W skia    : AGTM parsing failed flags.readFromStream(s) at 159
+04-26 07:57:52.666   530   572 W skia    : AGTM parsing failed flags.readFromStream(s) at 159
+04-26 07:57:52.767   530   572 W skia    : AGTM parsing failed flags.readFromStream(s) at 159
+04-26 07:57:52.767   530   572 W skia    : AGTM parsing failed flags.readFromStream(s) at 159
+04-26 07:57:52.868   530   572 W skia    : AGTM parsing failed flags.readFromStream(s) at 159
+04-26 07:57:52.868   530   572 W skia    : AGTM parsing failed flags.readFromStream(s) at 159
+04-26 07:57:52.928  4457  4499 E ashmem  : readlink(/proc/self/fd/120) failed: Operation not permitted
+04-26 07:57:52.930  4457  4499 E ashmem  : readlink(/proc/self/fd/122) failed: Operation not permitted
+04-26 07:57:52.994   530   572 W skia    : AGTM parsing failed flags.readFromStream(s) at 159
+04-26 07:57:52.994   530   572 W skia    : AGTM parsing failed flags.readFromStream(s) at 159
+04-26 07:57:53.095   530   572 W skia    : AGTM parsing failed flags.readFromStream(s) at 159
+04-26 07:57:53.106   675  1675 E TaskPersister: File error accessing recents directory (directory doesn't exist?).
+04-26 07:57:53.654  4521  4521 W webview_service: Unexpected CPU variant for x86: x86_64.
+04-26 07:57:53.654  4521  4521 W webview_service: Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, goldmont-without-sha-xsaves, tremont, kabylake, alderlake, pantherlake, default
+04-26 07:57:54.113   530   572 W skia    : AGTM parsing failed flags.readFromStream(s) at 159
+04-26 07:57:54.292   530   572 W skia    : AGTM parsing failed flags.readFromStream(s) at 159
+04-26 07:57:54.741   530   572 W skia    : AGTM parsing failed flags.readFromStream(s) at 159
+04-26 07:57:54.843   530   572 W skia    : AGTM parsing failed flags.readFromStream(s) at 159
+04-26 07:57:54.849  4428  4428 E Capacitor/Console: File:  - Line 330 - Msg: [object Object]
+04-26 07:57:54.933   928   999 W DisconnectHandler: No disconnect change found in the transition, not handling request.
+04-26 07:57:54.991  4111  4543 W libc    : Access denied finding property "vendor.mesa.virtgpu.kumquat"
+04-26 07:57:54.995  4111  4543 W HWUI    : Failed to initialize 101010-2 format, error = EGL_SUCCESS
+04-26 07:57:55.020  4428  4428 E Capacitor/Console: File:  - Line 330 - Msg: [object Object]
+04-26 07:57:55.256  4111  4111 W HWUI    : Unknown dataspace 0
+04-26 07:57:55.266   675  2001 W InputChannel-JNI: Channel already disposed.
+04-26 07:57:55.268  4111  4548 W libc    : Access denied finding property "vendor.mesa.virtgpu.kumquat"
+04-26 07:57:55.274   530   561 W libbinder.ServiceManagerCppClient: Permission failure: android.permission.ACCESS_SURFACE_FLINGER from uid=10223 pid=4111
+04-26 07:57:55.274   530   561 W libbinder.ServiceManagerCppClient: Permission failure: android.permission.ROTATE_SURFACE_FLINGER from uid=10223 pid=4111
+04-26 07:57:55.274   530   561 W libbinder.ServiceManagerCppClient: Permission failure: android.permission.INTERNAL_SYSTEM_WINDOW from uid=10223 pid=4111
+04-26 07:57:55.275   530   561 W libbinder.ServiceManagerCppClient: Permission failure: android.permission.READ_FRAME_BUFFER from uid=10223 pid=4111
+04-26 07:57:55.281  4428  4428 E Capacitor/Console: File:  - Line 330 - Msg: [object Object]
+04-26 07:57:55.301   675  2005 W libbinder.ServiceManagerCppClient: Permission failure: android.permission.ACCESS_SURFACE_FLINGER from uid=10223 pid=0
+04-26 07:57:55.301   675  2005 W libbinder.ServiceManagerCppClient: Permission failure: android.permission.ROTATE_SURFACE_FLINGER from uid=10223 pid=0
+04-26 07:57:55.301   675  2005 W libbinder.ServiceManagerCppClient: Permission failure: android.permission.INTERNAL_SYSTEM_WINDOW from uid=10223 pid=0
+04-26 07:57:55.301   675  2005 W libbinder.ServiceManagerCppClient: Permission failure: android.permission.READ_FRAME_BUFFER from uid=10223 pid=0
+04-26 07:57:55.324   675  2000 W PackageInfo: Large parcel: size=70308 pkg=com.google.android.gms uid=10221 perm=18140(95) reqPerm=19940(381) attr=27384(330) prevAllowSquashing=false
+04-26 07:57:55.335   675  2005 W PackageInfo: Large parcel: size=181732 pkg=android uid=1000 perm=177916(1102) reqPerm=1920(38) attr=484(9) prevAllowSquashing=false
+04-26 07:57:55.353   675  1657 W InputChannel-JNI: Channel already disposed.
+04-26 07:57:55.370  3327  3327 W AndroidIME: LatinIMEBase.updateInputViewCoverNavigation():317 Null input view, cannot update padding!
+04-26 07:57:55.381   675  1102 W PackageConfigPersister: App-specific configuration not found for packageName: com.google.android.permissioncontroller and userId: 0
+04-26 07:57:55.392   530   572 W skia    : AGTM parsing failed flags.readFromStream(s) at 159
+04-26 07:57:55.410  4457  4497 E ashmem  : readlink(/proc/self/fd/102) failed: Operation not permitted
+04-26 07:57:55.410  4457  4497 E ashmem  : readlink(/proc/self/fd/113) failed: Operation not permitted
+04-26 07:57:55.412  4457  4497 E ashmem  : readlink(/proc/self/fd/121) failed: Operation not permitted
+04-26 07:57:55.494   530   572 W skia    : AGTM parsing failed flags.readFromStream(s) at 159
+04-26 07:57:55.611   530   572 W skia    : AGTM parsing failed flags.readFromStream(s) at 159
+04-26 07:57:55.711   530   572 W skia    : AGTM parsing failed flags.readFromStream(s) at 159
+04-26 07:57:55.812   530   572 W skia    : AGTM parsing failed flags.readFromStream(s) at 159
+04-26 07:57:55.926   530   572 W skia    : AGTM parsing failed flags.readFromStream(s) at 159
+04-26 07:57:56.027   530   572 W skia    : AGTM parsing failed flags.readFromStream(s) at 159
+04-26 07:57:56.129   530   572 W skia    : AGTM parsing failed flags.readFromStream(s) at 159
+04-26 07:57:56.597   530   572 W skia    : AGTM parsing failed flags.readFromStream(s) at 159
+04-26 07:57:56.699   530   572 W skia    : AGTM parsing failed flags.readFromStream(s) at 159
+04-26 07:57:57.194   530   572 W skia    : AGTM parsing failed flags.readFromStream(s) at 159
+04-26 07:57:57.297   530   572 W skia    : AGTM parsing failed flags.readFromStream(s) at 159
+04-26 07:57:57.324   675  1657 W PackageInfo: Large parcel: size=17564 pkg=com.google.android.googlequicksearchbox uid=10158 perm=2976(13) reqPerm=5560(149) attr=7144(120) prevAllowSquashing=false
+04-26 07:57:57.337   675  1657 W PackageInfo: Large parcel: size=161932 pkg=android uid=1000 perm=160376(1102) reqPerm=156(38) attr=520(9) prevAllowSquashing=false
+04-26 07:57:57.337   675  1657 W ParceledListSlice: Element #69 is 161932 bytes.
+04-26 07:57:57.337   675  1657 W ParceledListSlice: Overly large reply size: 219744
+04-26 07:57:57.344   675  1657 W PackageInfo: Large parcel: size=51272 pkg=com.google.android.gms uid=10221 perm=15204(95) reqPerm=3976(381) attr=28704(330) prevAllowSquashing=false
+04-26 07:57:57.344   675  1657 W ParceledListSlice: Element #142 is 51272 bytes.
+04-26 07:57:57.383   675  1657 W PackageInfo: Large parcel: size=49960 pkg=com.google.android.healthconnect.controller uid=10204 perm=48352(344) reqPerm=68(16) prevAllowSquashing=false
+04-26 07:57:57.383   675  1657 W ParceledListSlice: Element #194 is 49960 bytes.
+04-26 07:57:57.432   530   572 W skia    : AGTM parsing failed flags.readFromStream(s) at 159
+04-26 07:57:57.534   530   572 W skia    : AGTM parsing failed flags.readFromStream(s) at 159
+04-26 07:57:58.892  2967  3156 W TrustedTime: Unable to retrieve new instant SntpResult{sntpQueryDebugInfo=SntpQueryDebugInfo{sntpQueryAddresses=[time.google.com/216.239.35.0, time.google.com/216.239.35.12, time.google.com/216.239.35.4, time.google.com/216.239.35.8, time.google.com/2001:4860:4806:c::, time.google.com/2001:4860:4806:8::, time.google.com/2001:4860:4806::, time.google.com/2001:4860:4806:4::], sntpQueryOperationResults=[NetworkOperationResult{socketAddress=time.google.com/216.239.35.0:123, type=11, failureIdentifier=11, exception=itxx: Timeout waiting for response from time.google.com/216.239.35.0:123}, NetworkOperationResult{socketAddress=time.google.com/216.239.35.12:123, type=11, failureIdentifier=11, exception=itxx: Timeout waiting for response from time.google.com/216.239.35.12:123}, NetworkOperationResult{socketAddress=time.google.com/216.239.35.4:123, type=11, failureIdentifier=11, exception=itxx: Timeout waiting for response from time.google.com/216.239.35.4:123}, NetworkOperationResult{socketAddress=time.google.com/216.239.35.8:123, type=11, failureIdentifier=11, exception=itxx: Timeout waiting for response from time.google.com/216.239.35.8:123}, NetworkOperationResult{socketAddress=time.google.com/[2001:4860:4806:c::]:123, type=11, failureIdentifier=11, exception=itxx: Timeout waiting for response from time.google.com/2001:4860:4806:c:::123}, NetworkOperationResult{socketAddress=time.google.com/[2001:4860:4806:8::]:123, type=11, failureIdentifier=11, exception=itxx: Timeout waiting for response from time.google.com/2001:4860:4806:8:::123}, NetworkOperationResult{socketAddress=time.google.com/[2001:4860:4806::]:123, type=11, failureIdentifier=11, exception=itxx: Timeout waiting for response from time.google.com/2001:4860:4806:::123}, NetworkOperationResult{socketAddress=time.google.com/[2001:4860:4806:4::]:123, type=11, failureIdentifier=11, exception=itxx: Timeout waiting for response from time.google.com/2001:4860:4806:4:::123}]},type=11, sntpTimeSignal=null, exception=itxx: IP addresses exhausted}
+04-26 07:57:58.892  2967  3156 W TrustedTime: [CONTEXT service_id=326 ]
+04-26 07:57:59.511   530   572 W skia    : AGTM parsing failed flags.readFromStream(s) at 159
+04-26 07:58:00.079   530   572 W skia    : AGTM parsing failed flags.readFromStream(s) at 159
+04-26 07:58:02.386   675   826 E Nl80211Native: getChannelsMhzForBand: Wiphy index not recorded for band 8
+04-26 07:58:02.386   675   826 E Nl80211Native: getChannelsMhzForBand: Wiphy index not recorded for band 16
+04-26 07:58:06.162   675   826 W Nl80211Utils: Malformed NEW_INTERFACE response: missing attributes
+04-26 07:58:07.462  1551  4600 W DatabaseBackupAndRecovery: Exception encountered while reading xattr:user.publicvolumerecoveryflag from path:/data/media/0/.transforms/recovery/leveldb-0000-0000.
+04-26 07:58:07.470  1551  4600 W ModernMediaScanner: Failed to visit /system/media: java.nio.file.NoSuchFileException: /system/media
+04-26 07:58:07.474  1551  4600 W ModernMediaScanner: Failed to visit /oem/media: java.nio.file.NoSuchFileException: /oem/media
+04-26 07:58:07.953  1551  4600 W MediaProvider: isAppCloneUserPair for user -1: false
+04-26 07:58:07.963  1551  4600 W MediaProvider: isAppCloneUserPair for user -1: false
+04-26 07:58:07.964  1551  4600 W MediaProvider: isAppCloneUserPair for user -1: false
+04-26 07:58:11.436   675   902 E PermissionControllerManager: Error updating user_sensitive flags for uid 1000
+04-26 07:58:11.436   675   902 E PermissionControllerManager: java.util.concurrent.TimeoutException
+04-26 07:58:11.436   675   902 E PermissionControllerManager: 	at com.android.internal.infra.AndroidFuture.triggerTimeout(AndroidFuture.java:289)
+04-26 07:58:11.436   675   902 E PermissionControllerManager: 	at com.android.internal.infra.AndroidFuture$$ExternalSyntheticLambda2.run(D8$$SyntheticClass:0)
+04-26 07:58:11.436   675   902 E PermissionControllerManager: 	at android.os.Handler.handleCallback(Handler.java:1095)
+04-26 07:58:11.436   675   902 E PermissionControllerManager: 	at android.os.Handler.dispatchMessageImpl(Handler.java:135)
+04-26 07:58:11.436   675   902 E PermissionControllerManager: 	at android.os.Handler.dispatchMessage(Handler.java:125)
+04-26 07:58:11.436   675   902 E PermissionControllerManager: 	at android.os.Looper.loopOnce(Looper.java:296)
+04-26 07:58:11.436   675   902 E PermissionControllerManager: 	at android.os.Looper.loop(Looper.java:397)
+04-26 07:58:11.436   675   902 E PermissionControllerManager: 	at android.os.HandlerThread.run(HandlerThread.java:139)
+04-26 07:58:11.436   675   902 E PermissionControllerManager: 	at com.android.server.ServiceThread.run(ServiceThread.java:46)
+04-26 07:58:12.302  4602  4602 W libbinder.BackendUnifiedServiceManager: Thread Pool max thread count is 0. Cannot cache binder as linkToDeath cannot be implemented. serviceName: SurfaceFlingerAIDL
+04-26 07:58:12.303  4602  4602 W libbinder.BpBinder: Linking to death on android.gui.ISurfaceComposer but there are no threads (yet?) listening to incoming transactions. See ProcessState::startThreadPool and ProcessState::setThreadPoolMaxThreadCount. Generally you should setup the binder threadpool before other initialization steps.
+04-26 07:58:12.303  4602  4602 W libbinder.ProcessState: Extra binder thread started, but 0 threads requested. Do not use *startThreadPool when zero threads are requested.
+04-26 07:58:12.309   530   572 W skia    : AGTM parsing failed flags.readFromStream(s) at 159
+04-26 07:58:12.309   530   572 W skia    : AGTM parsing failed flags.readFromStream(s) at 159
+04-26 07:58:12.309   530   572 W skia    : AGTM parsing failed flags.readFromStream(s) at 159
+04-26 07:58:12.309   530   572 W skia    : AGTM parsing failed flags.readFromStream(s) at 159
+04-26 07:58:12.327  4602  4604 W libc    : Access denied finding property "vendor.mesa.virtgpu.kumquat"
+04-26 07:58:12.372  1551  1829 W MediaProvider: isAppCloneUserPair for user 0: false
+04-26 07:58:12.568  1551  1748 W JobInfo : Requested important-while-foreground flag for job46 is ignored and takes no effect
+04-26 07:58:12.616  1551  4611 E ProcessingUtils: Media processing is disabled.
+04-26 07:58:14.564  2858  2861 W hbox:interactor: Missing inline cache for int ffsq.a(java.lang.Object)
+04-26 07:58:16.169  2967  3218 W IsDeviceCompliantOp: failed to get future: allow [CONTEXT service_id=257 ]
+04-26 07:58:16.169  2967  3218 W IsDeviceCompliantOp: java.util.concurrent.TimeoutException: Waited 60 seconds (plus 1155500 nanoseconds delay) for hghf@ce197d8[status=PENDING, info=[inputFuture=[hghe@86b4e16[status=PENDING, setFuture=[hghe@27f2397[status=PENDING, setFuture=[hghf@ac45984[status=PENDING, info=[inputFuture=[hghf@8f8856d[status=PENDING, info=[inputFuture=[hghe@9c635a2[status=PENDING, info=[inputFuture=[hggk@b086233[status=PENDING, info=[inputFuture=[hghf@6ef89f0[status=PENDING, info=[inputFuture=[cbhb@fa50b69], function=[cbir@ef609ee]]]], exceptionType=[class jmqk], fallback=[cbis@1dcee8f]]]], function=[cbhw@d5b551c]]]], function=[cbiq@379f525]]]], function=[cbhn@33cd6fa]]]]]]]], function=[cbij@9c3e4ab]]]
+04-26 07:58:16.169  2967  3218 W IsDeviceCompliantOp: 	at hghc.v(:com.google.android.gms@261136038@26.11.36 (260800-892401869):371)
+04-26 07:58:16.169  2967  3218 W IsDeviceCompliantOp: 	at hggt.get(:com.google.android.gms@261136038@26.11.36 (260800-892401869):6)
+04-26 07:58:16.169  2967  3218 W IsDeviceCompliantOp: 	at cbim.b(:com.google.android.gms@261136038@26.11.36 (260800-892401869):13)
+04-26 07:58:16.169  2967  3218 W IsDeviceCompliantOp: 	at cbim.f(:com.google.android.gms@261136038@26.11.36 (260800-892401869):315)
+04-26 07:58:16.169  2967  3218 W IsDeviceCompliantOp: 	at cvgk.fD(:com.google.android.gms@261136038@26.11.36 (260800-892401869):1)
+04-26 07:58:16.169  2967  3218 W IsDeviceCompliantOp: 	at cvgw.run(:com.google.android.gms@261136038@26.11.36 (260800-892401869):118)
+04-26 07:58:16.169  2967  3218 W IsDeviceCompliantOp: 	at gxmk.run(:com.google.android.gms@261136038@26.11.36 (260800-892401869):19)
+04-26 07:58:16.169  2967  3218 W IsDeviceCompliantOp: 	at bikh.c(:com.google.android.gms@261136038@26.11.36 (260800-892401869):50)
+04-26 07:58:16.169  2967  3218 W IsDeviceCompliantOp: 	at bikh.run(:com.google.android.gms@261136038@26.11.36 (260800-892401869):73)
+04-26 07:58:16.169  2967  3218 W IsDeviceCompliantOp: 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1100)
+04-26 07:58:16.169  2967  3218 W IsDeviceCompliantOp: 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+04-26 07:58:16.169  2967  3218 W IsDeviceCompliantOp: 	at bipy.run(:com.google.android.gms@261136038@26.11.36 (260800-892401869):8)
+04-26 07:58:16.169  2967  3218 W IsDeviceCompliantOp: 	at java.lang.Thread.run(Thread.java:1572)
+04-26 07:58:16.230  2967  3271 W DroidguardProvider: droidguard took a lot of time : 59952 millis [CONTEXT service_id=257 ]

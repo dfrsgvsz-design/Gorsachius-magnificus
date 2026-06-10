@@ -1,0 +1,166 @@
+=== Hybrid Local smoke test ===
+target: http://127.0.0.1:5173
+offline: false
+→ navigating
+[browser:debug] [vite] connecting...
+[browser:debug] [vite] connected.
+[browser:info] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold
+→ waiting for hydration (5 s)
+[browser:error] Failed to load resource: the server responded with a status of 500 (Internal Server Error)
+[browser:error] Failed to load resource: the server responded with a status of 500 (Internal Server Error)
+[browser:error] Failed to load resource: the server responded with a status of 500 (Internal Server Error)
+[browser:error] Failed to load resource: the server responded with a status of 500 (Internal Server Error)
+[browser:error] Failed to load resource: the server responded with a status of 500 (Internal Server Error)
+[browser:error] Failed to load resource: the server responded with a status of 500 (Internal Server Error)
+[browser:error] Failed to load resource: the server responded with a status of 500 (Internal Server Error)
+[browser:error] Failed to load resource: the server responded with a status of 500 (Internal Server Error)
+[browser:error] Failed to load resource: the server responded with a status of 500 (Internal Server Error)
+[browser:error] Failed to load resource: the server responded with a status of 500 (Internal Server Error)
+[browser:log] #### getVersion new res: [{"columns":["user_version"],"values":[[0]]}]
+[browser:error] Failed to load resource: the server responded with a status of 500 (Internal Server Error)
+[browser:error] Failed to load resource: the server responded with a status of 500 (Internal Server Error)
+[browser:error] Failed to load resource: the server responded with a status of 500 (Internal Server Error)
+→ pre-loading modules + ensureSchema (online)
+preloaded: {"apiKeys":["IS_HYBRID_LOCAL_MODE","analyzeAudio","analyzeBatch","analyzeBirdNET","analyzeImage","analyzeTrapImage","batchScanDirectory","batchVerifyDetections"],"localSurveyKeys":["__localServiceInternals","buildLocalPullSnapshot","createFieldSurveySite","createOfflineMapPackage","createSurveyDesignAsset","createSurveyEvent","createSurveyExportJob","createSurveyObservation"],"localStoreKeys":["CASCADE_RULES","ENTITY_META","ENTITY_TYPES","OUTBOX_CHANGED_EVENT","__resetForTests__","clearOutboxAll","clearOutboxByEntityKeys","closeDb"]}
+→ taking screenshot
+→ running local-store flow inside the page
+[browser:log] [flow] phase_import_api {}
+[browser:log] [flow] imported {"keys":["IS_HYBRID_LOCAL_MODE","analyzeAudio","analyzeBatch","analyzeBirdNET","analyzeImage","analyzeTrapImage","batchScanDirectory","batchVerifyDetections"]}
+[browser:log] [flow] created {"project":{"name":"LocalStoreSmoke 1781071651964","region":"Test Region","notes":"playwright smoke","project_id":"proj_decacd62f1b9","created_at":"2026-06-10T06:07:31.965Z","updated_at":"2026-06-10T06:07:31.965Z","deleted_at":""}}
+[browser:log] [flow] outbox_after_create {"present":true,"operation":"upsert","payloadName":"LocalStoreSmoke 1781071651964"}
+[browser:log] [flow] listed_active {"total":2,"contains":true}
+[browser:log] [flow] deleted {"deleted":"proj_decacd62f1b9"}
+[browser:log] [flow] outbox_after_delete {"present":true,"operation":"delete"}
+[browser:log] [flow] listed_after_delete {"total":1,"contains":false}
+[browser:log] [flow] trash_listed {"total":1,"containsProject":true}
+[browser:log] [flow] restored {"restored":"proj_decacd62f1b9"}
+[browser:log] [flow] outbox_after_restore {"present":true,"operation":"upsert","payloadName":"LocalStoreSmoke 1781071651964"}
+[browser:log] [flow] listed_after_restore {"total":2,"contains":true}
+flow result: {
+  "steps": [
+    {
+      "step": "phase_import_api",
+      "payload": {}
+    },
+    {
+      "step": "imported",
+      "payload": {
+        "keys": [
+          "IS_HYBRID_LOCAL_MODE",
+          "analyzeAudio",
+          "analyzeBatch",
+          "analyzeBirdNET",
+          "analyzeImage",
+          "analyzeTrapImage",
+          "batchScanDirectory",
+          "batchVerifyDetections"
+        ]
+      }
+    },
+    {
+      "step": "created",
+      "payload": {
+        "project": {
+          "name": "LocalStoreSmoke 1781071651964",
+          "region": "Test Region",
+          "notes": "playwright smoke",
+          "project_id": "proj_decacd62f1b9",
+          "created_at": "2026-06-10T06:07:31.965Z",
+          "updated_at": "2026-06-10T06:07:31.965Z",
+          "deleted_at": ""
+        }
+      }
+    },
+    {
+      "step": "outbox_after_create",
+      "payload": {
+        "present": true,
+        "operation": "upsert",
+        "payloadName": "LocalStoreSmoke 1781071651964"
+      }
+    },
+    {
+      "step": "listed_active",
+      "payload": {
+        "total": 2,
+        "contains": true
+      }
+    },
+    {
+      "step": "deleted",
+      "payload": {
+        "deleted": "proj_decacd62f1b9"
+      }
+    },
+    {
+      "step": "outbox_after_delete",
+      "payload": {
+        "present": true,
+        "operation": "delete"
+      }
+    },
+    {
+      "step": "listed_after_delete",
+      "payload": {
+        "total": 1,
+        "contains": false
+      }
+    },
+    {
+      "step": "trash_listed",
+      "payload": {
+        "total": 1,
+        "containsProject": true
+      }
+    },
+    {
+      "step": "restored",
+      "payload": {
+        "restored": "proj_decacd62f1b9"
+      }
+    },
+    {
+      "step": "outbox_after_restore",
+      "payload": {
+        "present": true,
+        "operation": "upsert",
+        "payloadName": "LocalStoreSmoke 1781071651964"
+      }
+    },
+    {
+      "step": "listed_after_restore",
+      "payload": {
+        "total": 2,
+        "contains": true
+      }
+    }
+  ],
+  "success": true
+}
+
+=== console events (last 20) ===
+[error] Failed to load resource: the server responded with a status of 500 (Internal Server Error)
+[error] Failed to load resource: the server responded with a status of 500 (Internal Server Error)
+[error] Failed to load resource: the server responded with a status of 500 (Internal Server Error)
+[error] Failed to load resource: the server responded with a status of 500 (Internal Server Error)
+[log] #### getVersion new res: [{"columns":["user_version"],"values":[[0]]}]
+[error] Failed to load resource: the server responded with a status of 500 (Internal Server Error)
+[error] Failed to load resource: the server responded with a status of 500 (Internal Server Error)
+[error] Failed to load resource: the server responded with a status of 500 (Internal Server Error)
+[log] [flow] phase_import_api {}
+[log] [flow] imported {"keys":["IS_HYBRID_LOCAL_MODE","analyzeAudio","analyzeBatch","analyzeBirdNET","analyzeImage","analyzeTrapImage","batchScanDirectory","batchVerifyDetections"]}
+[log] [flow] created {"project":{"name":"LocalStoreSmoke 1781071651964","region":"Test Region","notes":"playwright smoke","project_id":"proj_decacd62f1b9","created_at":"2026-06-10T06:07:31.965Z","updated_at":"2026-06-10T06:07:31.965Z","deleted_at":""}}
+[log] [flow] outbox_after_create {"present":true,"operation":"upsert","payloadName":"LocalStoreSmoke 1781071651964"}
+[log] [flow] listed_active {"total":2,"contains":true}
+[log] [flow] deleted {"deleted":"proj_decacd62f1b9"}
+[log] [flow] outbox_after_delete {"present":true,"operation":"delete"}
+[log] [flow] listed_after_delete {"total":1,"contains":false}
+[log] [flow] trash_listed {"total":1,"containsProject":true}
+[log] [flow] restored {"restored":"proj_decacd62f1b9"}
+[log] [flow] outbox_after_restore {"present":true,"operation":"upsert","payloadName":"LocalStoreSmoke 1781071651964"}
+[log] [flow] listed_after_restore {"total":2,"contains":true}
+
+=== page errors ===
+(none)
+
+✓ PASS — hybrid local flow succeeded

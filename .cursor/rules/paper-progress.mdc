@@ -1,0 +1,122 @@
+# Paper Progress Memory — G. magnificus SDM (STOTEN)
+
+**Last updated:** 2026-04-24
+
+## Project Overview
+
+Manuscript: "Ensemble habitat suitability modeling and climate-adaptive conservation planning for the endangered White-eared Night Heron (*Gorsachius magnificus*) in southern China"  
+Target journal: Science of the Total Environment (STOTEN)  
+Status: **Pre-submission revision — upgrading analysis pipeline**
+
+## Current Pipeline State (v1 — baseline)
+
+Pipeline entry: `project_sdm_stoten/analysis_scripts/unified_pipeline.py`  
+Results: `pipeline_summary.json` in `analysis_output/`
+
+### Data
+- 290 raw occurrence records → 138 after 5-km thinning
+- 414 pseudo-absences (3:1 ratio, 10-km buffer)
+- 8 environmental variables at 1-km (EPSG:4326)
+
+### Current 8 Variables
+| Variable | File | Status |
+|----------|------|--------|
+| bio1 | `CN_TW_bio1_EPSG4326_1km.tif` | ✅ |
+| bio12 | `CN_TW_bio12_EPSG4326_1km.tif` | ✅ |
+| elevation | `CN_TW_elevation_EPSG4326_1km.tif` | ✅ |
+| slope | `CN_TW_slope_EPSG4326_1km.tif` | ✅ |
+| ndvi_2020 | `CN_TW_ndvi_2020_EPSG4326_1km.tif` | ✅ |
+| forest_cover | `CN_TW_forest_cover_EPSG4326_1km.tif` | ✅ |
+| human_mod | `CN_TW_human_mod_EPSG4326_1km.tif` | ✅ |
+| dist_water_m | `CN_TW_dist_water_m_EPSG4326_1km.tif` | ⚠️ To be replaced by TWI |
+
+### Model Performance (Spatial Block CV, 5-fold)
+| Model | AUC | TSS | F1 |
+|-------|-----|-----|-----|
+| LR_surrogate | 0.735 ± 0.127 | 0.478 ± 0.189 | 0.617 ± 0.108 |
+| RandomForest | 0.792 ± 0.058 | 0.549 ± 0.171 | 0.678 ± 0.121 |
+| XGBoost | 0.756 ± 0.037 | 0.507 ± 0.125 | 0.638 ± 0.156 |
+| MaxEnt | 0.706 ± 0.097 | 0.416 ± 0.090 | 0.606 ± 0.131 |
+| **Ensemble** | **0.747** | **0.487** | — |
+
+### Top 3 Variable Importance
+1. bio12 (annual precip): 0.205
+2. ndvi_2020: 0.196
+3. bio1 (mean temp): 0.174
+
+### Climate Projections (delta method, current pipeline)
+- SSP2-4.5 2050s: +19.9% high-suitability area, centroid +28 km N
+- SSP5-8.5 2070s: +44.6%, centroid +60 km N
+
+## Pending Upgrade Tasks
+
+### GEE Variables (gee_extract_variables.py — FIXED 2026-04-24)
+Script fixes applied:
+1. Added missing `import os` (fatal bug)
+2. Upgraded TWI to use MERIT Hydro upstream drainage area
+3. Fixed NDVI CV aggregation (added `reduceResolution()`)
+4. Aligned filenames to `_EPSG4326_1km` convention
+5. Added `--wait` polling and error handling
+
+Exports (pending GEE task completion):
+| Export | File | Purpose |
+|--------|------|---------|
+| TWI | `CN_TW_twi_EPSG4326_1km.tif` | Replace dist_water_m |
+| Canopy height | `CN_TW_canopy_height_EPSG4326_1km.tif` | Forest structure |
+| NDVI CV | `CN_TW_ndvi_cv_EPSG4326_1km.tif` | Vegetation seasonality |
+| Water occurrence | `CN_TW_water_occurrence_EPSG4326_1km.tif` | JRC surface water |
+| Forest loss fraction | `CN_TW_forest_loss_fraction_EPSG4326_1km.tif` | Threat layer |
+| Recent loss fraction | `CN_TW_recent_loss_fraction_EPSG4326_1km.tif` | Recent threat |
+| Tree cover 2000 | `CN_TW_treecover2000_EPSG4326_1km.tif` | Baseline canopy |
+
+### CMIP6 Spatial Data (cmip6_gcm_data/)
+10-minute resolution (all complete):
+- BCC-CSM2-MR: 4/4 ✅
+- MIROC6: 4/4 ✅
+- IPSL-CM6A-LR: 4/4 ✅
+- Current baseline: ✅
+
+2.5-minute resolution (INCOMPLETE):
+- BCC-CSM2-MR: 4/4 ✅
+- MIROC6: 2/4 ⚠️ (missing ssp585 2041-2060 and ssp585 2061-2080)
+- IPSL-CM6A-LR: 0/4 ❌ (not downloaded)
+- Current baseline: ✅ (+ zip)
+
+### Variable Substitution Plan
+```
+Remove: dist_water_m
+Add:    twi (replaces dist_water_m), canopy_height, water_occurrence
+Maybe:  ndvi_cv (check VIF against ndvi_2020; keep only one if r > 0.8)
+Keep:   bio1, bio12, elevation, slope, ndvi_2020, forest_cover, human_mod
+Target: 10–11 variables → rerun VIF → finalize set
+```
+
+### Analysis Pipeline Upgrades (ordered)
+1. ✅ Fix GEE script
+2. ⏳ Wait for GEE exports to complete
+3. 🔜 Integrate new variables into `unified_pipeline.py` RASTER_PATHS
+4. 🔜 Spatialize CMIP6 projections (replace delta method with per-pixel GCM data)
+5. 🔜 Add Circuitscape connectivity analysis (resistance = 1 - suitability)
+6. 🔜 Add Zonation conservation prioritization
+7. 🔜 Regenerate all figures with updated results
+8. 🔜 Rewrite manuscript structure
+
+### Scripts That Need Updates After Variable Change
+- `unified_pipeline.py` — RASTER_PATHS, FEATURE_COLS, CLIMATE_DELTAS
+- `11_multi_gcm_uncertainty.py` — RASTER_PATHS, delta logic → spatial CMIP6
+- `01_sci_figures_stats.py` — variable importance plots
+- `01b_fig4_response_curves_full.py` — partial dependence
+- `03_conservation_gap.py` — threshold maps
+- `04_climate_projection.py` — projection figures
+- `05_supplementary_figures.py` — VIF, correlation matrix
+- `09_supplementary_robustness.py` — VIF figure
+- `sci_style.py` — variable name mappings, colors
+
+### Key Reference Docs
+- `REVIEWER_RESPONSE_STRATEGY.md` — anticipated reviewer concerns & pre-emptive responses
+- `PROJECT_STRUCTURE.md` — full directory layout
+- `pipeline_summary.json` — all quantitative results (v1)
+
+## Blockers
+1. **GEE export tasks**: Must complete before variable integration
+2. **CMIP6 2.5m download**: MIROC6 ssp585 + all IPSL-CM6A-LR at 2.5m still needed

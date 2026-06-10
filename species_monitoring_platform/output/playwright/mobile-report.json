@@ -1,0 +1,81 @@
+{
+  "base_url": "http://127.0.0.1:8000",
+  "checks": [
+    {
+      "label": "dashboard-en",
+      "width": 393,
+      "height": 852,
+      "overflowX": 0,
+      "overflowY": 4671,
+      "title": "Bird Sound Research Workbench"
+    },
+    {
+      "label": "dashboard-zh",
+      "width": 393,
+      "height": 852,
+      "overflowX": 0,
+      "overflowY": 4343,
+      "title": "Bird Sound Research Workbench"
+    },
+    {
+      "label": "analyze-mobile",
+      "width": 393,
+      "height": 852,
+      "overflowX": 0,
+      "overflowY": 1172,
+      "title": "Bird Sound Research Workbench"
+    },
+    {
+      "label": "review-mobile",
+      "width": 393,
+      "height": 852,
+      "overflowX": 0,
+      "overflowY": 13337,
+      "title": "Bird Sound Research Workbench"
+    },
+    {
+      "label": "monitor-mobile",
+      "width": 393,
+      "height": 852,
+      "overflowX": 0,
+      "overflowY": 2137,
+      "title": "Bird Sound Research Workbench"
+    },
+    {
+      "label": "more-sheet-mobile",
+      "width": 393,
+      "height": 852,
+      "overflowX": 0,
+      "overflowY": 2137,
+      "title": "Bird Sound Research Workbench"
+    },
+    {
+      "label": "devices-mobile",
+      "width": 393,
+      "height": 852,
+      "overflowX": 0,
+      "overflowY": 1866,
+      "title": "Bird Sound Research Workbench"
+    },
+    {
+      "label": "settings-mobile",
+      "width": 393,
+      "height": 852,
+      "overflowX": 0,
+      "overflowY": 2191,
+      "title": "Bird Sound Research Workbench"
+    }
+  ],
+  "screenshots": [
+    "output\\playwright\\mobile-dashboard-en.png",
+    "output\\playwright\\mobile-dashboard-zh.png",
+    "output\\playwright\\mobile-analyze.png",
+    "output\\playwright\\mobile-review.png",
+    "output\\playwright\\mobile-monitor.png",
+    "output\\playwright\\mobile-more-sheet.png",
+    "output\\playwright\\mobile-devices.png",
+    "output\\playwright\\mobile-settings.png"
+  ],
+  "console": [],
+  "page_errors": []
+}

@@ -1,0 +1,10 @@
+﻿
+
+id                   : 38CD90C68A205BB085DFD9E1DBD118B2
+type                 : page
+title                : Biodiversity Field Survey Platform
+url                  : https://localhost/
+webSocketDebuggerUrl : ws://127.0.0.1:9222/devtools/page/38CD90C68A205BB085DFD9E1DBD118B2
+
+
+

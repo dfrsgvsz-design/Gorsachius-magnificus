@@ -1,0 +1,37 @@
+{
+  "ran_at_utc": "2026-06-10T08:06:55.245877+00:00",
+  "dry_run": true,
+  "manifest_rows_after": 19401,
+  "stats": {
+    "label": "Zoothera dauma",
+    "aliases": [
+      "Zoothera dauma",
+      "Zoothera aurea",
+      "Zoothera major",
+      "Zoothera neilgherriensis"
+    ],
+    "target": 50,
+    "allowed_licenses": [
+      "cc-by",
+      "cc-by-nc",
+      "cc0"
+    ],
+    "have_before": 18,
+    "downloaded": 0,
+    "from_cache": 0,
+    "skipped_dup": 0,
+    "skipped_license": 17,
+    "failed": 0,
+    "obs_seen": 74,
+    "obs_with_sound": 73,
+    "license_breakdown": {
+      "cc-by": 10,
+      "cc-by-nc": 56,
+      "none": 12,
+      "cc-by-nc-nd": 4,
+      "cc0": 1,
+      "cc-by-nc-sa": 1
+    },
+    "have_after": 18
+  }
+}

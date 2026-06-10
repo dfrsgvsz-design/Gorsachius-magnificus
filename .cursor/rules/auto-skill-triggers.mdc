@@ -1,0 +1,50 @@
+---
+description: Auto trigger common quality/security skill workflows by short tags.
+globs: *
+alwaysApply: false
+---
+
+# Auto Skill Triggers For This Workspace
+
+Only apply when the user explicitly opts in by including `#auto-skill` in the current message.
+Without `#auto-skill`, do not auto-trigger these workflows.
+
+## Trigger Tags
+
+### #dev-check
+- Run `lint-and-validate`
+- Then run `python-code-quality` if Python files are touched
+- Return only actionable fixes, highest impact first
+- Also trigger on phrases: `帮我检查`, `检查一下代码`, `做个开发检查`
+
+### #pre-commit
+- Run `lint-and-validate`
+- Run `test-coverage-analyzer`
+- Run `code-review-and-quality`
+- Return a final verdict: `ready-to-commit` or `not-ready`
+- Also trigger on phrases: `提交前检查`, `我能提交了吗`, `帮我做提交检查`
+
+### #ci-fix
+- Run `ci-cd-and-automation`
+- Diagnose workflow failures and propose minimal patch set
+- Also trigger on phrases: `CI挂了`, `流水线失败了`, `帮我看CI`
+
+### #quality-gate
+- Run `quality-gates-enforcer`
+- Propose or update enforceable gates for lint/tests/coverage/type checks
+- Also trigger on phrases: `加质量门禁`, `设置门禁`, `加提交门槛`
+
+### #security-weekly
+- Run `semgrep`
+- Summarize findings by severity with file-level remediation actions
+- Also trigger on phrases: `安全检查`, `漏洞扫描`, `帮我扫风险`
+
+### #deps-monthly
+- Run `codebase-cleanup-deps-audit`
+- Report vulnerabilities, outdated packages, and license risks with upgrade priority
+- Also trigger on phrases: `依赖体检`, `检查依赖`, `过期包检查`
+
+## Output Style
+- Keep responses concise in Chinese
+- Prefer checklists and concrete next actions
+- Avoid long theory unless user explicitly asks

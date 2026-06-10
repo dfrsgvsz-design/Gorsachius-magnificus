@@ -1,0 +1,34 @@
+__pycache__/
+*.py[cod]
+*.log
+*.db
+*.sqlite
+*.sqlite3
+.env
+.env.local
+frontend/.env.local
+# Signing material — NEVER commit (mirrors root + acoustic .gitignore)
+# See submission/06_packaging_signing_runbook.md §1.1 for Vault flow.
+*.jks
+*.keystore
+*.p12
+*.mobileprovision
+keystore.properties
+release-signing.env
+frontend/android/release-signing.env
+KEYSTORE_INFO.txt
+
+backend/static/
+backend/data/detections/
+backend/.xc_api_key
+
+frontend/node_modules/
+frontend/dist/
+
+data/
+checkpoints/
+checkpoints_gpu_baseline/
+checkpoints_gpu_lite/
+checkpoints_gpu_test/
+dist/
+build/

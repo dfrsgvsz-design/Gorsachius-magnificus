@@ -1,0 +1,40 @@
+﻿=== frontend dir ===
+True
+=== package.json scripts ===
+{"dev":"vite","lint":"eslint src test-ui.mjs","build":"vite build","preview":"vite preview","test":"vitest run","build:android":"vite build \u0026\u0026 npx cap sync android","open:android":"npx cap open android"}
+=== capacitor.config ===
+{
+  "appId": "org.biodiversity.speciesmonitoring",
+  "appName": "Species Monitoring Survey",
+  "webDir": "dist",
+  "server": {
+    "androidScheme": "https",
+    "allowNavigation": ["localhost", "*.localhost"]
+  },
+  "plugins": {
+    "StatusBar": {
+      "style": "Dark",
+      "backgroundColor": "#0c1117"
+    },
+    "App": {
+      "backgroundColor": "#0c1117"
+    }
+  },
+  "android": {
+    "backgroundColor": "#0c1117",
+    "allowMixedContent": false
+  }
+}
+
+=== android/build dir ===
+True
+=== current APK path ===
+
+Name                                            MB LastWriteTime     
+----                                            -- -------------     
+species-monitoring-survey-debug-admin-pin.apk 7.81 2026/4/26 11:57:05
+species-monitoring-survey-debug-fixed.apk     7.81 2026/4/26 11:07:02
+species-monitoring-survey-debug.apk           7.94 2026/4/24 10:38:36
+
+
+

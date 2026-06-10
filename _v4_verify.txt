@@ -1,0 +1,22 @@
+﻿v4 娈佃惤: 489
+
+==== P188-P206 OMML 璁℃暟 ====
+    P188: oMath=0, oMathPara=0 | 瀵逛簬姝ｅ悜鎸囨爣锛?
+  * P189: oMath=1, oMathPara=1 | (绌烘)
+    P190: oMath=0, oMathPara=0 | 瀵逛簬璐熷悜鎸囨爣锛?
+  * P191: oMath=1, oMathPara=1 | (绌烘)
+  * P192: oMath=7, oMathPara=0 | 寮忎腑锛氫负鏍囧噯鍖栧悗鐨勫€硷紝涓虹骞寸涓寚鏍囩殑鍘熷鍊硷紝鍜屽垎鍒负绗釜鎸囨爣鍦ㄦ墍鏈夊勾浠戒腑鐨勬渶澶у€煎拰鏈€灏忓€笺€?
+    P193: oMath=0, oMathPara=0 | 锛堜笁锛塒LUS妯″瀷鎯呮櫙妯℃嫙
+    P194: oMath=0, oMathPara=0 | 1. PLUS妯″瀷鍘熺悊
+    P195: oMath=0, oMathPara=0 | PLUS锛圥atch-generating Land Use Simulation锛夋ā鍨嬬敱姝︽眽澶у姊佽繀绛夛紙2021锛夋彁鍑?
+    P196: oMath=0, oMathPara=0 | 2. 椹卞姩鍥犲瓙閫夋嫨
+    P197: oMath=0, oMathPara=0 | 缁煎悎妯窞甯傝嚜鐒舵潯浠躲€佸湴琛ㄨ琚厛楠屼俊鎭強鏁版嵁鍙緱鎬э紝鏈爺绌堕€夊彇浠ヤ笅 6 涓┍鍔ㄥ洜瀛愭瀯寤?PLUS 妯″瀷锛?1) 鍦板舰鍥犲瓙 
+    P198: oMath=0, oMathPara=0 | 3. 鍦熷湴鍒╃敤闇€姹傞娴?
+    P199: oMath=0, oMathPara=0 | 閲囩敤 Markov 閾炬ā鍨嬶紝浠?2015鈥?020 骞村疄娴嬬殑鍦熷湴鍒╃敤杞Щ姒傜巼鐭╅樀 T鈧?涓哄熀纭€锛屽簲鐢ㄤ簬 2020 骞寸殑鍚?
+    P200: oMath=0, oMathPara=0 | 4. 妯″瀷绮惧害楠岃瘉
+    P201: oMath=0, oMathPara=0 | 閲囩敤"鐣欎竴鍥炴祴"锛坙eave-one-out backtesting锛夌瓥鐣ラ獙璇佹ā鍨嬬簿搴︼細浠?2010 骞村拰 2015 骞?
+    P202: oMath=0, oMathPara=0 | (绌烘)
+    P203: oMath=0, oMathPara=0 | 鍥?6 妯窞甯?PLUS 妯″瀷椹卞姩鍥犲瓙绌洪棿鍒嗗竷锛? 涓┍鍔ㄥ洜瀛愶細DEM銆佸潯搴︺€佸潯鍚戙€佽窛姘村煙璺濈銆佽窛寤鸿鐢ㄥ湴璺濈銆佽窛鐮旂┒鍖?
+    P204: oMath=0, oMathPara=0 | 琛?4 妯窞甯?PLUS 妯″瀷涓昏鍦扮被鏅鏍煎眬鎸囨爣锛堝疄闄?2020 骞村€硷級
+    P205: oMath=0, oMathPara=0 | 涓夈€佹í宸炲競鍦熷湴鍒╃敤鍙樺寲鍒嗘瀽
+    P206: oMath=0, oMathPara=0 | 锛堜竴锛夊湡鍦板埄鐢ㄧ幇鐘?

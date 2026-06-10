@@ -1,0 +1,22 @@
+{
+  "appId": "org.biodiversity.fieldsurvey",
+  "appName": "Biodiversity Field Survey",
+  "webDir": "dist",
+  "server": {
+    "androidScheme": "https",
+    "allowNavigation": ["localhost", "*.localhost"]
+  },
+  "plugins": {
+    "StatusBar": {
+      "style": "Dark",
+      "backgroundColor": "#08101f"
+    },
+    "App": {
+      "backgroundColor": "#08101f"
+    }
+  },
+  "android": {
+    "backgroundColor": "#08101f",
+    "allowMixedContent": true
+  }
+}

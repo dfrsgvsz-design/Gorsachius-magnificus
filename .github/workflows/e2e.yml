@@ -1,0 +1,130 @@
+name: e2e
+
+# Cross-app Playwright E2E gate. Runs the 5 specs in tests/e2e/specs/
+# against the species_monitoring_platform combined Docker stack (FastAPI port
+# 8000 serves both /api/* and the SPA static). Created 2026-06-10 (ticket #C,
+# Batch 2 — replaces ad-hoc playwright_*.txt logs that never ran in CI).
+
+on:
+  pull_request:
+    paths:
+      - "species_monitoring_platform/**"
+      - "tests/e2e/**"
+      - ".github/workflows/e2e.yml"
+  push:
+    branches:
+      - main
+      - master
+    paths:
+      - "species_monitoring_platform/**"
+      - "tests/e2e/**"
+      - ".github/workflows/e2e.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: e2e-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  e2e-species:
+    name: E2E · species 5-step critical flow
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+
+    env:
+      E2E_SPECIES_BASE_URL: http://127.0.0.1:8000
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: tests/e2e/package-lock.json
+
+      - name: Prepare species .env for docker compose
+        working-directory: species_monitoring_platform
+        run: cp .env.example .env
+
+      - name: Build & start species docker compose stack
+        working-directory: species_monitoring_platform
+        run: |
+          docker compose up -d --build
+          echo "Container started; waiting for /api/health..."
+          for attempt in $(seq 1 60); do
+            if curl -fsS http://127.0.0.1:8000/api/health > /dev/null; then
+              echo "Backend healthy after ${attempt} attempt(s)."
+              exit 0
+            fi
+            sleep 5
+          done
+          echo "::error::Backend /api/health never responded — dumping logs"
+          docker compose logs
+          exit 1
+
+      - name: Verify SPA static is served
+        run: |
+          curl -fsS http://127.0.0.1:8000/ -o /tmp/spa-shell.html
+          if ! grep -q -E '<title>|<div id="root"' /tmp/spa-shell.html; then
+            echo "::error::SPA shell did not load — FastAPI may not be serving frontend/dist"
+            head -c 2000 /tmp/spa-shell.html
+            exit 1
+          fi
+          echo "SPA shell HTML reachable ($(wc -c < /tmp/spa-shell.html) bytes)."
+
+      - name: Install e2e suite dependencies
+        working-directory: tests/e2e
+        run: |
+          if [ -f package-lock.json ]; then
+            npm ci
+          else
+            npm install --no-package-lock
+          fi
+
+      - name: Install Playwright browsers
+        working-directory: tests/e2e
+        run: npx playwright install --with-deps chromium
+
+      - name: Run Playwright suite
+        working-directory: tests/e2e
+        run: npm run test
+        env:
+          CI: "true"
+          E2E_SPECIES_BASE_URL: http://127.0.0.1:8000
+
+      - name: Upload HTML report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: e2e-html-report
+          if-no-files-found: ignore
+          path: tests/e2e/reports/html
+
+      - name: Upload JUnit XML
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: e2e-junit
+          if-no-files-found: ignore
+          path: tests/e2e/reports/junit.xml
+
+      - name: Upload traces / screenshots / videos
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: e2e-test-results
+          if-no-files-found: ignore
+          path: tests/e2e/reports/test-results
+
+      - name: Dump docker compose logs on failure
+        if: failure()
+        working-directory: species_monitoring_platform
+        run: docker compose logs --tail=200
+
+      - name: Stop docker compose stack
+        if: always()
+        working-directory: species_monitoring_platform
+        run: docker compose down -v

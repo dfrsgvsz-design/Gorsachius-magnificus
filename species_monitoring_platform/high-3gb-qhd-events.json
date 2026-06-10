@@ -1,0 +1,1730 @@
+[
+  {
+    "t": 1777191907498,
+    "kind": "console.startGroupCollapsed",
+    "text": "%cresult %cCapacitorSQLite.query (#25715210) font-style: italic; font-weight: lighter; color: gray font-style: italic; font-weight: bold; color: #444",
+    "url": "",
+    "line": 327,
+    "col": 22
+  },
+  {
+    "t": 1777191907498,
+    "kind": "console.dir",
+    "text": "{\"values\":[]}",
+    "url": "",
+    "line": 332,
+    "col": 26
+  },
+  {
+    "t": 1777191907498,
+    "kind": "console.endGroup",
+    "text": "console.groupEnd",
+    "url": "",
+    "line": 334,
+    "col": 22
+  },
+  {
+    "t": 1777191907499,
+    "kind": "console.startGroupCollapsed",
+    "text": "%cresult %cCapacitorSQLite.query (#25715211) font-style: italic; font-weight: lighter; color: gray font-style: italic; font-weight: bold; color: #444",
+    "url": "",
+    "line": 327,
+    "col": 22
+  },
+  {
+    "t": 1777191907499,
+    "kind": "console.dir",
+    "text": "{\"values\":[]}",
+    "url": "",
+    "line": 332,
+    "col": 26
+  },
+  {
+    "t": 1777191907499,
+    "kind": "console.endGroup",
+    "text": "console.groupEnd",
+    "url": "",
+    "line": 334,
+    "col": 22
+  },
+  {
+    "t": 1777191907499,
+    "kind": "console.startGroupCollapsed",
+    "text": "%cresult %cCapacitorSQLite.query (#25715212) font-style: italic; font-weight: lighter; color: gray font-style: italic; font-weight: bold; color: #444",
+    "url": "",
+    "line": 327,
+    "col": 22
+  },
+  {
+    "t": 1777191907499,
+    "kind": "console.dir",
+    "text": "{\"values\":[]}",
+    "url": "",
+    "line": 332,
+    "col": 26
+  },
+  {
+    "t": 1777191907499,
+    "kind": "console.endGroup",
+    "text": "console.groupEnd",
+    "url": "",
+    "line": 334,
+    "col": 22
+  },
+  {
+    "t": 1777191907500,
+    "kind": "console.startGroupCollapsed",
+    "text": "%cresult %cCapacitorSQLite.query (#25715213) font-style: italic; font-weight: lighter; color: gray font-style: italic; font-weight: bold; color: #444",
+    "url": "",
+    "line": 327,
+    "col": 22
+  },
+  {
+    "t": 1777191907500,
+    "kind": "console.dir",
+    "text": "{\"values\":[]}",
+    "url": "",
+    "line": 332,
+    "col": 26
+  },
+  {
+    "t": 1777191907500,
+    "kind": "console.endGroup",
+    "text": "console.groupEnd",
+    "url": "",
+    "line": 334,
+    "col": 22
+  },
+  {
+    "t": 1777191907500,
+    "kind": "console.startGroupCollapsed",
+    "text": "%cresult %cCapacitorSQLite.query (#25715214) font-style: italic; font-weight: lighter; color: gray font-style: italic; font-weight: bold; color: #444",
+    "url": "",
+    "line": 327,
+    "col": 22
+  },
+  {
+    "t": 1777191907500,
+    "kind": "console.dir",
+    "text": "{\"values\":[]}",
+    "url": "",
+    "line": 332,
+    "col": 26
+  },
+  {
+    "t": 1777191907500,
+    "kind": "console.endGroup",
+    "text": "console.groupEnd",
+    "url": "",
+    "line": 334,
+    "col": 22
+  },
+  {
+    "t": 1777191907500,
+    "kind": "console.startGroupCollapsed",
+    "text": "%cresult %cCapacitorSQLite.query (#25715215) font-style: italic; font-weight: lighter; color: gray font-style: italic; font-weight: bold; color: #444",
+    "url": "",
+    "line": 327,
+    "col": 22
+  },
+  {
+    "t": 1777191907501,
+    "kind": "console.dir",
+    "text": "{\"values\":[]}",
+    "url": "",
+    "line": 332,
+    "col": 26
+  },
+  {
+    "t": 1777191907502,
+    "kind": "console.endGroup",
+    "text": "console.groupEnd",
+    "url": "",
+    "line": 334,
+    "col": 22
+  },
+  {
+    "t": 1777191907505,
+    "kind": "console.startGroupCollapsed",
+    "text": "%cresult %cCapacitorSQLite.query (#25715216) font-style: italic; font-weight: lighter; color: gray font-style: italic; font-weight: bold; color: #444",
+    "url": "",
+    "line": 327,
+    "col": 22
+  },
+  {
+    "t": 1777191907505,
+    "kind": "console.dir",
+    "text": "{\"values\":[]}",
+    "url": "",
+    "line": 332,
+    "col": 26
+  },
+  {
+    "t": 1777191907506,
+    "kind": "console.endGroup",
+    "text": "console.groupEnd",
+    "url": "",
+    "line": 334,
+    "col": 22
+  },
+  {
+    "t": 1777191907506,
+    "kind": "console.startGroupCollapsed",
+    "text": "%cnative %cFilesystem.readFile (#25715218) font-weight: lighter; color: gray font-weight: bold; color: #000",
+    "url": "",
+    "line": 347,
+    "col": 22
+  },
+  {
+    "t": 1777191907506,
+    "kind": "console.dir",
+    "text": "{callbackId: 25715218, pluginId: Filesystem, methodName: readFile, options: Object}",
+    "url": "",
+    "line": 348,
+    "col": 22
+  },
+  {
+    "t": 1777191907507,
+    "kind": "console.endGroup",
+    "text": "console.groupEnd",
+    "url": "",
+    "line": 349,
+    "col": 22
+  },
+  {
+    "t": 1777191907508,
+    "kind": "console.startGroupCollapsed",
+    "text": "%cnative %cCapacitorSQLite.query (#25715219) font-weight: lighter; color: gray font-weight: bold; color: #000",
+    "url": "",
+    "line": 347,
+    "col": 22
+  },
+  {
+    "t": 1777191907509,
+    "kind": "console.dir",
+    "text": "{callbackId: 25715219, pluginId: CapacitorSQLite, methodName: query, options: Object}",
+    "url": "",
+    "line": 348,
+    "col": 22
+  },
+  {
+    "t": 1777191907509,
+    "kind": "console.endGroup",
+    "text": "console.groupEnd",
+    "url": "",
+    "line": 349,
+    "col": 22
+  },
+  {
+    "t": 1777191907509,
+    "kind": "console.startGroupCollapsed",
+    "text": "%cnative %cCapacitorSQLite.query (#25715220) font-weight: lighter; color: gray font-weight: bold; color: #000",
+    "url": "",
+    "line": 347,
+    "col": 22
+  },
+  {
+    "t": 1777191907510,
+    "kind": "console.dir",
+    "text": "{callbackId: 25715220, pluginId: CapacitorSQLite, methodName: query, options: Object}",
+    "url": "",
+    "line": 348,
+    "col": 22
+  },
+  {
+    "t": 1777191907510,
+    "kind": "console.endGroup",
+    "text": "console.groupEnd",
+    "url": "",
+    "line": 349,
+    "col": 22
+  },
+  {
+    "t": 1777191907511,
+    "kind": "console.startGroupCollapsed",
+    "text": "%cnative %cCapacitorSQLite.query (#25715221) font-weight: lighter; color: gray font-weight: bold; color: #000",
+    "url": "",
+    "line": 347,
+    "col": 22
+  },
+  {
+    "t": 1777191907511,
+    "kind": "console.dir",
+    "text": "{callbackId: 25715221, pluginId: CapacitorSQLite, methodName: query, options: Object}",
+    "url": "",
+    "line": 348,
+    "col": 22
+  },
+  {
+    "t": 1777191907511,
+    "kind": "console.endGroup",
+    "text": "console.groupEnd",
+    "url": "",
+    "line": 349,
+    "col": 22
+  },
+  {
+    "t": 1777191907511,
+    "kind": "console.startGroupCollapsed",
+    "text": "%cnative %cCapacitorSQLite.query (#25715222) font-weight: lighter; color: gray font-weight: bold; color: #000",
+    "url": "",
+    "line": 347,
+    "col": 22
+  },
+  {
+    "t": 1777191907512,
+    "kind": "console.dir",
+    "text": "{callbackId: 25715222, pluginId: CapacitorSQLite, methodName: query, options: Object}",
+    "url": "",
+    "line": 348,
+    "col": 22
+  },
+  {
+    "t": 1777191907512,
+    "kind": "console.endGroup",
+    "text": "console.groupEnd",
+    "url": "",
+    "line": 349,
+    "col": 22
+  },
+  {
+    "t": 1777191907512,
+    "kind": "console.startGroupCollapsed",
+    "text": "%cnative %cCapacitorSQLite.query (#25715223) font-weight: lighter; color: gray font-weight: bold; color: #000",
+    "url": "",
+    "line": 347,
+    "col": 22
+  },
+  {
+    "t": 1777191907513,
+    "kind": "console.dir",
+    "text": "{callbackId: 25715223, pluginId: CapacitorSQLite, methodName: query, options: Object}",
+    "url": "",
+    "line": 348,
+    "col": 22
+  },
+  {
+    "t": 1777191907513,
+    "kind": "console.endGroup",
+    "text": "console.groupEnd",
+    "url": "",
+    "line": 349,
+    "col": 22
+  },
+  {
+    "t": 1777191907513,
+    "kind": "console.startGroupCollapsed",
+    "text": "%cnative %cCapacitorSQLite.query (#25715224) font-weight: lighter; color: gray font-weight: bold; color: #000",
+    "url": "",
+    "line": 347,
+    "col": 22
+  },
+  {
+    "t": 1777191907513,
+    "kind": "console.dir",
+    "text": "{callbackId: 25715224, pluginId: CapacitorSQLite, methodName: query, options: Object}",
+    "url": "",
+    "line": 348,
+    "col": 22
+  },
+  {
+    "t": 1777191907514,
+    "kind": "console.endGroup",
+    "text": "console.groupEnd",
+    "url": "",
+    "line": 349,
+    "col": 22
+  },
+  {
+    "t": 1777191907514,
+    "kind": "console.startGroupCollapsed",
+    "text": "%cnative %cCapacitorSQLite.query (#25715225) font-weight: lighter; color: gray font-weight: bold; color: #000",
+    "url": "",
+    "line": 347,
+    "col": 22
+  },
+  {
+    "t": 1777191907515,
+    "kind": "console.dir",
+    "text": "{callbackId: 25715225, pluginId: CapacitorSQLite, methodName: query, options: Object}",
+    "url": "",
+    "line": 348,
+    "col": 22
+  },
+  {
+    "t": 1777191907515,
+    "kind": "console.endGroup",
+    "text": "console.groupEnd",
+    "url": "",
+    "line": 349,
+    "col": 22
+  },
+  {
+    "t": 1777191907515,
+    "kind": "console.startGroupCollapsed",
+    "text": "%cnative %cCapacitorSQLite.query (#25715226) font-weight: lighter; color: gray font-weight: bold; color: #000",
+    "url": "",
+    "line": 347,
+    "col": 22
+  },
+  {
+    "t": 1777191907515,
+    "kind": "console.dir",
+    "text": "{callbackId: 25715226, pluginId: CapacitorSQLite, methodName: query, options: Object}",
+    "url": "",
+    "line": 348,
+    "col": 22
+  },
+  {
+    "t": 1777191907516,
+    "kind": "console.endGroup",
+    "text": "console.groupEnd",
+    "url": "",
+    "line": 349,
+    "col": 22
+  },
+  {
+    "t": 1777191907516,
+    "kind": "console.startGroupCollapsed",
+    "text": "%cnative %cCapacitorSQLite.query (#25715227) font-weight: lighter; color: gray font-weight: bold; color: #000",
+    "url": "",
+    "line": 347,
+    "col": 22
+  },
+  {
+    "t": 1777191907516,
+    "kind": "console.dir",
+    "text": "{callbackId: 25715227, pluginId: CapacitorSQLite, methodName: query, options: Object}",
+    "url": "",
+    "line": 348,
+    "col": 22
+  },
+  {
+    "t": 1777191907517,
+    "kind": "console.endGroup",
+    "text": "console.groupEnd",
+    "url": "",
+    "line": 349,
+    "col": 22
+  },
+  {
+    "t": 1777191907517,
+    "kind": "console.startGroupCollapsed",
+    "text": "%cresult %cFilesystem.readFile (#25715194) font-style: italic; font-weight: lighter; color: gray font-style: italic; font-weight: bold; color: #444",
+    "url": "",
+    "line": 327,
+    "col": 22
+  },
+  {
+    "t": 1777191907517,
+    "kind": "console.dir",
+    "text": "{\"data\":\"{\\\"projects\\\":[{\\\"project_id\\\":\\\"proj_88354ca3-7fc\\\",\\\"name\\\":\\\"Field Survey Region Field Survey\\\",\\\"team_members\\\":[],\\\"target_taxa\\\":[\\\"birds\\\",\\\"mammals\\\",\\\"amphibians\\\",\\\"reptiles\\\",\\\"plants\\\",\\\"insects\\\",\\\"traces\\\"],\\\"program\\\":\\\"terrestrial_vertebrates\\\",\\\"protocol\\\":\\\"\\\",\\\"jurisdiction\\\":\\\"mainland_china\\\",\\\"region\\\":\\\"Field Survey Region\\\",\\\"survey_window\\\":{},\\\"notes\\\":\\\"\\\",\\\"created_at\\\":\\\"2026-04-26T08:24:06.721Z\\\",\\\"updated_at\\\":\\\"2026-04-26T08:24:06.721Z\\\",\\\"sync_state\\\":\\\"queued\\\",\\\"deleted_at\\\":\\\"\\\",\\\"server_updated_at\\\":\\\"2026-04-26T08:24:06.721Z\\\"}],\\\"sites\\\":[],\\\"routes\\\":[],\\\"observations\\\":[],\\\"tracks\\\":[],\\\"mapPackages\\\":[],\\\"protocols\\\":[],\\\"taxonomyPackages\\\":[],\\\"designAssets\\\":[],\\\"events\\\":[],\\\"exportJobs\\\":[],\\\"mediaInbox\\\":[],\\\"activeDraftAttachmentIds\\\":[],\\\"syncQueue\\\":[],\\\"conflicts\\\":[],\\\"activeProjectId\\\":\\\"proj_88354ca3-7fc\\\",\\\"activeSiteId\\\":\\\"\\\",\\\"activeRouteId\\\":\\\"\\\",\\\"activeProgram\\\":\\\"terrestrial_vertebrates\\\",\\\"activeProtocol\\\":\\\"bird_line_transect\\\",\\\"activeVertebrateSubmodule\\\":\\\"birds\\\",\\\"activeJurisdiction\\\":\\\"mainland_china\\\",\\\"activeDesignAssetId\\\":\\\"\\\",\\\"activeEventId\\\":\\\"\\\",\\\"schema_version\\\":2,\\\"syncMeta\\\":{\\\"lastPulledAt\\\":\\\"2026-04-26T08:24:27.189Z\\\",\\\"lastPushedAt\\\":\\\"\\\",\\\"lastStatus\\\":\\\"synced\\\",\\\"lastError\\\":\\\"\\\",\\\"deviceId\\\":\\\"device_fcedd18d-cba\\\",\\\"removedQueueIds\\\":[]}}\"}",
+    "url": "",
+    "line": 332,
+    "col": 26
+  },
+  {
+    "t": 1777191907518,
+    "kind": "console.endGroup",
+    "text": "console.groupEnd",
+    "url": "",
+    "line": 334,
+    "col": 22
+  },
+  {
+    "t": 1777191907518,
+    "kind": "console.startGroupCollapsed",
+    "text": "%cnative %cFilesystem.writeFile (#25715228) font-weight: lighter; color: gray font-weight: bold; color: #000",
+    "url": "",
+    "line": 347,
+    "col": 22
+  },
+  {
+    "t": 1777191907518,
+    "kind": "console.dir",
+    "text": "{callbackId: 25715228, pluginId: Filesystem, methodName: writeFile, options: Object}",
+    "url": "",
+    "line": 348,
+    "col": 22
+  },
+  {
+    "t": 1777191907519,
+    "kind": "console.endGroup",
+    "text": "console.groupEnd",
+    "url": "",
+    "line": 349,
+    "col": 22
+  },
+  {
+    "t": 1777191907521,
+    "kind": "console.startGroupCollapsed",
+    "text": "%cresult %cFilesystem.writeFile (#25715204) font-style: italic; font-weight: lighter; color: gray font-style: italic; font-weight: bold; color: #444",
+    "url": "",
+    "line": 327,
+    "col": 22
+  },
+  {
+    "t": 1777191907521,
+    "kind": "console.dir",
+    "text": "{\"uri\":\"file:///data/user/0/org.biodiversity.speciesmonitoring/files/field-survey-state.json\"}",
+    "url": "",
+    "line": 332,
+    "col": 26
+  },
+  {
+    "t": 1777191907521,
+    "kind": "console.endGroup",
+    "text": "console.groupEnd",
+    "url": "",
+    "line": 334,
+    "col": 22
+  },
+  {
+    "t": 1777191907521,
+    "kind": "console.startGroupCollapsed",
+    "text": "%cnative %cFilesystem.writeFile (#25715229) font-weight: lighter; color: gray font-weight: bold; color: #000",
+    "url": "",
+    "line": 347,
+    "col": 22
+  },
+  {
+    "t": 1777191907521,
+    "kind": "console.dir",
+    "text": "{callbackId: 25715229, pluginId: Filesystem, methodName: writeFile, options: Object}",
+    "url": "",
+    "line": 348,
+    "col": 22
+  },
+  {
+    "t": 1777191907521,
+    "kind": "console.endGroup",
+    "text": "console.groupEnd",
+    "url": "",
+    "line": 349,
+    "col": 22
+  },
+  {
+    "t": 1777191907529,
+    "kind": "console.startGroupCollapsed",
+    "text": "%cresult %cFilesystem.writeFile (#25715206) font-style: italic; font-weight: lighter; color: gray font-style: italic; font-weight: bold; color: #444",
+    "url": "",
+    "line": 327,
+    "col": 22
+  },
+  {
+    "t": 1777191907531,
+    "kind": "console.dir",
+    "text": "{\"uri\":\"file:///data/user/0/org.biodiversity.speciesmonitoring/files/field-survey-state.backup.json\"}",
+    "url": "",
+    "line": 332,
+    "col": 26
+  },
+  {
+    "t": 1777191907531,
+    "kind": "console.endGroup",
+    "text": "console.groupEnd",
+    "url": "",
+    "line": 334,
+    "col": 22
+  },
+  {
+    "t": 1777191907532,
+    "kind": "console.startGroupCollapsed",
+    "text": "%cnative %cFilesystem.writeFile (#25715230) font-weight: lighter; color: gray font-weight: bold; color: #000",
+    "url": "",
+    "line": 347,
+    "col": 22
+  },
+  {
+    "t": 1777191907532,
+    "kind": "console.dir",
+    "text": "{callbackId: 25715230, pluginId: Filesystem, methodName: writeFile, options: Object}",
+    "url": "",
+    "line": 348,
+    "col": 22
+  },
+  {
+    "t": 1777191907532,
+    "kind": "console.endGroup",
+    "text": "console.groupEnd",
+    "url": "",
+    "line": 349,
+    "col": 22
+  },
+  {
+    "t": 1777191907552,
+    "kind": "console.startGroupCollapsed",
+    "text": "%cresult %cFilesystem.writeFile (#25715205) font-style: italic; font-weight: lighter; color: gray font-style: italic; font-weight: bold; color: #444",
+    "url": "",
+    "line": 327,
+    "col": 22
+  },
+  {
+    "t": 1777191907553,
+    "kind": "console.dir",
+    "text": "{\"uri\":\"file:///data/user/0/org.biodiversity.speciesmonitoring/files/field-survey-state.meta.json\"}",
+    "url": "",
+    "line": 332,
+    "col": 26
+  },
+  {
+    "t": 1777191907553,
+    "kind": "console.endGroup",
+    "text": "console.groupEnd",
+    "url": "",
+    "line": 334,
+    "col": 22
+  },
+  {
+    "t": 1777191907553,
+    "kind": "console.startGroupCollapsed",
+    "text": "%cresult %cFilesystem.readFile (#25715207) font-style: italic; font-weight: lighter; color: gray font-style: italic; font-weight: bold; color: #444",
+    "url": "",
+    "line": 327,
+    "col": 22
+  },
+  {
+    "t": 1777191907554,
+    "kind": "console.dir",
+    "text": "{\"data\":\"{\\\"projects\\\":[{\\\"project_id\\\":\\\"proj_88354ca3-7fc\\\",\\\"name\\\":\\\"Field Survey Region Field Survey\\\",\\\"team_members\\\":[],\\\"target_taxa\\\":[\\\"birds\\\",\\\"mammals\\\",\\\"amphibians\\\",\\\"reptiles\\\",\\\"plants\\\",\\\"insects\\\",\\\"traces\\\"],\\\"program\\\":\\\"terrestrial_vertebrates\\\",\\\"protocol\\\":\\\"\\\",\\\"jurisdiction\\\":\\\"mainland_china\\\",\\\"region\\\":\\\"Field Survey Region\\\",\\\"survey_window\\\":{},\\\"notes\\\":\\\"\\\",\\\"created_at\\\":\\\"2026-04-26T08:24:06.721Z\\\",\\\"updated_at\\\":\\\"2026-04-26T08:24:06.721Z\\\",\\\"sync_state\\\":\\\"queued\\\",\\\"deleted_at\\\":\\\"\\\",\\\"server_updated_at\\\":\\\"2026-04-26T08:24:06.721Z\\\"}],\\\"sites\\\":[],\\\"routes\\\":[],\\\"observations\\\":[],\\\"tracks\\\":[],\\\"mapPackages\\\":[],\\\"protocols\\\":[],\\\"taxonomyPackages\\\":[],\\\"designAssets\\\":[],\\\"events\\\":[],\\\"exportJobs\\\":[],\\\"mediaInbox\\\":[],\\\"activeDraftAttachmentIds\\\":[],\\\"syncQueue\\\":[],\\\"conflicts\\\":[],\\\"activeProjectId\\\":\\\"proj_88354ca3-7fc\\\",\\\"activeSiteId\\\":\\\"\\\",\\\"activeRouteId\\\":\\\"\\\",\\\"activeProgram\\\":\\\"terrestrial_vertebrates\\\",\\\"activeProtocol\\\":\\\"bird_line_transect\\\",\\\"activeVertebrateSubmodule\\\":\\\"birds\\\",\\\"activeJurisdiction\\\":\\\"mainland_china\\\",\\\"activeDesignAssetId\\\":\\\"\\\",\\\"activeEventId\\\":\\\"\\\",\\\"schema_version\\\":2,\\\"syncMeta\\\":{\\\"lastPulledAt\\\":\\\"2026-04-26T08:24:27.203Z\\\",\\\"lastPushedAt\\\":\\\"\\\",\\\"lastStatus\\\":\\\"synced\\\",\\\"lastError\\\":\\\"\\\",\\\"deviceId\\\":\\\"device_fcedd18d-cba\\\",\\\"removedQueueIds\\\":[]}}\"}",
+    "url": "",
+    "line": 332,
+    "col": 26
+  },
+  {
+    "t": 1777191907554,
+    "kind": "console.endGroup",
+    "text": "console.groupEnd",
+    "url": "",
+    "line": 334,
+    "col": 22
+  },
+  {
+    "t": 1777191907554,
+    "kind": "console.startGroupCollapsed",
+    "text": "%cnative %cFilesystem.writeFile (#25715231) font-weight: lighter; color: gray font-weight: bold; color: #000",
+    "url": "",
+    "line": 347,
+    "col": 22
+  },
+  {
+    "t": 1777191907555,
+    "kind": "console.dir",
+    "text": "{callbackId: 25715231, pluginId: Filesystem, methodName: writeFile, options: Object}",
+    "url": "",
+    "line": 348,
+    "col": 22
+  },
+  {
+    "t": 1777191907555,
+    "kind": "console.endGroup",
+    "text": "console.groupEnd",
+    "url": "",
+    "line": 349,
+    "col": 22
+  },
+  {
+    "t": 1777191907555,
+    "kind": "console.startGroupCollapsed",
+    "text": "%cresult %cCapacitorSQLite.query (#25715219) font-style: italic; font-weight: lighter; color: gray font-style: italic; font-weight: bold; color: #444",
+    "url": "",
+    "line": 327,
+    "col": 22
+  },
+  {
+    "t": 1777191907555,
+    "kind": "console.dir",
+    "text": "{\"values\":[{\"project_id\":\"proj_88354ca3-7fc\",\"name\":\"Field Survey Region Field Survey\",\"region\":\"Field Survey Region\",\"created_at\":\"2026-04-26T08:24:06.721Z\",\"updated_at\":\"2026-04-26T08:24:06.721Z\",\"deleted_at\":\"\",\"payload_json\":\"{\\\"project_id\\\":\\\"proj_88354ca3-7fc\\\",\\\"name\\\":\\\"Field Survey Region Field Survey\\\",\\\"team_members\\\":[],\\\"target_taxa\\\":[\\\"birds\\\",\\\"mammals\\\",\\\"amphibians\\\",\\\"reptiles\\\",\\\"plants\\\",\\\"insects\\\",\\\"traces\\\"],\\\"program\\\":\\\"terrestrial_vertebrates\\\",\\\"protocol\\\":\\\"\\\",\\\"jurisdiction\\\":\\\"mainland_china\\\",\\\"region\\\":\\\"Field Survey Region\\\",\\\"survey_window\\\":{},\\\"notes\\\":\\\"\\\",\\\"created_at\\\":\\\"2026-04-26T08:24:06.721Z\\\",\\\"updated_at\\\":\\\"2026-04-26T08:24:06.721Z\\\",\\\"sync_state\\\":\\\"queued\\\"}\"}]}",
+    "url": "",
+    "line": 332,
+    "col": 26
+  },
+  {
+    "t": 1777191907555,
+    "kind": "console.endGroup",
+    "text": "console.groupEnd",
+    "url": "",
+    "line": 334,
+    "col": 22
+  },
+  {
+    "t": 1777191907555,
+    "kind": "console.startGroupCollapsed",
+    "text": "%cresult %cFilesystem.writeFile (#25715217) font-style: italic; font-weight: lighter; color: gray font-style: italic; font-weight: bold; color: #444",
+    "url": "",
+    "line": 327,
+    "col": 22
+  },
+  {
+    "t": 1777191907556,
+    "kind": "console.dir",
+    "text": "{\"uri\":\"file:///data/user/0/org.biodiversity.speciesmonitoring/files/field-survey-state.json\"}",
+    "url": "",
+    "line": 332,
+    "col": 26
+  },
+  {
+    "t": 1777191907556,
+    "kind": "console.endGroup",
+    "text": "console.groupEnd",
+    "url": "",
+    "line": 334,
+    "col": 22
+  },
+  {
+    "t": 1777191907556,
+    "kind": "console.startGroupCollapsed",
+    "text": "%cnative %cFilesystem.writeFile (#25715232) font-weight: lighter; color: gray font-weight: bold; color: #000",
+    "url": "",
+    "line": 347,
+    "col": 22
+  },
+  {
+    "t": 1777191907556,
+    "kind": "console.dir",
+    "text": "{callbackId: 25715232, pluginId: Filesystem, methodName: writeFile, options: Object}",
+    "url": "",
+    "line": 348,
+    "col": 22
+  },
+  {
+    "t": 1777191907556,
+    "kind": "console.endGroup",
+    "text": "console.groupEnd",
+    "url": "",
+    "line": 349,
+    "col": 22
+  },
+  {
+    "t": 1777191907557,
+    "kind": "console.startGroupCollapsed",
+    "text": "%cresult %cCapacitorSQLite.query (#25715220) font-style: italic; font-weight: lighter; color: gray font-style: italic; font-weight: bold; color: #444",
+    "url": "",
+    "line": 327,
+    "col": 22
+  },
+  {
+    "t": 1777191907557,
+    "kind": "console.dir",
+    "text": "{\"values\":[]}",
+    "url": "",
+    "line": 332,
+    "col": 26
+  },
+  {
+    "t": 1777191907558,
+    "kind": "console.endGroup",
+    "text": "console.groupEnd",
+    "url": "",
+    "line": 334,
+    "col": 22
+  },
+  {
+    "t": 1777191907559,
+    "kind": "console.startGroupCollapsed",
+    "text": "%cresult %cCapacitorSQLite.query (#25715221) font-style: italic; font-weight: lighter; color: gray font-style: italic; font-weight: bold; color: #444",
+    "url": "",
+    "line": 327,
+    "col": 22
+  },
+  {
+    "t": 1777191907559,
+    "kind": "console.dir",
+    "text": "{\"values\":[]}",
+    "url": "",
+    "line": 332,
+    "col": 26
+  },
+  {
+    "t": 1777191907560,
+    "kind": "console.endGroup",
+    "text": "console.groupEnd",
+    "url": "",
+    "line": 334,
+    "col": 22
+  },
+  {
+    "t": 1777191907566,
+    "kind": "console.startGroupCollapsed",
+    "text": "%cresult %cCapacitorSQLite.query (#25715222) font-style: italic; font-weight: lighter; color: gray font-style: italic; font-weight: bold; color: #444",
+    "url": "",
+    "line": 327,
+    "col": 22
+  },
+  {
+    "t": 1777191907567,
+    "kind": "console.dir",
+    "text": "{\"values\":[]}",
+    "url": "",
+    "line": 332,
+    "col": 26
+  },
+  {
+    "t": 1777191907567,
+    "kind": "console.endGroup",
+    "text": "console.groupEnd",
+    "url": "",
+    "line": 334,
+    "col": 22
+  },
+  {
+    "t": 1777191907568,
+    "kind": "console.startGroupCollapsed",
+    "text": "%cresult %cCapacitorSQLite.query (#25715223) font-style: italic; font-weight: lighter; color: gray font-style: italic; font-weight: bold; color: #444",
+    "url": "",
+    "line": 327,
+    "col": 22
+  },
+  {
+    "t": 1777191907568,
+    "kind": "console.dir",
+    "text": "{\"values\":[]}",
+    "url": "",
+    "line": 332,
+    "col": 26
+  },
+  {
+    "t": 1777191907568,
+    "kind": "console.endGroup",
+    "text": "console.groupEnd",
+    "url": "",
+    "line": 334,
+    "col": 22
+  },
+  {
+    "t": 1777191907568,
+    "kind": "console.startGroupCollapsed",
+    "text": "%cresult %cCapacitorSQLite.query (#25715224) font-style: italic; font-weight: lighter; color: gray font-style: italic; font-weight: bold; color: #444",
+    "url": "",
+    "line": 327,
+    "col": 22
+  },
+  {
+    "t": 1777191907569,
+    "kind": "console.dir",
+    "text": "{\"values\":[]}",
+    "url": "",
+    "line": 332,
+    "col": 26
+  },
+  {
+    "t": 1777191907569,
+    "kind": "console.endGroup",
+    "text": "console.groupEnd",
+    "url": "",
+    "line": 334,
+    "col": 22
+  },
+  {
+    "t": 1777191907569,
+    "kind": "console.startGroupCollapsed",
+    "text": "%cresult %cCapacitorSQLite.query (#25715225) font-style: italic; font-weight: lighter; color: gray font-style: italic; font-weight: bold; color: #444",
+    "url": "",
+    "line": 327,
+    "col": 22
+  },
+  {
+    "t": 1777191907570,
+    "kind": "console.dir",
+    "text": "{\"values\":[]}",
+    "url": "",
+    "line": 332,
+    "col": 26
+  },
+  {
+    "t": 1777191907570,
+    "kind": "console.endGroup",
+    "text": "console.groupEnd",
+    "url": "",
+    "line": 334,
+    "col": 22
+  },
+  {
+    "t": 1777191907572,
+    "kind": "console.startGroupCollapsed",
+    "text": "%cresult %cCapacitorSQLite.query (#25715226) font-style: italic; font-weight: lighter; color: gray font-style: italic; font-weight: bold; color: #444",
+    "url": "",
+    "line": 327,
+    "col": 22
+  },
+  {
+    "t": 1777191907572,
+    "kind": "console.dir",
+    "text": "{\"values\":[]}",
+    "url": "",
+    "line": 332,
+    "col": 26
+  },
+  {
+    "t": 1777191907572,
+    "kind": "console.endGroup",
+    "text": "console.groupEnd",
+    "url": "",
+    "line": 334,
+    "col": 22
+  },
+  {
+    "t": 1777191907573,
+    "kind": "console.startGroupCollapsed",
+    "text": "%cresult %cCapacitorSQLite.query (#25715227) font-style: italic; font-weight: lighter; color: gray font-style: italic; font-weight: bold; color: #444",
+    "url": "",
+    "line": 327,
+    "col": 22
+  },
+  {
+    "t": 1777191907573,
+    "kind": "console.dir",
+    "text": "{\"values\":[]}",
+    "url": "",
+    "line": 332,
+    "col": 26
+  },
+  {
+    "t": 1777191907573,
+    "kind": "console.endGroup",
+    "text": "console.groupEnd",
+    "url": "",
+    "line": 334,
+    "col": 22
+  },
+  {
+    "t": 1777191907573,
+    "kind": "console.startGroupCollapsed",
+    "text": "%cresult %cFilesystem.readFile (#25715218) font-style: italic; font-weight: lighter; color: gray font-style: italic; font-weight: bold; color: #444",
+    "url": "",
+    "line": 327,
+    "col": 22
+  },
+  {
+    "t": 1777191907574,
+    "kind": "console.dir",
+    "text": "{\"data\":\"{\\\"projects\\\":[{\\\"project_id\\\":\\\"proj_88354ca3-7fc\\\",\\\"name\\\":\\\"Field Survey Region Field Survey\\\",\\\"team_members\\\":[],\\\"target_taxa\\\":[\\\"birds\\\",\\\"mammals\\\",\\\"amphibians\\\",\\\"reptiles\\\",\\\"plants\\\",\\\"insects\\\",\\\"traces\\\"],\\\"program\\\":\\\"terrestrial_vertebrates\\\",\\\"protocol\\\":\\\"\\\",\\\"jurisdiction\\\":\\\"mainland_china\\\",\\\"region\\\":\\\"Field Survey Region\\\",\\\"survey_window\\\":{},\\\"notes\\\":\\\"\\\",\\\"created_at\\\":\\\"2026-04-26T08:24:06.721Z\\\",\\\"updated_at\\\":\\\"2026-04-26T08:24:06.721Z\\\",\\\"sync_state\\\":\\\"queued\\\",\\\"deleted_at\\\":\\\"\\\",\\\"server_updated_at\\\":\\\"2026-04-26T08:24:06.721Z\\\"}],\\\"sites\\\":[],\\\"routes\\\":[],\\\"observations\\\":[],\\\"tracks\\\":[],\\\"mapPackages\\\":[],\\\"protocols\\\":[],\\\"taxonomyPackages\\\":[],\\\"designAssets\\\":[],\\\"events\\\":[],\\\"exportJobs\\\":[],\\\"mediaInbox\\\":[],\\\"activeDraftAttachmentIds\\\":[],\\\"syncQueue\\\":[],\\\"conflicts\\\":[],\\\"activeProjectId\\\":\\\"proj_88354ca3-7fc\\\",\\\"activeSiteId\\\":\\\"\\\",\\\"activeRouteId\\\":\\\"\\\",\\\"activeProgram\\\":\\\"terrestrial_vertebrates\\\",\\\"activeProtocol\\\":\\\"bird_line_transect\\\",\\\"activeVertebrateSubmodule\\\":\\\"birds\\\",\\\"activeJurisdiction\\\":\\\"mainland_china\\\",\\\"activeDesignAssetId\\\":\\\"\\\",\\\"activeEventId\\\":\\\"\\\",\\\"schema_version\\\":2,\\\"syncMeta\\\":{\\\"lastPulledAt\\\":\\\"2026-04-26T08:24:27.216Z\\\",\\\"lastPushedAt\\\":\\\"\\\",\\\"lastStatus\\\":\\\"synced\\\",\\\"lastError\\\":\\\"\\\",\\\"deviceId\\\":\\\"device_fcedd18d-cba\\\",\\\"removedQueueIds\\\":[]}}\"}",
+    "url": "",
+    "line": 332,
+    "col": 26
+  },
+  {
+    "t": 1777191907574,
+    "kind": "console.endGroup",
+    "text": "console.groupEnd",
+    "url": "",
+    "line": 334,
+    "col": 22
+  },
+  {
+    "t": 1777191907575,
+    "kind": "console.startGroupCollapsed",
+    "text": "%cnative %cFilesystem.writeFile (#25715233) font-weight: lighter; color: gray font-weight: bold; color: #000",
+    "url": "",
+    "line": 347,
+    "col": 22
+  },
+  {
+    "t": 1777191907575,
+    "kind": "console.dir",
+    "text": "{callbackId: 25715233, pluginId: Filesystem, methodName: writeFile, options: Object}",
+    "url": "",
+    "line": 348,
+    "col": 22
+  },
+  {
+    "t": 1777191907575,
+    "kind": "console.endGroup",
+    "text": "console.groupEnd",
+    "url": "",
+    "line": 349,
+    "col": 22
+  },
+  {
+    "t": 1777191907575,
+    "kind": "console.startGroupCollapsed",
+    "text": "%cnative %cFilesystem.readFile (#25715234) font-weight: lighter; color: gray font-weight: bold; color: #000",
+    "url": "",
+    "line": 347,
+    "col": 22
+  },
+  {
+    "t": 1777191907576,
+    "kind": "console.dir",
+    "text": "{callbackId: 25715234, pluginId: Filesystem, methodName: readFile, options: Object}",
+    "url": "",
+    "line": 348,
+    "col": 22
+  },
+  {
+    "t": 1777191907576,
+    "kind": "console.endGroup",
+    "text": "console.groupEnd",
+    "url": "",
+    "line": 349,
+    "col": 22
+  },
+  {
+    "t": 1777191907577,
+    "kind": "console.startGroupCollapsed",
+    "text": "%cnative %cCapacitorSQLite.query (#25715235) font-weight: lighter; color: gray font-weight: bold; color: #000",
+    "url": "",
+    "line": 347,
+    "col": 22
+  },
+  {
+    "t": 1777191907577,
+    "kind": "console.dir",
+    "text": "{callbackId: 25715235, pluginId: CapacitorSQLite, methodName: query, options: Object}",
+    "url": "",
+    "line": 348,
+    "col": 22
+  },
+  {
+    "t": 1777191907580,
+    "kind": "console.endGroup",
+    "text": "console.groupEnd",
+    "url": "",
+    "line": 349,
+    "col": 22
+  },
+  {
+    "t": 1777191907580,
+    "kind": "console.startGroupCollapsed",
+    "text": "%cnative %cCapacitorSQLite.query (#25715236) font-weight: lighter; color: gray font-weight: bold; color: #000",
+    "url": "",
+    "line": 347,
+    "col": 22
+  },
+  {
+    "t": 1777191907581,
+    "kind": "console.dir",
+    "text": "{callbackId: 25715236, pluginId: CapacitorSQLite, methodName: query, options: Object}",
+    "url": "",
+    "line": 348,
+    "col": 22
+  },
+  {
+    "t": 1777191907581,
+    "kind": "console.endGroup",
+    "text": "console.groupEnd",
+    "url": "",
+    "line": 349,
+    "col": 22
+  },
+  {
+    "t": 1777191907589,
+    "kind": "console.startGroupCollapsed",
+    "text": "%cnative %cCapacitorSQLite.query (#25715237) font-weight: lighter; color: gray font-weight: bold; color: #000",
+    "url": "",
+    "line": 347,
+    "col": 22
+  },
+  {
+    "t": 1777191907590,
+    "kind": "console.dir",
+    "text": "{callbackId: 25715237, pluginId: CapacitorSQLite, methodName: query, options: Object}",
+    "url": "",
+    "line": 348,
+    "col": 22
+  },
+  {
+    "t": 1777191907591,
+    "kind": "console.endGroup",
+    "text": "console.groupEnd",
+    "url": "",
+    "line": 349,
+    "col": 22
+  },
+  {
+    "t": 1777191907591,
+    "kind": "console.startGroupCollapsed",
+    "text": "%cnative %cCapacitorSQLite.query (#25715238) font-weight: lighter; color: gray font-weight: bold; color: #000",
+    "url": "",
+    "line": 347,
+    "col": 22
+  },
+  {
+    "t": 1777191907591,
+    "kind": "console.dir",
+    "text": "{callbackId: 25715238, pluginId: CapacitorSQLite, methodName: query, options: Object}",
+    "url": "",
+    "line": 348,
+    "col": 22
+  },
+  {
+    "t": 1777191907592,
+    "kind": "console.endGroup",
+    "text": "console.groupEnd",
+    "url": "",
+    "line": 349,
+    "col": 22
+  },
+  {
+    "t": 1777191907592,
+    "kind": "console.startGroupCollapsed",
+    "text": "%cnative %cCapacitorSQLite.query (#25715239) font-weight: lighter; color: gray font-weight: bold; color: #000",
+    "url": "",
+    "line": 347,
+    "col": 22
+  },
+  {
+    "t": 1777191907592,
+    "kind": "console.dir",
+    "text": "{callbackId: 25715239, pluginId: CapacitorSQLite, methodName: query, options: Object}",
+    "url": "",
+    "line": 348,
+    "col": 22
+  },
+  {
+    "t": 1777191907592,
+    "kind": "console.endGroup",
+    "text": "console.groupEnd",
+    "url": "",
+    "line": 349,
+    "col": 22
+  },
+  {
+    "t": 1777191907593,
+    "kind": "console.startGroupCollapsed",
+    "text": "%cnative %cCapacitorSQLite.query (#25715240) font-weight: lighter; color: gray font-weight: bold; color: #000",
+    "url": "",
+    "line": 347,
+    "col": 22
+  },
+  {
+    "t": 1777191907594,
+    "kind": "console.dir",
+    "text": "{callbackId: 25715240, pluginId: CapacitorSQLite, methodName: query, options: Object}",
+    "url": "",
+    "line": 348,
+    "col": 22
+  },
+  {
+    "t": 1777191907594,
+    "kind": "console.endGroup",
+    "text": "console.groupEnd",
+    "url": "",
+    "line": 349,
+    "col": 22
+  },
+  {
+    "t": 1777191907594,
+    "kind": "console.startGroupCollapsed",
+    "text": "%cnative %cCapacitorSQLite.query (#25715241) font-weight: lighter; color: gray font-weight: bold; color: #000",
+    "url": "",
+    "line": 347,
+    "col": 22
+  },
+  {
+    "t": 1777191907595,
+    "kind": "console.dir",
+    "text": "{callbackId: 25715241, pluginId: CapacitorSQLite, methodName: query, options: Object}",
+    "url": "",
+    "line": 348,
+    "col": 22
+  },
+  {
+    "t": 1777191907595,
+    "kind": "console.endGroup",
+    "text": "console.groupEnd",
+    "url": "",
+    "line": 349,
+    "col": 22
+  },
+  {
+    "t": 1777191907595,
+    "kind": "console.startGroupCollapsed",
+    "text": "%cnative %cCapacitorSQLite.query (#25715242) font-weight: lighter; color: gray font-weight: bold; color: #000",
+    "url": "",
+    "line": 347,
+    "col": 22
+  },
+  {
+    "t": 1777191907597,
+    "kind": "console.dir",
+    "text": "{callbackId: 25715242, pluginId: CapacitorSQLite, methodName: query, options: Object}",
+    "url": "",
+    "line": 348,
+    "col": 22
+  },
+  {
+    "t": 1777191907597,
+    "kind": "console.endGroup",
+    "text": "console.groupEnd",
+    "url": "",
+    "line": 349,
+    "col": 22
+  },
+  {
+    "t": 1777191907597,
+    "kind": "console.startGroupCollapsed",
+    "text": "%cnative %cCapacitorSQLite.query (#25715243) font-weight: lighter; color: gray font-weight: bold; color: #000",
+    "url": "",
+    "line": 347,
+    "col": 22
+  },
+  {
+    "t": 1777191907598,
+    "kind": "console.dir",
+    "text": "{callbackId: 25715243, pluginId: CapacitorSQLite, methodName: query, options: Object}",
+    "url": "",
+    "line": 348,
+    "col": 22
+  },
+  {
+    "t": 1777191907598,
+    "kind": "console.endGroup",
+    "text": "console.groupEnd",
+    "url": "",
+    "line": 349,
+    "col": 22
+  },
+  {
+    "t": 1777191907598,
+    "kind": "console.startGroupCollapsed",
+    "text": "%cresult %cFilesystem.writeFile (#25715229) font-style: italic; font-weight: lighter; color: gray font-style: italic; font-weight: bold; color: #444",
+    "url": "",
+    "line": 327,
+    "col": 22
+  },
+  {
+    "t": 1777191907598,
+    "kind": "console.dir",
+    "text": "{\"uri\":\"file:///data/user/0/org.biodiversity.speciesmonitoring/files/field-survey-state.meta.json\"}",
+    "url": "",
+    "line": 332,
+    "col": 26
+  },
+  {
+    "t": 1777191907598,
+    "kind": "console.endGroup",
+    "text": "console.groupEnd",
+    "url": "",
+    "line": 334,
+    "col": 22
+  },
+  {
+    "t": 1777191907667,
+    "kind": "console.error",
+    "text": "[api] Native build requires VITE_API_BASE_URL (absolute https://... URL) to reach backend APIs.",
+    "url": "https://localhost/assets/index-vmosv9kM.js",
+    "line": 307,
+    "col": 5461
+  },
+  {
+    "t": 1777191907787,
+    "kind": "console.startGroupCollapsed",
+    "text": "%cnative %cApp.addListener (#45311217) font-weight: lighter; color: gray font-weight: bold; color: #000",
+    "url": "",
+    "line": 347,
+    "col": 22
+  },
+  {
+    "t": 1777191907788,
+    "kind": "console.dir",
+    "text": "{callbackId: 45311217, pluginId: App, methodName: addListener, options: Object}",
+    "url": "",
+    "line": 348,
+    "col": 22
+  },
+  {
+    "t": 1777191907788,
+    "kind": "console.endGroup",
+    "text": "console.groupEnd",
+    "url": "",
+    "line": 349,
+    "col": 22
+  },
+  {
+    "t": 1777191907788,
+    "kind": "console.startGroupCollapsed",
+    "text": "%cnative %cGeolocation.checkPermissions (#45311218) font-weight: lighter; color: gray font-weight: bold; color: #000",
+    "url": "",
+    "line": 347,
+    "col": 22
+  },
+  {
+    "t": 1777191907789,
+    "kind": "console.dir",
+    "text": "{callbackId: 45311218, pluginId: Geolocation, methodName: checkPermissions, options: Object}",
+    "url": "",
+    "line": 348,
+    "col": 22
+  },
+  {
+    "t": 1777191907789,
+    "kind": "console.endGroup",
+    "text": "console.groupEnd",
+    "url": "",
+    "line": 349,
+    "col": 22
+  },
+  {
+    "t": 1777191907789,
+    "kind": "console.startGroupCollapsed",
+    "text": "%cnative %cFilesystem.readFile (#45311219) font-weight: lighter; color: gray font-weight: bold; color: #000",
+    "url": "",
+    "line": 347,
+    "col": 22
+  },
+  {
+    "t": 1777191907789,
+    "kind": "console.dir",
+    "text": "{callbackId: 45311219, pluginId: Filesystem, methodName: readFile, options: Object}",
+    "url": "",
+    "line": 348,
+    "col": 22
+  },
+  {
+    "t": 1777191907789,
+    "kind": "console.endGroup",
+    "text": "console.groupEnd",
+    "url": "",
+    "line": 349,
+    "col": 22
+  },
+  {
+    "t": 1777191907790,
+    "kind": "console.startGroupCollapsed",
+    "text": "%cnative %cCapacitorSQLite.createConnection (#45311220) font-weight: lighter; color: gray font-weight: bold; color: #000",
+    "url": "",
+    "line": 347,
+    "col": 22
+  },
+  {
+    "t": 1777191907790,
+    "kind": "console.dir",
+    "text": "{callbackId: 45311220, pluginId: CapacitorSQLite, methodName: createConnection, options: Object}",
+    "url": "",
+    "line": 348,
+    "col": 22
+  },
+  {
+    "t": 1777191907791,
+    "kind": "console.endGroup",
+    "text": "console.groupEnd",
+    "url": "",
+    "line": 349,
+    "col": 22
+  },
+  {
+    "t": 1777191907800,
+    "kind": "console.startGroupCollapsed",
+    "text": "%cresult %cGeolocation.checkPermissions (#45311218) font-style: italic; font-weight: lighter; color: gray font-style: italic; font-weight: bold; color: #444",
+    "url": "",
+    "line": 327,
+    "col": 22
+  },
+  {
+    "t": 1777191907801,
+    "kind": "console.dir",
+    "text": "{\"coarseLocation\":\"granted\",\"location\":\"granted\"}",
+    "url": "",
+    "line": 332,
+    "col": 26
+  },
+  {
+    "t": 1777191907801,
+    "kind": "console.endGroup",
+    "text": "console.groupEnd",
+    "url": "",
+    "line": 334,
+    "col": 22
+  },
+  {
+    "t": 1777191907801,
+    "kind": "console.startGroupCollapsed",
+    "text": "%cnative %cGeolocation.getCurrentPosition (#45311221) font-weight: lighter; color: gray font-weight: bold; color: #000",
+    "url": "",
+    "line": 347,
+    "col": 22
+  },
+  {
+    "t": 1777191907801,
+    "kind": "console.dir",
+    "text": "{callbackId: 45311221, pluginId: Geolocation, methodName: getCurrentPosition, options: Object}",
+    "url": "",
+    "line": 348,
+    "col": 22
+  },
+  {
+    "t": 1777191907801,
+    "kind": "console.endGroup",
+    "text": "console.groupEnd",
+    "url": "",
+    "line": 349,
+    "col": 22
+  },
+  {
+    "t": 1777191907801,
+    "kind": "console.startGroupCollapsed",
+    "text": "%cresult %cCapacitorSQLite.createConnection (#45311220) font-style: italic; font-weight: lighter; color: red font-style: italic; font-weight: bold; color: #444",
+    "url": "",
+    "line": 327,
+    "col": 22
+  },
+  {
+    "t": 1777191907801,
+    "kind": "console.error",
+    "text": "{message: CreateConnection: Connection bird_survey_local already exists}",
+    "url": "",
+    "line": 329,
+    "col": 26
+  },
+  {
+    "t": 1777191907801,
+    "kind": "console.endGroup",
+    "text": "console.groupEnd",
+    "url": "",
+    "line": 334,
+    "col": 22
+  },
+  {
+    "t": 1777191907802,
+    "kind": "console.warning",
+    "text": "[useSyncEngine] local hydrate failed ll: CreateConnection: Connection bird_survey_local already exists\n    at returnResult (<anonymous>:961:32)\n    at win.androidBridge.onmessage (<anonymous>:936:21)",
+    "url": "https://localhost/assets/FieldOpsTab-Bn_43udW.js",
+    "line": 36,
+    "col": 112610
+  },
+  {
+    "t": 1777191907803,
+    "kind": "console.startGroupCollapsed",
+    "text": "%cresult %cFilesystem.readFile (#45311219) font-style: italic; font-weight: lighter; color: gray font-style: italic; font-weight: bold; color: #444",
+    "url": "",
+    "line": 327,
+    "col": 22
+  },
+  {
+    "t": 1777191907805,
+    "kind": "console.dir",
+    "text": "{\"data\":\"{\\\"projects\\\":[{\\\"project_id\\\":\\\"proj_88354ca3-7fc\\\",\\\"name\\\":\\\"Field Survey Region Field Survey\\\",\\\"team_members\\\":[],\\\"target_taxa\\\":[\\\"birds\\\",\\\"mammals\\\",\\\"amphibians\\\",\\\"reptiles\\\",\\\"plants\\\",\\\"insects\\\",\\\"traces\\\"],\\\"program\\\":\\\"terrestrial_vertebrates\\\",\\\"protocol\\\":\\\"\\\",\\\"jurisdiction\\\":\\\"mainland_china\\\",\\\"region\\\":\\\"Field Survey Region\\\",\\\"survey_window\\\":{},\\\"notes\\\":\\\"\\\",\\\"created_at\\\":\\\"2026-04-26T08:24:06.721Z\\\",\\\"updated_at\\\":\\\"2026-04-26T08:24:06.721Z\\\",\\\"sync_state\\\":\\\"queued\\\",\\\"deleted_at\\\":\\\"\\\",\\\"server_updated_at\\\":\\\"2026-04-26T08:24:06.721Z\\\"}],\\\"sites\\\":[],\\\"routes\\\":[],\\\"observations\\\":[],\\\"tracks\\\":[],\\\"mapPackages\\\":[],\\\"protocols\\\":[],\\\"taxonomyPackages\\\":[],\\\"designAssets\\\":[],\\\"events\\\":[],\\\"exportJobs\\\":[],\\\"mediaInbox\\\":[],\\\"activeDraftAttachmentIds\\\":[],\\\"syncQueue\\\":[],\\\"conflicts\\\":[],\\\"activeProjectId\\\":\\\"proj_88354ca3-7fc\\\",\\\"activeSiteId\\\":\\\"\\\",\\\"activeRouteId\\\":\\\"\\\",\\\"activeProgram\\\":\\\"terrestrial_vertebrates\\\",\\\"activeProtocol\\\":\\\"bird_line_transect\\\",\\\"activeVertebrateSubmodule\\\":\\\"birds\\\",\\\"activeJurisdiction\\\":\\\"mainland_china\\\",\\\"activeDesignAssetId\\\":\\\"\\\",\\\"activeEventId\\\":\\\"\\\",\\\"schema_version\\\":2,\\\"syncMeta\\\":{\\\"lastPulledAt\\\":\\\"2026-04-26T08:24:27.226Z\\\",\\\"lastPushedAt\\\":\\\"\\\",\\\"lastStatus\\\":\\\"synced\\\",\\\"lastError\\\":\\\"\\\",\\\"deviceId\\\":\\\"device_fcedd18d-cba\\\",\\\"removedQueueIds\\\":[]}}\"}",
+    "url": "",
+    "line": 332,
+    "col": 26
+  },
+  {
+    "t": 1777191907805,
+    "kind": "console.endGroup",
+    "text": "console.groupEnd",
+    "url": "",
+    "line": 334,
+    "col": 22
+  },
+  {
+    "t": 1777191907805,
+    "kind": "console.startGroupCollapsed",
+    "text": "%cnative %cFilesystem.stat (#45311222) font-weight: lighter; color: gray font-weight: bold; color: #000",
+    "url": "",
+    "line": 347,
+    "col": 22
+  },
+  {
+    "t": 1777191907806,
+    "kind": "console.dir",
+    "text": "{callbackId: 45311222, pluginId: Filesystem, methodName: stat, options: Object}",
+    "url": "",
+    "line": 348,
+    "col": 22
+  },
+  {
+    "t": 1777191907806,
+    "kind": "console.endGroup",
+    "text": "console.groupEnd",
+    "url": "",
+    "line": 349,
+    "col": 22
+  },
+  {
+    "t": 1777191907829,
+    "kind": "console.startGroupCollapsed",
+    "text": "%cresult %cFilesystem.stat (#45311222) font-style: italic; font-weight: lighter; color: gray font-style: italic; font-weight: bold; color: #444",
+    "url": "",
+    "line": 327,
+    "col": 22
+  },
+  {
+    "t": 1777191907832,
+    "kind": "console.dir",
+    "text": "{\"name\":\"field-survey-state.json\",\"type\":\"file\",\"size\":1188,\"mtime\":1777191867450,\"ctime\":1777191846710,\"uri\":\"file:///data/user/0/org.biodiversity.speciesmonitoring/files/field-survey-state.json\"}",
+    "url": "",
+    "line": 332,
+    "col": 26
+  },
+  {
+    "t": 1777191907832,
+    "kind": "console.endGroup",
+    "text": "console.groupEnd",
+    "url": "",
+    "line": 334,
+    "col": 22
+  },
+  {
+    "t": 1777191907832,
+    "kind": "console.startGroupCollapsed",
+    "text": "%cnative %cFilesystem.readFile (#45311223) font-weight: lighter; color: gray font-weight: bold; color: #000",
+    "url": "",
+    "line": 347,
+    "col": 22
+  },
+  {
+    "t": 1777191907832,
+    "kind": "console.dir",
+    "text": "{callbackId: 45311223, pluginId: Filesystem, methodName: readFile, options: Object}",
+    "url": "",
+    "line": 348,
+    "col": 22
+  },
+  {
+    "t": 1777191907832,
+    "kind": "console.endGroup",
+    "text": "console.groupEnd",
+    "url": "",
+    "line": 349,
+    "col": 22
+  },
+  {
+    "t": 1777191907839,
+    "kind": "console.startGroupCollapsed",
+    "text": "%cresult %cFilesystem.readFile (#45311223) font-style: italic; font-weight: lighter; color: gray font-style: italic; font-weight: bold; color: #444",
+    "url": "",
+    "line": 327,
+    "col": 22
+  },
+  {
+    "t": 1777191907839,
+    "kind": "console.dir",
+    "text": "{\"data\":\"{\\\"projects\\\":[{\\\"project_id\\\":\\\"proj_88354ca3-7fc\\\",\\\"name\\\":\\\"Field Survey Region Field Survey\\\",\\\"team_members\\\":[],\\\"target_taxa\\\":[\\\"birds\\\",\\\"mammals\\\",\\\"amphibians\\\",\\\"reptiles\\\",\\\"plants\\\",\\\"insects\\\",\\\"traces\\\"],\\\"program\\\":\\\"terrestrial_vertebrates\\\",\\\"protocol\\\":\\\"\\\",\\\"jurisdiction\\\":\\\"mainland_china\\\",\\\"region\\\":\\\"Field Survey Region\\\",\\\"survey_window\\\":{},\\\"notes\\\":\\\"\\\",\\\"created_at\\\":\\\"2026-04-26T08:24:06.721Z\\\",\\\"updated_at\\\":\\\"2026-04-26T08:24:06.721Z\\\",\\\"sync_state\\\":\\\"queued\\\",\\\"deleted_at\\\":\\\"\\\",\\\"server_updated_at\\\":\\\"2026-04-26T08:24:06.721Z\\\"}],\\\"sites\\\":[],\\\"routes\\\":[],\\\"observations\\\":[],\\\"tracks\\\":[],\\\"mapPackages\\\":[],\\\"protocols\\\":[],\\\"taxonomyPackages\\\":[],\\\"designAssets\\\":[],\\\"events\\\":[],\\\"exportJobs\\\":[],\\\"mediaInbox\\\":[],\\\"activeDraftAttachmentIds\\\":[],\\\"syncQueue\\\":[],\\\"conflicts\\\":[],\\\"activeProjectId\\\":\\\"proj_88354ca3-7fc\\\",\\\"activeSiteId\\\":\\\"\\\",\\\"activeRouteId\\\":\\\"\\\",\\\"activeProgram\\\":\\\"terrestrial_vertebrates\\\",\\\"activeProtocol\\\":\\\"bird_line_transect\\\",\\\"activeVertebrateSubmodule\\\":\\\"birds\\\",\\\"activeJurisdiction\\\":\\\"mainland_china\\\",\\\"activeDesignAssetId\\\":\\\"\\\",\\\"activeEventId\\\":\\\"\\\",\\\"schema_version\\\":2,\\\"syncMeta\\\":{\\\"lastPulledAt\\\":\\\"2026-04-26T08:24:27.216Z\\\",\\\"lastPushedAt\\\":\\\"\\\",\\\"lastStatus\\\":\\\"synced\\\",\\\"lastError\\\":\\\"\\\",\\\"deviceId\\\":\\\"device_fcedd18d-cba\\\",\\\"removedQueueIds\\\":[]}}\"}",
+    "url": "",
+    "line": 332,
+    "col": 26
+  },
+  {
+    "t": 1777191907839,
+    "kind": "console.endGroup",
+    "text": "console.groupEnd",
+    "url": "",
+    "line": 334,
+    "col": 22
+  },
+  {
+    "t": 1777191907839,
+    "kind": "console.startGroupCollapsed",
+    "text": "%cnative %cFilesystem.stat (#45311224) font-weight: lighter; color: gray font-weight: bold; color: #000",
+    "url": "",
+    "line": 347,
+    "col": 22
+  },
+  {
+    "t": 1777191907840,
+    "kind": "console.dir",
+    "text": "{callbackId: 45311224, pluginId: Filesystem, methodName: stat, options: Object}",
+    "url": "",
+    "line": 348,
+    "col": 22
+  },
+  {
+    "t": 1777191907840,
+    "kind": "console.endGroup",
+    "text": "console.groupEnd",
+    "url": "",
+    "line": 349,
+    "col": 22
+  },
+  {
+    "t": 1777191907856,
+    "kind": "console.startGroupCollapsed",
+    "text": "%cresult %cFilesystem.stat (#45311224) font-style: italic; font-weight: lighter; color: gray font-style: italic; font-weight: bold; color: #444",
+    "url": "",
+    "line": 327,
+    "col": 22
+  },
+  {
+    "t": 1777191907857,
+    "kind": "console.dir",
+    "text": "{\"name\":\"field-survey-state.backup.json\",\"type\":\"file\",\"size\":1188,\"mtime\":1777191867506,\"ctime\":1777191846734,\"uri\":\"file:///data/user/0/org.biodiversity.speciesmonitoring/files/field-survey-state.backup.json\"}",
+    "url": "",
+    "line": 332,
+    "col": 26
+  },
+  {
+    "t": 1777191907858,
+    "kind": "console.endGroup",
+    "text": "console.groupEnd",
+    "url": "",
+    "line": 334,
+    "col": 22
+  },
+  {
+    "t": 1777191907860,
+    "kind": "console.startGroupCollapsed",
+    "text": "%cnative %cFilesystem.readFile (#45311225) font-weight: lighter; color: gray font-weight: bold; color: #000",
+    "url": "",
+    "line": 347,
+    "col": 22
+  },
+  {
+    "t": 1777191907861,
+    "kind": "console.dir",
+    "text": "{callbackId: 45311225, pluginId: Filesystem, methodName: readFile, options: Object}",
+    "url": "",
+    "line": 348,
+    "col": 22
+  },
+  {
+    "t": 1777191907861,
+    "kind": "console.endGroup",
+    "text": "console.groupEnd",
+    "url": "",
+    "line": 349,
+    "col": 22
+  },
+  {
+    "t": 1777191907862,
+    "kind": "console.warning",
+    "text": "[useSyncEngine] local hydrate failed ll: CreateConnection: Connection bird_survey_local already exists\n    at returnResult (<anonymous>:961:32)\n    at win.androidBridge.onmessage (<anonymous>:936:21)",
+    "url": "https://localhost/assets/FieldOpsTab-Bn_43udW.js",
+    "line": 36,
+    "col": 112610
+  },
+  {
+    "t": 1777191907866,
+    "kind": "console.startGroupCollapsed",
+    "text": "%cresult %cFilesystem.readFile (#45311225) font-style: italic; font-weight: lighter; color: gray font-style: italic; font-weight: bold; color: #444",
+    "url": "",
+    "line": 327,
+    "col": 22
+  },
+  {
+    "t": 1777191907866,
+    "kind": "console.dir",
+    "text": "{\"data\":\"{\\\"projects\\\":[{\\\"project_id\\\":\\\"proj_88354ca3-7fc\\\",\\\"name\\\":\\\"Field Survey Region Field Survey\\\",\\\"team_members\\\":[],\\\"target_taxa\\\":[\\\"birds\\\",\\\"mammals\\\",\\\"amphibians\\\",\\\"reptiles\\\",\\\"plants\\\",\\\"insects\\\",\\\"traces\\\"],\\\"program\\\":\\\"terrestrial_vertebrates\\\",\\\"protocol\\\":\\\"\\\",\\\"jurisdiction\\\":\\\"mainland_china\\\",\\\"region\\\":\\\"Field Survey Region\\\",\\\"survey_window\\\":{},\\\"notes\\\":\\\"\\\",\\\"created_at\\\":\\\"2026-04-26T08:24:06.721Z\\\",\\\"updated_at\\\":\\\"2026-04-26T08:24:06.721Z\\\",\\\"sync_state\\\":\\\"queued\\\",\\\"deleted_at\\\":\\\"\\\",\\\"server_updated_at\\\":\\\"2026-04-26T08:24:06.721Z\\\"}],\\\"sites\\\":[],\\\"routes\\\":[],\\\"observations\\\":[],\\\"tracks\\\":[],\\\"mapPackages\\\":[],\\\"protocols\\\":[],\\\"taxonomyPackages\\\":[],\\\"designAssets\\\":[],\\\"events\\\":[],\\\"exportJobs\\\":[],\\\"mediaInbox\\\":[],\\\"activeDraftAttachmentIds\\\":[],\\\"syncQueue\\\":[],\\\"conflicts\\\":[],\\\"activeProjectId\\\":\\\"proj_88354ca3-7fc\\\",\\\"activeSiteId\\\":\\\"\\\",\\\"activeRouteId\\\":\\\"\\\",\\\"activeProgram\\\":\\\"terrestrial_vertebrates\\\",\\\"activeProtocol\\\":\\\"bird_line_transect\\\",\\\"activeVertebrateSubmodule\\\":\\\"birds\\\",\\\"activeJurisdiction\\\":\\\"mainland_china\\\",\\\"activeDesignAssetId\\\":\\\"\\\",\\\"activeEventId\\\":\\\"\\\",\\\"schema_version\\\":2,\\\"syncMeta\\\":{\\\"lastPulledAt\\\":\\\"2026-04-26T08:24:27.226Z\\\",\\\"lastPushedAt\\\":\\\"\\\",\\\"lastStatus\\\":\\\"synced\\\",\\\"lastError\\\":\\\"\\\",\\\"deviceId\\\":\\\"device_fcedd18d-cba\\\",\\\"removedQueueIds\\\":[]}}\"}",
+    "url": "",
+    "line": 332,
+    "col": 26
+  },
+  {
+    "t": 1777191907866,
+    "kind": "console.endGroup",
+    "text": "console.groupEnd",
+    "url": "",
+    "line": 334,
+    "col": 22
+  },
+  {
+    "t": 1777191907867,
+    "kind": "console.startGroupCollapsed",
+    "text": "%cnative %cFilesystem.writeFile (#45311226) font-weight: lighter; color: gray font-weight: bold; color: #000",
+    "url": "",
+    "line": 347,
+    "col": 22
+  },
+  {
+    "t": 1777191907867,
+    "kind": "console.dir",
+    "text": "{callbackId: 45311226, pluginId: Filesystem, methodName: writeFile, options: Object}",
+    "url": "",
+    "line": 348,
+    "col": 22
+  },
+  {
+    "t": 1777191907868,
+    "kind": "console.endGroup",
+    "text": "console.groupEnd",
+    "url": "",
+    "line": 349,
+    "col": 22
+  },
+  {
+    "t": 1777191907873,
+    "kind": "console.startGroupCollapsed",
+    "text": "%cresult %cFilesystem.writeFile (#45311226) font-style: italic; font-weight: lighter; color: gray font-style: italic; font-weight: bold; color: #444",
+    "url": "",
+    "line": 327,
+    "col": 22
+  },
+  {
+    "t": 1777191907874,
+    "kind": "console.dir",
+    "text": "{\"uri\":\"file:///data/user/0/org.biodiversity.speciesmonitoring/files/field-survey-state.json\"}",
+    "url": "",
+    "line": 332,
+    "col": 26
+  },
+  {
+    "t": 1777191907874,
+    "kind": "console.endGroup",
+    "text": "console.groupEnd",
+    "url": "",
+    "line": 334,
+    "col": 22
+  },
+  {
+    "t": 1777191907874,
+    "kind": "console.startGroupCollapsed",
+    "text": "%cnative %cFilesystem.writeFile (#45311227) font-weight: lighter; color: gray font-weight: bold; color: #000",
+    "url": "",
+    "line": 347,
+    "col": 22
+  },
+  {
+    "t": 1777191907875,
+    "kind": "console.dir",
+    "text": "{callbackId: 45311227, pluginId: Filesystem, methodName: writeFile, options: Object}",
+    "url": "",
+    "line": 348,
+    "col": 22
+  },
+  {
+    "t": 1777191907876,
+    "kind": "console.endGroup",
+    "text": "console.groupEnd",
+    "url": "",
+    "line": 349,
+    "col": 22
+  },
+  {
+    "t": 1777191907886,
+    "kind": "console.startGroupCollapsed",
+    "text": "%cresult %cFilesystem.writeFile (#45311227) font-style: italic; font-weight: lighter; color: gray font-style: italic; font-weight: bold; color: #444",
+    "url": "",
+    "line": 327,
+    "col": 22
+  },
+  {
+    "t": 1777191907886,
+    "kind": "console.dir",
+    "text": "{\"uri\":\"file:///data/user/0/org.biodiversity.speciesmonitoring/files/field-survey-state.meta.json\"}",
+    "url": "",
+    "line": 332,
+    "col": 26
+  },
+  {
+    "t": 1777191907886,
+    "kind": "console.endGroup",
+    "text": "console.groupEnd",
+    "url": "",
+    "line": 334,
+    "col": 22
+  },
+  {
+    "t": 1777191911524,
+    "kind": "console.startGroupCollapsed",
+    "text": "%cresult %cGeolocation.getCurrentPosition (#45311221) font-style: italic; font-weight: lighter; color: gray font-style: italic; font-weight: bold; color: #444",
+    "url": "",
+    "line": 327,
+    "col": 22
+  },
+  {
+    "t": 1777191911525,
+    "kind": "console.dir",
+    "text": "{\"timestamp\":1777191871396,\"coords\":{\"latitude\":37.4219983,\"longitude\":-122.084,\"accuracy\":5,\"altitude\":5,\"altitudeAccuracy\":0.5,\"speed\":0}}",
+    "url": "",
+    "line": 332,
+    "col": 26
+  },
+  {
+    "t": 1777191911525,
+    "kind": "console.endGroup",
+    "text": "console.groupEnd",
+    "url": "",
+    "line": 334,
+    "col": 22
+  }
+]

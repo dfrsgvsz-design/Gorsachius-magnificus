@@ -1,0 +1,78 @@
+{
+  "generated_at_utc": "2026-06-10T07:58:45.022093+00:00",
+  "ticket": "Algo-D / P0-W1 head-mapping gap audit",
+  "paths": {
+    "mapping": "F:\\Gorsachius magnificus\\species_monitoring_platform\\backend\\checkpoints\\species_mapping.json",
+    "checkpoint": "F:\\Gorsachius magnificus\\species_monitoring_platform\\backend\\checkpoints\\best_model.pth",
+    "manifest": "F:\\Gorsachius magnificus\\species_monitoring_platform\\data\\xc_expanded\\manifest.json",
+    "calibration": "F:\\Gorsachius magnificus\\species_monitoring_platform\\backend\\checkpoints\\calibration.json"
+  },
+  "mapping": {
+    "len": 223,
+    "first": [
+      "Accipiter nisus",
+      "Accipiter virgatus",
+      "Acridotheres cristatellus"
+    ],
+    "last": [
+      "Vanellus vanellus",
+      "Zoothera dauma",
+      "Zosterops japonicus"
+    ]
+  },
+  "checkpoint": {
+    "head_out_features": 217,
+    "load_error": null,
+    "current_calibration": {
+      "temperature": 0.665,
+      "ece_before": 0.2501,
+      "ece_after": 0.0432,
+      "mean_conf_before": 0.3716,
+      "mean_conf_after": 0.6086,
+      "accuracy": 0.6216,
+      "model_version": "v3-ensemble",
+      "ensemble": true
+    }
+  },
+  "manifest_xc_expanded": {
+    "rows": 19401,
+    "unique_species": 223
+  },
+  "gap": {
+    "mapping_minus_head": 6,
+    "trimmed_at_runtime": [
+      {
+        "idx": 217,
+        "scientific": "Upupa epops",
+        "manifest_records": 100
+      },
+      {
+        "idx": 218,
+        "scientific": "Urocissa erythroryncha",
+        "manifest_records": 100
+      },
+      {
+        "idx": 219,
+        "scientific": "Vanellus cinereus",
+        "manifest_records": 94
+      },
+      {
+        "idx": 220,
+        "scientific": "Vanellus vanellus",
+        "manifest_records": 100
+      },
+      {
+        "idx": 221,
+        "scientific": "Zoothera dauma",
+        "manifest_records": 18
+      },
+      {
+        "idx": 222,
+        "scientific": "Zosterops japonicus",
+        "manifest_records": 100
+      }
+    ],
+    "in_mapping_not_in_manifest": [],
+    "in_manifest_not_in_mapping": []
+  }
+}

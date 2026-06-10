@@ -1,0 +1,59 @@
+{
+  "cdpUrl": "http://127.0.0.1:9226",
+  "pageUrl": "https://localhost/",
+  "eventCount": 384,
+  "consoleErrorCount": 2,
+  "consoleWarnCount": 2,
+  "pageErrorCount": 0,
+  "requestFailedCount": 0,
+  "http4xx5xxCount": 0,
+  "capturedErrorsCount": 0,
+  "probe": {
+    "userAgent": "Mozilla/5.0 (Linux; Android 17; sdk_gphone16k_x86_64 Build/CP21.260330.005; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/145.0.7632.218 Mobile Safari/537.36",
+    "online": true,
+    "capacitor": {
+      "present": true,
+      "isNative": true,
+      "platform": "android",
+      "plugins": [
+        "App",
+        "SystemBars",
+        "Geolocation",
+        "Camera",
+        "Haptics",
+        "CapacitorCookies",
+        "WebView",
+        "Filesystem",
+        "StatusBar",
+        "CapacitorHttp",
+        "CapacitorSQLite"
+      ]
+    },
+    "indexedDB": [],
+    "serviceWorker": [
+      {
+        "scope": "https://localhost/",
+        "state": "activated"
+      }
+    ],
+    "caches": [
+      "bird-platform-v4"
+    ],
+    "navTabs": [
+      "总览",
+      "外业",
+      "物种",
+      "复核",
+      "监测",
+      "站点",
+      "设备",
+      "设置",
+      "研究",
+      "总览",
+      "外业",
+      "物种"
+    ],
+    "activeProjectName": null,
+    "h1": "外业"
+  }
+}

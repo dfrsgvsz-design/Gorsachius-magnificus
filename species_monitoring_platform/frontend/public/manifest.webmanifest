@@ -1,0 +1,55 @@
+{
+  "name": "Biodiversity Field Survey Platform",
+  "short_name": "Field Survey",
+  "description": "Offline-first biodiversity surveys, sync, and exports for Android field teams across mainland China and Taiwan.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#08101f",
+  "theme_color": "#10b981",
+  "orientation": "any",
+  "prefer_related_applications": false,
+  "categories": ["science", "education", "productivity"],
+  "lang": "en",
+  "dir": "ltr",
+  "icons": [
+    {
+      "src": "/app-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/app-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ],
+  "screenshots": [],
+  "related_applications": [],
+  "shortcuts": [
+    {
+      "name": "Field Surveys",
+      "short_name": "Surveys",
+      "url": "/?tab=fieldops",
+      "icons": [
+        {
+          "src": "/app-icon.svg",
+          "sizes": "any"
+        }
+      ]
+    },
+    {
+      "name": "Species Reference",
+      "short_name": "Species",
+      "url": "/?tab=species",
+      "icons": [
+        {
+          "src": "/app-icon.svg",
+          "sizes": "any"
+        }
+      ]
+    }
+  ]
+}

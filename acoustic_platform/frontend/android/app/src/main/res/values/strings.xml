@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Biodiversity Field Survey</string>
+    <string name="title_activity_main">Biodiversity Field Survey</string>
+    <string name="package_name">org.biodiversity.fieldsurvey</string>
+    <string name="custom_url_scheme">org.biodiversity.fieldsurvey</string>
+</resources>

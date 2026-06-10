@@ -1,0 +1,26 @@
+---
+description: Prevent planning-stage freezes by limiting heavy exploration.
+globs: *
+alwaysApply: true
+---
+
+# Planning Stage Freeze Guard
+
+When user asks for planning, auditing, or "next steps", apply these constraints before execution:
+
+## Hard Limits
+- Do not launch more than 2 subagents during planning stage.
+- Do not read or scan giant generated artifacts (for example: `node_modules`, `dist`, build intermediates, large `.ipynb` outputs) unless user explicitly requests.
+- Prefer targeted path scopes over repo-wide scans.
+
+## Planning Workflow
+- First return a short plan with scoped modules.
+- Execute in small batches only after confirming scope.
+- Avoid parallel shell + parallel subagent at the same time in planning stage.
+
+## Exclusions (default)
+- `**/node_modules/**`
+- `**/dist/**`
+- `**/android/app/build/**`
+- `**/*executed.ipynb`
+

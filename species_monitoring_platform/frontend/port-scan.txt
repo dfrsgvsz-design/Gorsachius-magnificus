@@ -1,0 +1,6 @@
+﻿Port 22    OPEN
+Port 3389  closed/filtered
+Port 80    closed/filtered
+Port 443   closed/filtered
+Port 8000  closed/filtered
+
