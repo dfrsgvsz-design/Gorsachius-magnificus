@@ -32,13 +32,14 @@ answer **Yes** and provide the following.
 ### 3. When does the location data leave the device?
 
 > 仅当调查员点击"结束 → 同步"且设备在线时,轨迹整体作为单个 GeoJSON 上传到我们
-> 自托管的 FastAPI 后端(`/api/surveys/tracks`)。从未与第三方共享。后端域名:
-> [TODO 填 A 提供的生产域名,例如 https://field.example.org].
+> 自托管的 FastAPI 后端(`POST https://swdyx.eu.cc/api/surveys/tracks`)。从未
+> 与第三方共享。声学调查使用同一栈但子域名分离:`acoustic.swdyx.eu.cc`。
 >
 > Track data only leaves the device when the surveyor taps "End → Sync" while
 > online. The full track is uploaded as a single GeoJSON to our self-hosted
-> FastAPI backend (`/api/surveys/tracks`). Never shared with third parties.
-> Backend domain: [TODO: insert production domain from team A].
+> FastAPI backend at `POST https://swdyx.eu.cc/api/surveys/tracks`. Never
+> shared with third parties. The companion acoustic survey uses the same
+> stack under the `acoustic.swdyx.eu.cc` subdomain.
 
 ### 4. Why a foreground service is required (not the standard location API)
 
@@ -67,10 +68,14 @@ answer **Yes** and provide the following.
 
 ### 6. Privacy policy URL
 
-`[TODO: insert https://<production-domain>/privacy]`
+`https://swdyx.eu.cc/privacy`
 
 The privacy policy MUST explicitly describe foreground location collection,
-the 4-8 hour duration, and the on-device retention until the user syncs.
+the 4-8 hour duration, and the on-device retention until the user syncs. PM
+to confirm the page is live before clicking "Save" in Play Console step 4
+(see `play_app_signing_4_steps.md`). The acoustic variant points at
+`https://acoustic.swdyx.eu.cc/privacy` — they MUST be two physically
+separate pages because Play Console reviews each app independently.
 
 ---
 
