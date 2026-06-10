@@ -55,11 +55,18 @@ test.describe('05 - reconnect sync', () => {
       await pushBtn.click();
     }
 
-    // Double assertion: the queue must drain AND `data-status` must report
-    // `synced`. Asserting only on the pending count let the regression
-    // described in `docs/release_b/sync_engine_exception_audit.md` (Fix B)
-    // hide — a queue drains for several reasons, only one of which is a
-    // genuinely successful push.
+    // Triple assertion: queue drained AND status='synced' AND no new
+    // conflicts surfaced. The three checks are independent guards against
+    // distinct regressions discussed in
+    // `docs/release_b/sync_engine_exception_audit.md`:
+    //   - pending=0       → catches "queue still has work" failures
+    //   - status='synced' → catches Fix B (post-push pull failure
+    //                        overwriting synced status with error)
+    //   - conflicts=0     → defence against backend contract drift where
+    //                        the server returns success while still
+    //                        emitting conflicts (would surface here as
+    //                        ``data-count > 0`` on the sync-pending chip)
+    const pendingChip = page.getByTestId('sync-pending-count');
     await expect(async () => {
       const pending = Number(await pushBtn.getAttribute('data-pending-count'));
       const status = await pushBtn.getAttribute('data-status');
@@ -69,6 +76,32 @@ test.describe('05 - reconnect sync', () => {
       if (status !== 'synced') {
         throw new Error(`expected sync-push data-status='synced' after reconnect, got '${status}'`);
       }
+      // sync-pending-count chip lives on the SyncPanel and is only mounted
+      // on the records step. Skip if not visible (records tab not entered).
+      if (await pendingChip.isVisible().catch(() => false)) {
+        const chipCount = Number(await pendingChip.getAttribute('data-count'));
+        if (chipCount > 0) {
+          throw new Error(`sync-pending-count chip still shows ${chipCount} (server may have returned conflicts)`);
+        }
+      }
     }).toPass({ timeout: 30_000, intervals: [1_000, 2_000, 5_000] });
+
+    // Fourth assertion (added by C 2026-06 in response to B's contract reply
+    // on handlePushSync semantics): server may return 200 BUT mark items as
+    // `queue_status:'conflict'` and populate `surveyState.conflicts`. The
+    // three checks above only catch the queue-side symptoms; this catches
+    // the orthogonal conflicts-side symptom by reading the SyncPanel's
+    // dedicated conflict-count chip on the Records step. Defense-in-depth
+    // against `lastStatus='conflict'` contract drift.
+    if (await page.getByTestId('step-tab-records').isEnabled({ timeout: 2_000 }).catch(() => false)) {
+      await page.getByTestId('step-tab-records').click();
+      const conflictChip = page.getByTestId('sync-conflict-count');
+      if (await conflictChip.isVisible({ timeout: 5_000 }).catch(() => false)) {
+        await expect(
+          conflictChip,
+          'no NEW conflicts should appear after a clean drain (per B handlePushSync contract reply)',
+        ).toHaveAttribute('data-count', '0', { timeout: 5_000 });
+      }
+    }
   });
 });
