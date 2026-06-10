@@ -51,4 +51,11 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MICROPHONE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION" />
+    <!-- Android 13+ requires runtime permission to display the foreground service
+         notification used by @capacitor-community/background-geolocation. -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <!-- Declares to the Play Store that the app uses GPS hardware. The plugin
+         declares the matching <service android:foregroundServiceType="location" />
+         via manifest merging, so the app's manifest does not re-declare it. -->
+    <uses-feature android:name="android.hardware.location.gps" android:required="false" />
 </manifest>

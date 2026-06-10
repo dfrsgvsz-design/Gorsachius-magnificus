@@ -13,6 +13,14 @@
     },
     "App": {
       "backgroundColor": "#0c1117"
+    },
+    "BackgroundGeolocation": {
+      "_comment": "Notification copy shown in the persistent foreground-service drawer entry. Visible to the surveyor while a track is being recorded with the screen off.",
+      "notificationTitle": "野外调查 · 轨迹记录中",
+      "notificationText": "为完成本次样线/样点调查,正在持续记录 GPS 轨迹。点击返回应用,或在应用中点击\"结束\"即可停止。",
+      "notificationChannelId": "tracking",
+      "notificationIcon": "ic_stat_track",
+      "notificationImportance": "default"
     }
   },
   "android": {
