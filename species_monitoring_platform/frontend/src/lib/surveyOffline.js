@@ -798,7 +798,7 @@ function parseGpxText(text) {
   return { geometry: { type: "LineString", coordinates: points }, pointTimes };
 }
 
-function haversineMeters(a, b) {
+export function haversineMeters(a, b) {
   const r = 6371000;
   const toRad = (deg) => (deg * Math.PI) / 180;
   const dLat = toRad(b[1] - a[1]);

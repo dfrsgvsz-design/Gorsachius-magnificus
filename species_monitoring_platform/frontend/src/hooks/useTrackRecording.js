@@ -4,11 +4,60 @@ import {
   normalizeTrackDraft,
 } from '../lib/fieldOpsDrafts'
 import {
+  haversineMeters,
   lineDistanceMeters,
 } from '../lib/surveyOffline'
 import {
   stopNativePositionWatch,
 } from '../lib/mobileNative'
+
+/**
+ * Pure denoising decision used by `handleTrackPoint`. Exported so it can be
+ * unit-tested without spinning up a React renderer. Three independent gates:
+ *
+ *   1. `maxAccuracy`  — drop fixes whose reported accuracy is worse than the
+ *                       threshold (default 30 m). Set to `Infinity` to disable.
+ *   2. `minInterval`  — drop fixes that arrive sooner than `minInterval` ms
+ *                       after the previously accepted fix (default 3000 ms).
+ *   3. `minDistanceM` — drop fixes closer than `minDistanceM` to the previously
+ *                       accepted point (default 5 m). Set to 0 to disable.
+ *
+ * Returns `{ accept: true }` on success, or `{ accept: false, reason }` with a
+ * human-readable hint shown in the track status panel.
+ *
+ * @param {{ lat: number, lon: number, accuracy?: number, timestamp?: number }} position
+ * @param {{ lastPoint: [number, number] | null, lastTimeMs: number, now?: number }} state
+ * @param {{ maxAccuracy?: number, minInterval?: number, minDistanceM?: number }} [options]
+ */
+export function decideTrackPointAcceptance(position, state, options = {}) {
+  const { maxAccuracy = 30, minInterval = 3000, minDistanceM = 5 } = options
+  const now = state?.now ?? Date.now()
+  if (
+    position?.accuracy != null &&
+    Number.isFinite(position.accuracy) &&
+    position.accuracy > maxAccuracy
+  ) {
+    return {
+      accept: false,
+      reason: `GPS accuracy ${Math.round(position.accuracy)}m > ${maxAccuracy}m threshold`,
+    }
+  }
+  if (
+    state?.lastTimeMs &&
+    Number.isFinite(state.lastTimeMs) &&
+    now - state.lastTimeMs < minInterval
+  ) {
+    return { accept: false, reason: 'minInterval' }
+  }
+  if (
+    state?.lastPoint &&
+    minDistanceM > 0 &&
+    haversineMeters(state.lastPoint, [position.lon, position.lat]) < minDistanceM
+  ) {
+    return { accept: false, reason: 'minDistanceM' }
+  }
+  return { accept: true }
+}
 
 /**
  * Encapsulate GPS track recording primitives.
@@ -107,28 +156,31 @@ export default function useTrackRecording({ setSurveyState, setCurrentPosition, 
     }
   }
 
-  function handleTrackPoint(position, { maxAccuracy = 30, minInterval = 3000 } = {}) {
-    if (position.accuracy != null && position.accuracy > maxAccuracy) {
-      setTrackInfo((prev) => ({
-        ...prev,
-        lastSkipReason: `GPS accuracy ${Math.round(position.accuracy)}m > ${maxAccuracy}m threshold`,
-      }))
-      return
-    }
-
-    const now = Date.now()
-    const lastTime = trackDraftRef.current?.point_times?.length
-      ? new Date(trackDraftRef.current.point_times[trackDraftRef.current.point_times.length - 1]).getTime()
+  function handleTrackPoint(position, options = {}) {
+    const existingPoints = trackDraftRef.current?.points || []
+    const existingTimes = trackDraftRef.current?.point_times || []
+    const lastPoint = existingPoints[existingPoints.length - 1] || null
+    const lastTimeMs = existingTimes.length
+      ? new Date(existingTimes[existingTimes.length - 1]).getTime()
       : 0
-    if (lastTime && (now - lastTime) < minInterval) {
+    const now = Date.now()
+    const decision = decideTrackPointAcceptance(
+      position,
+      { lastPoint, lastTimeMs, now },
+      options,
+    )
+    if (!decision.accept) {
+      if (decision.reason && decision.reason.startsWith('GPS accuracy')) {
+        setTrackInfo((prev) => ({ ...prev, lastSkipReason: decision.reason }))
+      }
       return
     }
 
     const timestamp = new Date(position.timestamp || now).toISOString()
     const nextDraft = normalizeTrackDraft({
       ...(trackDraftRef.current || createEmptyTrackDraft()),
-      points: [...(trackDraftRef.current?.points || []), [position.lon, position.lat]],
-      point_times: [...(trackDraftRef.current?.point_times || []), timestamp],
+      points: [...existingPoints, [position.lon, position.lat]],
+      point_times: [...existingTimes, timestamp],
       tracking_status: 'recording',
     })
 
