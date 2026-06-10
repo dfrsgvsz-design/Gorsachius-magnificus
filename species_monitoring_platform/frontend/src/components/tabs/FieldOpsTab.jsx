@@ -2009,6 +2009,7 @@ export default function FieldOpsTab({
               observations={routeObservations}
               tracks={routeTracks}
               liveTrack={liveTrack}
+              userPosition={currentPosition}
             />
           </section>
 

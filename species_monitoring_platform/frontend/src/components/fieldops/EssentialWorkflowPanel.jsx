@@ -25,6 +25,7 @@ export default function EssentialWorkflowPanel({
   routeObservations,
   routeTracks,
   liveTrack,
+  userPosition = null,
   onStartTrack,
   onStopTrack,
   onSaveObservation,
@@ -71,6 +72,7 @@ export default function EssentialWorkflowPanel({
           observations={routeObservations}
           tracks={routeTracks}
           liveTrack={liveTrack}
+          userPosition={userPosition}
         />
       </div>
 

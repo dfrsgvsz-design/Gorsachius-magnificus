@@ -1,6 +1,34 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import { Layers, Maximize2, Minimize2, X } from 'lucide-react'
 
+// Best-effort landscape lock. The Screen Orientation API requires a
+// user-gesture context and is only available when the page (or PWA) is
+// actually fullscreen, which is exactly when this component is mounted in
+// fullscreen mode. Errors are swallowed because:
+//  - Safari < 16.4 omits `screen.orientation.lock` entirely.
+//  - Desktop Chrome rejects with `NotSupportedError` (no rotation hardware).
+//  - In a Capacitor WebView the orientation is controlled by the activity
+//    manifest, so the JS call is harmless but a no-op.
+async function tryLockLandscape() {
+  try {
+    if (typeof screen !== 'undefined' && screen.orientation && typeof screen.orientation.lock === 'function') {
+      await screen.orientation.lock('landscape')
+    }
+  } catch {
+    // Ignore: orientation lock is a UX nicety, not a correctness requirement.
+  }
+}
+
+function tryUnlockOrientation() {
+  try {
+    if (typeof screen !== 'undefined' && screen.orientation && typeof screen.orientation.unlock === 'function') {
+      screen.orientation.unlock()
+    }
+  } catch {
+    // Ignore: see comment on tryLockLandscape.
+  }
+}
+
 export default function FullScreenMap({ children, onClose, layers = [], activeLayer, onLayerChange }) {
   const [isFullscreen, setIsFullscreen] = useState(false)
 
@@ -16,6 +44,14 @@ export default function FullScreenMap({ children, onClose, layers = [], activeLa
     return () => document.removeEventListener('keydown', handleKeyDown)
   }, [handleKeyDown])
 
+  useEffect(() => {
+    if (!isFullscreen) return undefined
+    void tryLockLandscape()
+    return () => {
+      tryUnlockOrientation()
+    }
+  }, [isFullscreen])
+
   if (!isFullscreen) {
     return (
       <div className="relative rounded-xl overflow-hidden border border-white/[0.06]" style={{ height: 480 }}>
@@ -28,6 +64,7 @@ export default function FullScreenMap({ children, onClose, layers = [], activeLa
             onClick={() => setIsFullscreen(true)}
             className="flex items-center justify-center w-9 h-9 rounded-lg bg-[#161b22]/90 border border-white/[0.08] text-white/60 hover:text-white backdrop-blur-sm transition"
             title="Fullscreen"
+            aria-label="Enter fullscreen map"
           >
             <Maximize2 className="h-4 w-4" />
           </button>
@@ -36,6 +73,7 @@ export default function FullScreenMap({ children, onClose, layers = [], activeLa
           <button
             onClick={onClose}
             className="absolute top-3 left-3 z-[1000] flex items-center justify-center w-9 h-9 rounded-lg bg-[#161b22]/90 border border-white/[0.08] text-white/60 hover:text-white backdrop-blur-sm transition"
+            aria-label="Close map"
           >
             <X className="h-4 w-4" />
           </button>
@@ -51,11 +89,19 @@ export default function FullScreenMap({ children, onClose, layers = [], activeLa
         {layers.length > 0 && (
           <MapLayerControl layers={layers} active={activeLayer} onChange={onLayerChange} />
         )}
-        <button onClick={() => setIsFullscreen(false)} title="Exit fullscreen">
+        <button
+          onClick={() => setIsFullscreen(false)}
+          title="Exit fullscreen"
+          aria-label="Exit fullscreen map"
+        >
           <Minimize2 className="h-4 w-4" />
         </button>
         {onClose && (
-          <button onClick={() => { setIsFullscreen(false); onClose() }} title="Close map">
+          <button
+            onClick={() => { setIsFullscreen(false); onClose() }}
+            title="Close map"
+            aria-label="Close map"
+          >
             <X className="h-4 w-4" />
           </button>
         )}
@@ -73,6 +119,7 @@ function MapLayerControl({ layers, active, onChange }) {
         onClick={() => setOpen(!open)}
         className="flex items-center justify-center w-9 h-9 rounded-lg bg-[#161b22]/90 border border-white/[0.08] text-white/60 hover:text-white backdrop-blur-sm transition"
         title="Map layers"
+        aria-label="Toggle map layers"
       >
         <Layers className="h-4 w-4" />
       </button>
