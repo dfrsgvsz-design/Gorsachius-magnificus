@@ -55,11 +55,19 @@ test.describe('05 - reconnect sync', () => {
       await pushBtn.click();
     }
 
+    // Double assertion: the queue must drain AND `data-status` must report
+    // `synced`. Asserting only on the pending count let the regression
+    // described in `docs/release_b/sync_engine_exception_audit.md` (Fix B)
+    // hide — a queue drains for several reasons, only one of which is a
+    // genuinely successful push.
     await expect(async () => {
-      const pending = await pushBtn.getAttribute('data-pending-count');
-      const n = pending != null ? Number(pending) : -1;
-      if (n > 0) {
-        throw new Error(`sync queue still has ${n} pending items`);
+      const pending = Number(await pushBtn.getAttribute('data-pending-count'));
+      const status = await pushBtn.getAttribute('data-status');
+      if (Number.isNaN(pending) || pending > 0) {
+        throw new Error(`sync queue still has ${pending} pending items`);
+      }
+      if (status !== 'synced') {
+        throw new Error(`expected sync-push data-status='synced' after reconnect, got '${status}'`);
       }
     }).toPass({ timeout: 30_000, intervals: [1_000, 2_000, 5_000] });
   });

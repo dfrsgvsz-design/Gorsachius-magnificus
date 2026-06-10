@@ -1572,6 +1572,7 @@ export default function FieldOpsTab({
               className="btn-primary btn-icon disabled:opacity-30"
               data-testid="sync-push"
               data-pending-count={surveyState.syncQueue.length}
+              data-status={surveyState.syncMeta?.lastStatus || 'idle'}
             >
               <Save className="h-4 w-4" />
             </button>

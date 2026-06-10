@@ -116,7 +116,21 @@ export default function useSyncEngine({
     setLoadingSync(true)
     setError(null)
     try {
-      const [pulled, protocolResponse, taxonomyResponse, designAssetResponse] = await Promise.all([
+      // Promise.allSettled instead of Promise.all so a transient failure on
+      // one endpoint (e.g. team A's taxonomy service hiccups) does not wipe
+      // out the survey rows that pulled successfully. Each fulfilled response
+      // is applied independently; failures are aggregated into one error
+      // banner that names the endpoints that actually went wrong.
+      const designAssetPromise = currentProjectId
+        ? getSurveyDesignAssets({
+          project_id: currentProjectId,
+          site_id: currentSiteId,
+          program: protocolDefinition.program,
+          submodule: protocolDefinition.program === 'terrestrial_vertebrates' ? activeVertebrateSubmoduleId : '',
+          protocol: protocolDefinition.id,
+        })
+        : Promise.resolve({ design_assets: [] })
+      const settled = await Promise.allSettled([
         pullSurveySync(surveyState.syncMeta?.lastPulledAt || ''),
         getSurveyProtocols({ program: protocolDefinition.program }),
         getSurveyTaxonomyPackages({
@@ -124,31 +138,40 @@ export default function useSyncEngine({
           program: protocolDefinition.program,
           protocol: protocolDefinition.id,
         }),
-        currentProjectId
-          ? getSurveyDesignAssets({
-            project_id: currentProjectId,
-            site_id: currentSiteId,
-            program: protocolDefinition.program,
-            submodule: protocolDefinition.program === 'terrestrial_vertebrates' ? activeVertebrateSubmoduleId : '',
-            protocol: protocolDefinition.id,
-          })
-          : Promise.resolve({ design_assets: [] }),
+        designAssetPromise,
       ])
-      const mergedPull = {
-        ...pulled,
-        protocols: toArray(protocolResponse?.protocols),
-        taxonomy_packages: toArray(taxonomyResponse?.packages),
-        design_assets: [
-          ...toArray(pulled?.design_assets),
-          ...toArray(designAssetResponse?.design_assets),
-        ],
-        active_program: protocolDefinition.program,
-        active_protocol: protocolDefinition.id,
-        active_vertebrate_submodule: protocolDefinition.program === 'terrestrial_vertebrates' ? activeVertebrateSubmoduleId : '',
-        active_jurisdiction: exportJurisdiction,
+      const labels = ['survey', 'protocols', 'taxonomy', 'design_assets']
+      const fulfilled = settled.map((entry) => (entry.status === 'fulfilled' ? entry.value : null))
+      const failures = settled
+        .map((entry, index) => (entry.status === 'rejected' ? { label: labels[index], reason: entry.reason } : null))
+        .filter(Boolean)
+      const [pulled, protocolResponse, taxonomyResponse, designAssetResponse] = fulfilled
+      if (pulled || protocolResponse || taxonomyResponse || designAssetResponse) {
+        const mergedPull = {
+          ...(pulled || {}),
+          protocols: toArray(protocolResponse?.protocols),
+          taxonomy_packages: toArray(taxonomyResponse?.packages),
+          design_assets: [
+            ...toArray(pulled?.design_assets),
+            ...toArray(designAssetResponse?.design_assets),
+          ],
+          active_program: protocolDefinition.program,
+          active_protocol: protocolDefinition.id,
+          active_vertebrate_submodule: protocolDefinition.program === 'terrestrial_vertebrates' ? activeVertebrateSubmoduleId : '',
+          active_jurisdiction: exportJurisdiction,
+        }
+        setSurveyState((current) => mergeSyncPull(current, mergedPull))
       }
-      setSurveyState((current) => mergeSyncPull(current, mergedPull))
+      if (failures.length > 0) {
+        const detail = failures
+          .map(({ label, reason }) => `${label}: ${getApiErrorMessage(reason, 'unknown')}`)
+          .join(' · ')
+        setError(`Partial pull (${failures.length} of ${settled.length} endpoints failed): ${detail}`)
+      }
     } catch (err) {
+      // Should be unreachable now that Promise.allSettled never rejects, but
+      // we keep the guard so an unexpected throw in the assembly code does
+      // not silently break the UI.
       setError(getApiErrorMessage(err, 'Unable to pull survey data.'))
     } finally {
       setLoadingSync(false)
@@ -206,8 +229,16 @@ export default function useSyncEngine({
         // upsert path is idempotent for identical payloads.
         console.warn('[useSyncEngine] outbox cleanup failed', err)
       }
-      const pulled = await pullSurveySync('')
-      setSurveyState((current) => mergeSyncPull(current, pulled))
+      // Best-effort freshness pull. Isolated from the outer try/catch so a
+      // network blip AFTER a successful push does not overwrite the just-
+      // applied 'synced' lastStatus with an 'error' one (which would mislead
+      // the surveyor into thinking their push failed).
+      try {
+        const pulled = await pullSurveySync('')
+        setSurveyState((current) => mergeSyncPull(current, pulled))
+      } catch (pullErr) {
+        console.warn('[useSyncEngine] post-push refresh pull failed', pullErr)
+      }
     } catch (err) {
       setError(getApiErrorMessage(err, 'Unable to push queued field data.'))
       setSurveyState((current) => ({
