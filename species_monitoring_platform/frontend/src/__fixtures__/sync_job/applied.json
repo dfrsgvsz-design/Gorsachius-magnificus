@@ -1,0 +1,55 @@
+{
+  "status": "ok",
+  "sync_job": {
+    "sync_job_id": "sync_5p8x2qg1a3z4n",
+    "device_id": "android-pixel-7a-001",
+    "user_id": "field.lead@example.org",
+    "status": "applied",
+    "operation_count": 3,
+    "applied_count": 3,
+    "deleted_count": 0,
+    "conflict_count": 0,
+    "created_at": "2026-06-10T08:13:42.117000Z",
+    "updated_at": "2026-06-10T08:13:42.453000Z",
+    "applied": [
+      {
+        "entity_type": "project",
+        "record": {
+          "project_id": "proj_8gx1q2",
+          "name": "Hainan 2026Q2 prelim",
+          "region": "guangxi-jingxi",
+          "updated_at": "2026-06-10T08:13:42.301000Z",
+          "sync_state": "synced"
+        }
+      },
+      {
+        "entity_type": "site",
+        "record": {
+          "site_id": "site_5n3vq8",
+          "project_id": "proj_8gx1q2",
+          "name": "Site 03 · Gorsachius hotspot",
+          "latitude": 24.6321,
+          "longitude": 110.4087,
+          "sensitivity": "masked_10km",
+          "sync_state": "synced",
+          "updated_at": "2026-06-10T08:13:42.317000Z"
+        }
+      },
+      {
+        "entity_type": "observation",
+        "record": {
+          "observation_id": "obs_4kz1q7",
+          "project_id": "proj_8gx1q2",
+          "site_id": "site_5n3vq8",
+          "scientific_name": "Gorsachius magnificus",
+          "count": 1,
+          "evidence_type": "visual",
+          "observed_at": "2026-06-10T05:51:00Z",
+          "sync_state": "synced"
+        }
+      }
+    ],
+    "deleted": [],
+    "conflicts": []
+  }
+}

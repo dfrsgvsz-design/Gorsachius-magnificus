@@ -1,0 +1,20 @@
+{
+  "status": "ok",
+  "sync_job": {
+    "sync_job_id": "sync_6e2p5qk0v9d1z",
+    "device_id": "android-pixel-7a-001",
+    "user_id": "field.lead@example.org",
+    "status": "applied",
+    "operation_count": 1,
+    "applied_count": 0,
+    "deleted_count": 1,
+    "conflict_count": 0,
+    "created_at": "2026-06-10T08:25:33.220000Z",
+    "updated_at": "2026-06-10T08:25:33.412000Z",
+    "applied": [],
+    "deleted": [
+      { "entity_type": "observation", "entity_id": "obs_4kz1q7" }
+    ],
+    "conflicts": []
+  }
+}

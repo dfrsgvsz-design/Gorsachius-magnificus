@@ -1,0 +1,48 @@
+{
+  "status": "ok",
+  "sync_job": {
+    "sync_job_id": "sync_3a8m1qz5b2c7r",
+    "device_id": "android-pixel-7a-001",
+    "user_id": "field.lead@example.org",
+    "status": "conflict",
+    "operation_count": 1,
+    "applied_count": 0,
+    "deleted_count": 0,
+    "conflict_count": 1,
+    "created_at": "2026-06-10T08:22:09.555000Z",
+    "updated_at": "2026-06-10T08:22:09.901000Z",
+    "applied": [],
+    "deleted": [],
+    "conflicts": [
+      {
+        "conflict_id": "conflict_7g2v9k",
+        "sync_job_id": "sync_3a8m1qz5b2c7r",
+        "entity_type": "site",
+        "entity_id": "site_5n3vq8",
+        "status": "open",
+        "created_at": "2026-06-10T08:22:09.901000Z",
+        "updated_at": "2026-06-10T08:22:09.901000Z",
+        "fields": ["latitude", "longitude", "sensitivity"],
+        "incoming": {
+          "site_id": "site_5n3vq8",
+          "project_id": "proj_8gx1q2",
+          "name": "Site 03 · Gorsachius hotspot",
+          "latitude": 24.6499,
+          "longitude": 110.4123,
+          "sensitivity": "public",
+          "sync_state": "pending"
+        },
+        "server": {
+          "site_id": "site_5n3vq8",
+          "project_id": "proj_8gx1q2",
+          "name": "Site 03 · Gorsachius hotspot",
+          "latitude": 24.6321,
+          "longitude": 110.4087,
+          "sensitivity": "masked_10km",
+          "updated_at": "2026-06-10T08:21:45.012000Z",
+          "sync_state": "synced"
+        }
+      }
+    ]
+  }
+}
