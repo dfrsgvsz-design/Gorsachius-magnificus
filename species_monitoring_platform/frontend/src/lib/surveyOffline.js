@@ -1027,7 +1027,28 @@ export async function prefetchMapTiles({
       // Opaque responses report status 0; treat that as a successful fetch
       // because cross-origin tile servers commonly answer that way.
       if (response.status === 0 || response.ok) {
-        await cache.put(request, response.clone());
+        // Wrap with `x-sw-cached-at` so the service worker's
+        // `isTileCacheFresh` check (Batch 6 TTL = 30 days) treats these
+        // pre-fetched tiles like normal first-touch network entries instead
+        // of immediately falling into the legacy un-stamped "stale" bucket.
+        // Opaque cross-origin responses cannot be cloned with new headers,
+        // so we cache them un-stamped and accept the SW will re-fetch on
+        // next read; the offline copy still works in airplane mode.
+        try {
+          const headers = new Headers(response.headers);
+          headers.set("x-sw-cached-at", Date.now().toString());
+          const body = await response.clone().blob();
+          await cache.put(
+            request,
+            new Response(body, {
+              status: response.status || 200,
+              statusText: response.statusText,
+              headers,
+            }),
+          );
+        } catch {
+          await cache.put(request, response.clone());
+        }
         downloaded += 1;
       } else {
         failed += 1;
