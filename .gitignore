@@ -60,6 +60,11 @@ KEYSTORE_INFO.txt
 *.prj
 *.cpg
 *.qpj
+*.asc
+*.tar
+
+# Scientific SDM data export — exceeds GitHub limits, kept on disk only (stripped from history 2026-06-10)
+project_sdm_stoten/
 
 # Model files
 *.pt
