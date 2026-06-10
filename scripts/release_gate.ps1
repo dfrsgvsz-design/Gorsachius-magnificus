@@ -125,36 +125,10 @@ Run-Step "Production runtime contract (no demo mode)" {
     $env:BIRD_PLATFORM_OUTPUT_DIR    = Join-Path $stage "data"
 
     try {
-        $pyAssert = @"
-import os, sys, json
-sys.path.insert(0, r'$RepoRoot')
-from shared.backend.utils.runtime_paths import describe_runtime_paths
-paths = describe_runtime_paths()
-required = [
-    'data_dir_externalized',
-    'checkpoints_dir_externalized',
-    'frontend_dist_dir_externalized',
-    'mutable_runtime_externalized',
-]
-missing = [k for k in required if not paths.get(k)]
-if missing:
-    print('FAIL externalization flags missing:', missing)
-    print(json.dumps(paths, indent=2, default=str))
-    sys.exit(1)
-
-from shared.backend.utils.platform_config import load_config, validate_config
-cfg = load_config()
-val = validate_config(cfg)
-if not val['valid']:
-    print('FAIL shared platform_config validation:', val)
-    sys.exit(1)
-if not cfg.get('platform', {}).get('name'):
-    print('FAIL shared platform_config missing platform.name')
-    sys.exit(1)
-print('OK runtime contract (no demo mode):', cfg['platform']['name'])
-sys.exit(0)
-"@
-        python -c $pyAssert
+        # Source of truth is scripts/assert_runtime_contract.py — keep both
+        # release_gate.ps1 and release_gate.yml delegating to that single
+        # script so there is no inline-python drift between local + CI gates.
+        python (Join-Path $RepoRoot "scripts/assert_runtime_contract.py")
     } finally {
         $env:SURVEY_DATA_DIR            = $prevSurvey
         $env:CHECKPOINTS_DIR            = $prevCkpt
@@ -196,6 +170,19 @@ foreach ($app in $apps) {
         Set-Location $backendDir
         $env:PYTHONPATH = "$RepoRoot;$backendDir"
         python -m pytest tests -q --maxfail=3
+    }
+
+    Run-Step "[$($app.Name)] POST /api/surveys/projects no-503 SLO (200 reqs)" {
+        Set-Location $RepoRoot
+        $env:PYTHONIOENCODING = "utf-8"
+        $env:PYTHONPATH = "$RepoRoot;$backendDir"
+        # Translates the work-order acceptance criterion ("Playwright 跑一次
+        # 性能压测连续 200 次 POST projects 零 503") into a deterministic CI
+        # check. Uses FastAPI TestClient (runs the full lifespan), POSTs 200
+        # times against /api/surveys/projects, asserts 0 × 503 + 0 × 500 +
+        # every response carries X-Request-ID.
+        $platformKey = if ($app.Name -eq "acoustic_platform") { "acoustic" } else { "species" }
+        python scripts/pressure_test_projects.py $platformKey --requests 200
     }
 
     Run-Step "[$($app.Name)] Frontend production build" {

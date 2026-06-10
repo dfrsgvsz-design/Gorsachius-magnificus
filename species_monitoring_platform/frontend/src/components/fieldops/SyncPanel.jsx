@@ -23,7 +23,9 @@ export default function SyncPanel({ copy, surveyState, locale = 'zh' }) {
       <div className="grid grid-cols-3 gap-3">
         <MetricCard title={isZh ? '排队中' : 'Queued'} value={surveyState.syncQueue.length} note={surveyState.syncMeta?.lastStatus || (isZh ? '空闲' : 'idle')} />
         <MetricCard title={isZh ? '已拉取' : 'Pulled'} value={surveyState.syncMeta?.lastPulledAt ? (isZh ? '是' : 'yes') : (isZh ? '否' : 'no')} note={surveyState.syncMeta?.lastPulledAt || '--'} />
-        <MetricCard title={copy.conflicts} value={surveyState.conflicts.length} note={surveyState.syncMeta?.lastError || '--'} />
+        <div data-testid="sync-conflict-count" data-count={surveyState.conflicts.length}>
+          <MetricCard title={copy.conflicts} value={surveyState.conflicts.length} note={surveyState.syncMeta?.lastError || '--'} />
+        </div>
       </div>
       {surveyState.syncQueue.length === 0 ? (
         <p className="text-[13px] text-white/25">{copy.queueEmpty}</p>

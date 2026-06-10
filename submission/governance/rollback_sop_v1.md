@@ -16,13 +16,19 @@
 
 ## 1) 回滚单位与命名约定
 
+> **生产域名**（B 在 2026-06 配置，见 [`docs/release_b/2026-06-10_production_deploy_runbook.md`](../../docs/release_b/2026-06-10_production_deploy_runbook.md)）：
+> - species: `https://swdyx.eu.cc`
+> - acoustic: `https://acoustic.swdyx.eu.cc`
+> 上述域名是本 SOP §4 验收步骤的 health-probe 目标。
+
 | 资产 | 当前位置 | N-1 锚点 |
 |---|---|---|
 | 前端 web build | `species_monitoring_platform/frontend/dist/` 由 `npm run build` 产出 | git tag `v<major>.<minor>.<patch>-web` 标记的构建产物（CI 产物归档） |
 | 后端 docker image | `biodiversity-field-survey:release` | image tag `biodiversity-field-survey:<git-sha>` 或 `:<version>` |
+| 后端生产部署 | 通过 B 的 `docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build`（带 Let's Encrypt R3 证书 + Sentry/GlitchTip 接入） | 同 image tag；回滚执行 `docker compose down → 切 image 版本 → up` |
 | 签名 AAB | `frontend/android/app/build/outputs/bundle/release/app-release.aab` | Play Console 上"已撤回"的最近版本（versionCode = current - 1） |
-| 数据库 schema | `species_monitoring_platform/backend/data/*.sqlite` + Alembic migration（如启用） | 上一次 migration 的 down-revision；如未启用 Alembic 则需手动 SQL 逆向脚本 |
-| 配置 | `.env.production` + Play Console 远端配置 | git 上的上一个稳定提交对应的 `.env.production.example` 差异 |
+| 数据库 schema | `species_monitoring_platform/backend/data/*.sqlite` + Alembic migration（W4+ 引入；v1 走文件拷贝） | 上一次 migration 的 down-revision；v1 SOP 见 §4 |
+| 配置 | `.env.production` + Play Console 远端配置 | git 上的上一个稳定提交对应的 `.env.example` 差异。B 的部署 runbook（见 §8）列了 `APP_DOMAIN` / P0 W1 反 demo 三变量 / `SENTRY_DSN` 插槽 / LE staging URI 的字段约定 — 等 B commit `.env.example` 重写后 N/N-1 锁定按那份做 |
 
 ## 2) 回滚 SOP（六步法）
 
@@ -70,19 +76,57 @@ docker compose up -d           # 启动
 
 验收：`curl -fsS http://127.0.0.1:8000/api/health` 返回 200，runtime_state = "ready"。
 
-### Step 4 · 数据迁移逆向（如适用）
+### Step 4 · 数据库回滚（SQLite 文件拷贝路径）
 
-如果 N→N+1 引入了不兼容 schema 变更：
+> 当前架构（A 在 2026-06 回执确认）：后端走 SQLite（`<DATA_DIR>/survey_store/*.sqlite3` + `taxonomy_catalog.sqlite3`）；**未启用 Alembic**；表结构由 `_init_schema` 在运行时通过 `CREATE TABLE IF NOT EXISTS` 创建；老 JSON 数据走 `_migrate_json` 单向迁入 SQLite。所以 v1 版回滚机制 = **物理文件备份 + 拷贝覆盖**，而不是 schema migration downgrade。
+
+#### 4.1 提早前快照（每次发布前都做）
 
 ```powershell
-cd "f:\Gorsachius magnificus\species_monitoring_platform\backend"
-# 如启用 Alembic：
-python -m alembic downgrade <N-1-revision>
-# 如未启用：手动执行已预备的逆向 SQL 脚本
-python scripts/db_downgrade.py --to <N-1-revision>
+$dataDir = $env:SURVEY_DATA_DIR
+if (-not $dataDir) { $dataDir = "C:\Users\Administrator\.bird_sound_platform\data" }  # \u9ed8\u8ba4\u8def\u5f84
+$ts = Get-Date -Format "yyyyMMdd_HHmmss"
+$backupDir = "C:\Users\Administrator\.bird_sound_platform\backups"
+New-Item -ItemType Directory -Force -Path $backupDir | Out-Null
+tar -czf "$backupDir\survey_store_$ts.tar.gz" -C $dataDir survey_store taxonomy_catalog.sqlite3
+Write-Host "Snapshot written: $backupDir\survey_store_$ts.tar.gz"
 ```
 
-验收：抽样 10 条最近观测记录，逐字段对照"回滚前快照"无字段丢失。
+落档：把生成的文件名 + 时间戳 + 触发它的 release tag 记到 §0 的回滚目标表里。
+
+#### 4.2 回滚执行
+
+```powershell
+cd "f:\Gorsachius magnificus\species_monitoring_platform"
+docker compose stop app                                    # 1) 停服务（don't down -v，否则丢卷）
+$dataDir = $env:SURVEY_DATA_DIR
+if (-not $dataDir) { $dataDir = "C:\Users\Administrator\.bird_sound_platform\data" }
+Remove-Item -Recurse -Force "$dataDir\survey_store"        # 2) 删旧数据目录
+Remove-Item -Force "$dataDir\taxonomy_catalog.sqlite3" -ErrorAction SilentlyContinue
+tar -xzf "<选定快照路径>" -C $dataDir                       # 3) 解压 N-1 快照覆盖
+docker compose start app                                   # 4) 重启
+```
+
+#### 4.3 验收
+
+- [ ] 本地 curl：`curl -fsS http://127.0.0.1:8000/api/health` 返回 `runtime_state == "ready"` 且 `deployment_ready == true`（A 在 2026-06 契约回复确认）
+- [ ] 生产 curl（公网，B 部署后可用）：`curl -fsS https://swdyx.eu.cc/api/health`（species）/ `curl -fsS https://acoustic.swdyx.eu.cc/api/health`（acoustic），返回 `deployment_ready == true` + `runtime_state == "ready"` + `readiness.mode == "production"`
+- [ ] 抽样 10 条最近观测记录，逐字段对照"回滚前快照"无字段丢失
+- [ ] `current_taxonomy_release_id` 显示的是 N-1 时点的值（不是新 release）
+- [ ] 启动 B 的 24h SLO probe 重新计数（参见 production_deploy_runbook §24h SLO 验收）：`/var/log/health_probe.log` 与 `/var/log/health_probe_acoustic.log` 自回滚 N-1 时刻后总数应该 = 1440/day 且 200 数 ≥ 1425/day（99% SLO）
+
+#### 4.4 已知局限（v1）
+
+- **不支持 schema 不兼容的回滚**：如果 N → N+1 引入了 `_init_schema` 新建表 / 改字段类型，N-1 启动会因为 `CREATE TABLE IF NOT EXISTS` 与现有列冲突而 `OperationalError`。**遇到此种情况必须升级 SOP**：见 §4.5 路线图。
+- **不支持精细到表级 / 行级回滚**：v1 是全量覆盖，会一并丢失从 N 上线到回滚执行之间用户产生的所有数据。生产前的 24h 必须执行一次 §4.1 快照以确保数据丢失窗口可控。
+- **多副本场景未覆盖**：当前 docker-compose.yml 是单实例。如有水平扩展，需在所有副本上同步执行 §4.2，且需要在 stop → restart 之间维持锁。
+
+#### 4.5 v2 路线图（W4+）
+
+A 与 C 在 2026-06 协商：v2 引入 Alembic + 数据迁移历史表，允许 schema downgrade。需 1 个全包 sprint 完成。在 v2 上线前：
+
+- 所有 PR 改 `survey_store/*.py` 的 `_init_schema` 必须在 PR 描述里附"如何在 v1 SOP 下回滚"的说明；
+- 否则 C 拒绝合并。
 
 ### Step 5 · 移动端回滚
 
@@ -154,6 +198,9 @@ python scripts/db_downgrade.py --to <N-1-revision>
 - `submission/04_release_execution_runbook.md` — 发布执行 runbook（正向流程，本 SOP 是逆向）
 - `submission/06_packaging_signing_runbook.md` — 签名出包（涉及 §1.1 Vault + §2.1 Play App Signing）
 - `submission/05_go_live_decision_report.md` — 发布决策报告（"是否值得回滚"的判断框架）
+- `docs/release_b/2026-06-10_production_deploy_runbook.md` — **B 的生产部署 runbook**（域名 / docker-compose.prod.yml / Let's Encrypt / Sentry / 24h SLO probe）。本 SOP 的 §1 锚点和 §4.3 验收引用 B 的部署后端。
+- `docs/release_b/play_app_signing_4_steps.md` — B 的 PM 版 Play App Signing 4 步指引（双签 / 不可逆警告 / DRI 预备动作）
+- `docs/release_b/sync_engine_exception_audit.md` — B 的 useSyncEngine 异常路径审计（spec 05 的 `data-status='synced'` 断言 + `sync-conflict-count` orthogonal 断言均依此而立）
 - `QUALITY_GATE_REPORT.md` — 当前质量门禁状态
 - `.github/workflows/release_gate.yml` — CI 端的发布闸门
 - `quality_gate.ps1` / `scripts/release_gate.ps1` — 本地闸门脚本
