@@ -11,7 +11,11 @@ import { defineConfig, devices } from '@playwright/test';
 
 // Default points at the docker-compose-served combined app (FastAPI port 8000
 // serves both the SPA static files and the /api endpoints). For a pure Vite
-// dev-server run, override with E2E_SPECIES_BASE_URL=http://127.0.0.1:4000.
+// dev-server run, override with E2E_SPECIES_BASE_URL=http://localhost:5173
+// (the species frontend's `vite.config.js` pins `server.port = 5173`).
+// IPv6 note: use `localhost` rather than `127.0.0.1` because Vite binds to
+// `localhost` only, which on modern Windows/Node resolves to `::1` and
+// rejects connections to `127.0.0.1`.
 const SPECIES_BASE_URL = process.env.E2E_SPECIES_BASE_URL ?? 'http://127.0.0.1:8000';
 const ACOUSTIC_BASE_URL = process.env.E2E_ACOUSTIC_BASE_URL ?? 'http://127.0.0.1:8001';
 
