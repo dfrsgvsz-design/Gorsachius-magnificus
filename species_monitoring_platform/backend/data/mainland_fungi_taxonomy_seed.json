@@ -1,0 +1,25 @@
+{
+  "entries": [
+    {
+      "internal_taxon_id": "cn-fungi-ganoderma-lucidum",
+      "scientific_name": "Ganoderma lucidum",
+      "simplified_chinese_name": "灵芝",
+      "english_common_name": "Lingzhi",
+      "group": "macrofungi"
+    },
+    {
+      "internal_taxon_id": "cn-fungi-tricholoma-matsutake",
+      "scientific_name": "Tricholoma matsutake",
+      "simplified_chinese_name": "松茸",
+      "english_common_name": "Matsutake",
+      "group": "macrofungi"
+    },
+    {
+      "internal_taxon_id": "cn-fungi-cladonia-rangiferina",
+      "scientific_name": "Cladonia rangiferina",
+      "simplified_chinese_name": "石蕊",
+      "english_common_name": "Reindeer Lichen",
+      "group": "lichens"
+    }
+  ]
+}

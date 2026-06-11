@@ -1,0 +1,18 @@
+{
+  "entries": [
+    {
+      "internal_taxon_id": "tw-insect-papilio-maraho",
+      "scientific_name": "Papilio maraho",
+      "traditional_chinese_name": "寬尾鳳蝶",
+      "english_common_name": "Broad-tailed Swallowtail",
+      "group": "butterflies"
+    },
+    {
+      "internal_taxon_id": "tw-insect-kallima-inachus",
+      "scientific_name": "Kallima inachus",
+      "traditional_chinese_name": "枯葉蝶",
+      "english_common_name": "Orange Oakleaf",
+      "group": "butterflies"
+    }
+  ]
+}
