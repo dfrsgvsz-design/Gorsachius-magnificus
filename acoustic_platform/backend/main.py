@@ -188,7 +188,7 @@ _LIFESPAN_STARTUP_HANDLERS: list = []
 _LIFESPAN_SHUTDOWN_HANDLERS: list = []
 _LIFESPAN_REQUIRED_STORES: tuple[str, ...] = (
     "survey_store",
-    "detection_store",
+    "det_store",
     "taxonomy_catalog",
 )
 

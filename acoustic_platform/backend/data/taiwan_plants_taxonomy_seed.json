@@ -1,0 +1,18 @@
+{
+  "entries": [
+    {
+      "internal_taxon_id": "tw-plant-chamaecyparis-formosensis",
+      "scientific_name": "Chamaecyparis formosensis",
+      "traditional_chinese_name": "紅檜",
+      "english_common_name": "Taiwan Red Cypress",
+      "group": "trees"
+    },
+    {
+      "internal_taxon_id": "tw-plant-cinnamomum-osmophloeum",
+      "scientific_name": "Cinnamomum osmophloeum",
+      "traditional_chinese_name": "土肉桂",
+      "english_common_name": "Indigenous Cinnamon",
+      "group": "trees"
+    }
+  ]
+}

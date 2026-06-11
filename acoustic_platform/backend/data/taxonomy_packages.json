@@ -1,0 +1,367 @@
+{
+  "schema_version": "1.0",
+  "manifest_version": "2026-04-23-taxonomy-seed-assets",
+  "taxonomy_release_id": "taxonomy_seed_release_2026_04_23",
+  "source_manifest_version": "2026-04-23-freeze-seed",
+  "release_label": "Seed taxonomy release 2026-04-23",
+  "activate_on_build": true,
+  "description": "Seed taxonomy package manifest for China mainland and Taiwan biodiversity survey modules. This manifest records package metadata and expected capabilities; it is not an exhaustive species list. Terrestrial vertebrate packages reference a shared representative seed asset, while plant and insect packages now ship real minimal seed assets for importer validation and offline lookup wiring.",
+  "shared_name_model": {
+    "supported_name_fields": [
+      "scientific_name",
+      "simplified_chinese_name",
+      "traditional_chinese_name",
+      "english_common_name",
+      "synonyms"
+    ],
+    "shared_taxon_key": "internal_taxon_id",
+    "jurisdictional_status_fields": [
+      "national_protection_status",
+      "red_list_status",
+      "sensitive_coordinate_policy"
+    ]
+  },
+  "packages": [
+    {
+      "package_id": "cn_mainland_terrestrial_vertebrates_seed",
+      "package_version": "2026.04-seed",
+      "jurisdiction": "mainland_china",
+      "program": "terrestrial_vertebrates",
+      "taxon_groups": [
+        "birds",
+        "mammals",
+        "amphibians",
+        "reptiles"
+      ],
+      "backbone_source": [
+        "MEE biodiversity monitoring standards and county biodiversity survey regulations",
+        "Existing local bird subset: backend/data/china_birds.json"
+      ],
+      "supported_names": [
+        "scientific_name",
+        "simplified_chinese_name",
+        "english_common_name"
+      ],
+      "status_support": [
+        "iucn_status",
+        "national_protection_status",
+        "population_trend",
+        "sensitive_coordinate_policy"
+      ],
+      "source_manifest_path": "backend/data/taxonomy_sources/taxonomy_seed_release_2026_04_23/mainland_china/terrestrial_vertebrates/source_manifest.json",
+      "expected_count": 260,
+      "submodule_expected_counts": {
+        "birds": 254,
+        "mammals": 2,
+        "reptiles": 2,
+        "amphibians": 2
+      },
+      "seed_only": true,
+      "exhaustive_species_content": false,
+      "local_seed_assets": [
+        {
+          "path": "backend/data/terrestrial_vertebrates_taxonomy_seed.json",
+          "coverage_note": "Representative terrestrial vertebrate seed entries for mainland China and Taiwan. Filter by jurisdictions.mainland_china.present=true for this package. Supports offline lookup, taxon assignment, and export-time masking without claiming exhaustive coverage.",
+          "entry_selector": {
+            "jurisdiction": "mainland_china",
+            "program": "terrestrial_vertebrates"
+          }
+        },
+        {
+          "path": "backend/data/china_birds.json",
+          "coverage_note": "Current local file is a bird-oriented supplemental display/search subset. It does not replace the shared terrestrial vertebrate seed asset and is not the authoritative export-masking source."
+        }
+      ],
+      "sample_taxon_examples": [
+        {
+          "internal_taxon_id": "vert-bird-gorsachius-magnificus",
+          "scientific_name": "Gorsachius magnificus",
+          "simplified_chinese_name": "\u767d\u8033\u591c\u9e6d",
+          "english_common_name": "White-eared Night Heron",
+          "group": "birds"
+        },
+        {
+          "internal_taxon_id": "vert-mammal-manis-pentadactyla",
+          "scientific_name": "Manis pentadactyla",
+          "simplified_chinese_name": "\u4e2d\u534e\u7a7f\u5c71\u7532",
+          "english_common_name": "Chinese Pangolin",
+          "group": "mammals"
+        },
+        {
+          "internal_taxon_id": "vert-reptile-cuora-flavomarginata",
+          "scientific_name": "Cuora flavomarginata",
+          "simplified_chinese_name": "\u9ec4\u7f18\u95ed\u58f3\u9f9f",
+          "english_common_name": "Yellow-margined Box Turtle",
+          "group": "reptiles"
+        }
+      ]
+    },
+    {
+      "package_id": "cn_mainland_plants_seed",
+      "package_version": "2026.04-seed",
+      "jurisdiction": "mainland_china",
+      "program": "plants",
+      "taxon_groups": [
+        "vascular_plants",
+        "shrubs",
+        "trees",
+        "herbs"
+      ],
+      "backbone_source": [
+        "HJ 710.1-2014",
+        "HJ 710.14-2023",
+        "MEE county biodiversity survey regulations (plants)"
+      ],
+      "supported_names": [
+        "scientific_name",
+        "simplified_chinese_name",
+        "english_common_name"
+      ],
+      "status_support": [
+        "national_protection_status",
+        "red_list_status",
+        "sensitive_coordinate_policy"
+      ],
+      "source_manifest_path": "backend/data/taxonomy_sources/taxonomy_seed_release_2026_04_23/mainland_china/plants/source_manifest.json",
+      "expected_count": 2,
+      "submodule_expected_counts": {
+        "trees": 2
+      },
+      "seed_only": true,
+      "exhaustive_species_content": false,
+      "local_seed_assets": [
+        {
+          "path": "backend/data/mainland_plants_taxonomy_seed.json",
+          "coverage_note": "Minimal real mainland China plant seed set for importer and offline lookup validation."
+        }
+      ],
+      "sample_taxon_examples": [
+        {
+          "internal_taxon_id": "cn-plant-schima-superba",
+          "scientific_name": "Schima superba",
+          "simplified_chinese_name": "\u6728\u8377",
+          "english_common_name": "Schima",
+          "group": "trees"
+        }
+      ]
+    },
+    {
+      "package_id": "cn_mainland_insects_seed",
+      "package_version": "2026.04-seed",
+      "jurisdiction": "mainland_china",
+      "program": "insects",
+      "taxon_groups": [
+        "butterflies",
+        "moths",
+        "beetles",
+        "odonates",
+        "other_insects"
+      ],
+      "backbone_source": [
+        "MEE county biodiversity survey regulations (insects)"
+      ],
+      "supported_names": [
+        "scientific_name",
+        "simplified_chinese_name",
+        "english_common_name"
+      ],
+      "status_support": [
+        "red_list_status",
+        "sensitive_coordinate_policy"
+      ],
+      "source_manifest_path": "backend/data/taxonomy_sources/taxonomy_seed_release_2026_04_23/mainland_china/insects/source_manifest.json",
+      "expected_count": 2,
+      "submodule_expected_counts": {
+        "butterflies": 1,
+        "moths": 1
+      },
+      "seed_only": true,
+      "exhaustive_species_content": false,
+      "local_seed_assets": [
+        {
+          "path": "backend/data/mainland_insects_taxonomy_seed.json",
+          "coverage_note": "Minimal real mainland China insect seed set for importer and offline lookup validation."
+        }
+      ],
+      "sample_taxon_examples": [
+        {
+          "internal_taxon_id": "cn-insect-papilio-bianor",
+          "scientific_name": "Papilio bianor",
+          "simplified_chinese_name": "\u7fe0\u51e4\u8776",
+          "english_common_name": "Chinese Peacock",
+          "group": "butterflies"
+        }
+      ]
+    },
+    {
+      "package_id": "tw_terrestrial_vertebrates_seed",
+      "package_version": "2026.04-seed",
+      "jurisdiction": "taiwan",
+      "program": "terrestrial_vertebrates",
+      "taxon_groups": [
+        "birds",
+        "mammals",
+        "amphibians",
+        "reptiles"
+      ],
+      "backbone_source": [
+        "TaiCOL taxonomy backbone",
+        "TaiBIF/TaiBON integration references",
+        "Taiwan Forestry and Nature Conservation Agency monitoring manuals"
+      ],
+      "supported_names": [
+        "scientific_name",
+        "traditional_chinese_name",
+        "english_common_name",
+        "synonyms"
+      ],
+      "status_support": [
+        "taiwan_protection_status",
+        "red_list_status",
+        "sensitive_coordinate_policy"
+      ],
+      "source_manifest_path": "backend/data/taxonomy_sources/taxonomy_seed_release_2026_04_23/taiwan/terrestrial_vertebrates/source_manifest.json",
+      "expected_count": 8,
+      "submodule_expected_counts": {
+        "birds": 2,
+        "mammals": 2,
+        "reptiles": 2,
+        "amphibians": 2
+      },
+      "seed_only": true,
+      "exhaustive_species_content": false,
+      "local_seed_assets": [
+        {
+          "path": "backend/data/terrestrial_vertebrates_taxonomy_seed.json",
+          "coverage_note": "Representative terrestrial vertebrate seed entries for mainland China and Taiwan. Filter by jurisdictions.taiwan.present=true for this package. Supports offline lookup, taxon assignment, and export-time masking without claiming exhaustive coverage.",
+          "entry_selector": {
+            "jurisdiction": "taiwan",
+            "program": "terrestrial_vertebrates"
+          }
+        }
+      ],
+      "sample_taxon_examples": [
+        {
+          "internal_taxon_id": "vert-bird-urocissa-caerulea",
+          "scientific_name": "Urocissa caerulea",
+          "traditional_chinese_name": "\u81fa\u7063\u85cd\u9d72",
+          "english_common_name": "Taiwan Blue Magpie",
+          "group": "birds"
+        },
+        {
+          "internal_taxon_id": "vert-mammal-macaca-cyclopis",
+          "scientific_name": "Macaca cyclopis",
+          "traditional_chinese_name": "\u81fa\u7063\u7374",
+          "english_common_name": "Taiwan Macaque",
+          "group": "mammals"
+        },
+        {
+          "internal_taxon_id": "vert-amphibian-zhangixalus-moltrechti",
+          "scientific_name": "Zhangixalus moltrechti",
+          "traditional_chinese_name": "\u83ab\u6c0f\u6a39\u86d9",
+          "english_common_name": "Moltrecht's Green Tree Frog",
+          "group": "amphibians"
+        }
+      ]
+    },
+    {
+      "package_id": "tw_plants_seed",
+      "package_version": "2026.04-seed",
+      "jurisdiction": "taiwan",
+      "program": "plants",
+      "taxon_groups": [
+        "vascular_plants",
+        "shrubs",
+        "trees",
+        "herbs"
+      ],
+      "backbone_source": [
+        "TaiCOL taxonomy backbone",
+        "TaiBIF/TaiBON integration references"
+      ],
+      "supported_names": [
+        "scientific_name",
+        "traditional_chinese_name",
+        "english_common_name",
+        "synonyms"
+      ],
+      "status_support": [
+        "taiwan_protection_status",
+        "red_list_status",
+        "sensitive_coordinate_policy"
+      ],
+      "source_manifest_path": "backend/data/taxonomy_sources/taxonomy_seed_release_2026_04_23/taiwan/plants/source_manifest.json",
+      "expected_count": 2,
+      "submodule_expected_counts": {
+        "trees": 2
+      },
+      "seed_only": true,
+      "exhaustive_species_content": false,
+      "local_seed_assets": [
+        {
+          "path": "backend/data/taiwan_plants_taxonomy_seed.json",
+          "coverage_note": "Minimal real Taiwan plant seed set for importer and offline lookup validation."
+        }
+      ],
+      "sample_taxon_examples": [
+        {
+          "internal_taxon_id": "tw-plant-chamaecyparis-formosensis",
+          "scientific_name": "Chamaecyparis formosensis",
+          "traditional_chinese_name": "\u7d05\u6a9c",
+          "english_common_name": "Taiwan Red Cypress",
+          "group": "trees"
+        }
+      ]
+    },
+    {
+      "package_id": "tw_insects_seed",
+      "package_version": "2026.04-seed",
+      "jurisdiction": "taiwan",
+      "program": "insects",
+      "taxon_groups": [
+        "butterflies",
+        "moths",
+        "beetles",
+        "odonates",
+        "other_insects"
+      ],
+      "backbone_source": [
+        "TaiCOL taxonomy backbone",
+        "TaiBIF/TaiBON integration references"
+      ],
+      "supported_names": [
+        "scientific_name",
+        "traditional_chinese_name",
+        "english_common_name",
+        "synonyms"
+      ],
+      "status_support": [
+        "taiwan_protection_status",
+        "red_list_status",
+        "sensitive_coordinate_policy"
+      ],
+      "source_manifest_path": "backend/data/taxonomy_sources/taxonomy_seed_release_2026_04_23/taiwan/insects/source_manifest.json",
+      "expected_count": 2,
+      "submodule_expected_counts": {
+        "butterflies": 2
+      },
+      "seed_only": true,
+      "exhaustive_species_content": false,
+      "local_seed_assets": [
+        {
+          "path": "backend/data/taiwan_insects_taxonomy_seed.json",
+          "coverage_note": "Minimal real Taiwan insect seed set for importer and offline lookup validation."
+        }
+      ],
+      "sample_taxon_examples": [
+        {
+          "internal_taxon_id": "tw-insect-papilio-maraho",
+          "scientific_name": "Papilio maraho",
+          "traditional_chinese_name": "\u5bec\u5c3e\u9cf3\u8776",
+          "english_common_name": "Broad-tailed Swallowtail",
+          "group": "butterflies"
+        }
+      ]
+    }
+  ]
+}

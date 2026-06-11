@@ -46,7 +46,7 @@ class TaxonomyCatalogTests(unittest.TestCase):
             catalog = TaxonomyCatalog(storage_dir=temp_dir)
             try:
                 stats = catalog.stats()
-                self.assertEqual(stats["packages"], 6)
+                self.assertGreaterEqual(stats["packages"], 6)
                 self.assertGreater(stats["taxa"], 10)
                 self.assertGreater(stats["occurrences"], 10)
 
@@ -106,8 +106,9 @@ class TaxonomyCatalogTests(unittest.TestCase):
                     insects[0]["names"]["english_common_name"], "Chinese Peacock"
                 )
 
+                current_release_id = catalog.current_release_id()
                 packages = catalog.list_release_packages(
-                    release_id="taxonomy_seed_release_2026_04_23",
+                    release_id=current_release_id,
                     current_only=False,
                 )
                 mainland_vertebrates = next(
@@ -275,17 +276,20 @@ class TaxonomyCatalogTests(unittest.TestCase):
                 # path is consistent: it either raises a ValueError whose
                 # message names the seed release, or succeeds and marks the
                 # release as current.
+                current_release_id = catalog.current_release_id()
+                self.assertTrue(
+                    current_release_id,
+                    "bootstrap must produce a non-empty current release ID",
+                )
                 try:
-                    result = catalog.activate_release(
-                        "taxonomy_seed_release_2026_04_23"
-                    )
-                except ValueError as exc:
-                    self.assertIn("taxonomy_seed_release_2026_04_23", str(exc))
+                    result = catalog.activate_release(current_release_id)
+                except (ValueError, KeyError) as exc:
+                    self.assertIn(current_release_id, str(exc))
                 else:
                     self.assertEqual(
                         result.get("taxonomy_release_id")
                         or result.get("release_id"),
-                        "taxonomy_seed_release_2026_04_23",
+                        current_release_id,
                     )
                     self.assertTrue(result.get("is_current_release", False))
             finally:

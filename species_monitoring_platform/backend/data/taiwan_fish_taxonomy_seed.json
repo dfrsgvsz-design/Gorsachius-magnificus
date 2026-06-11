@@ -1,0 +1,25 @@
+{
+  "entries": [
+    {
+      "internal_taxon_id": "tw-fish-oncorhynchus-formosanus",
+      "scientific_name": "Oncorhynchus formosanus",
+      "traditional_chinese_name": "櫻花鉤吻鮭",
+      "english_common_name": "Formosan Landlocked Salmon",
+      "group": "freshwater_fish"
+    },
+    {
+      "internal_taxon_id": "tw-fish-varicorhinus-alticorpus",
+      "scientific_name": "Varicorhinus alticorpus",
+      "traditional_chinese_name": "高身鯝魚",
+      "english_common_name": "Taiwan Shoveljaw Carp",
+      "group": "freshwater_fish"
+    },
+    {
+      "internal_taxon_id": "tw-fish-mobula-birostris",
+      "scientific_name": "Mobula birostris",
+      "traditional_chinese_name": "鬼蝠魟",
+      "english_common_name": "Giant Oceanic Manta Ray",
+      "group": "marine_fish"
+    }
+  ]
+}

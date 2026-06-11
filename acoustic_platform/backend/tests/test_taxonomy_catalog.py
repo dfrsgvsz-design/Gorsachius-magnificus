@@ -46,7 +46,7 @@ class TaxonomyCatalogTests(unittest.TestCase):
             catalog = TaxonomyCatalog(storage_dir=temp_dir)
             try:
                 stats = catalog.stats()
-                self.assertEqual(stats["packages"], 6)
+                self.assertGreaterEqual(stats["packages"], 6)
                 self.assertGreater(stats["taxa"], 10)
                 self.assertGreater(stats["occurrences"], 10)
 

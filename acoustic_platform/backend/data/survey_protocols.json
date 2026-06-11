@@ -1,0 +1,585 @@
+{
+  "schema_version": "1.0",
+  "registry_version": "2026-04-19",
+  "platform_scope": {
+    "jurisdictions": [
+      "mainland_china",
+      "taiwan"
+    ],
+    "programs": [
+      "terrestrial_vertebrates",
+      "plants",
+      "insects"
+    ]
+  },
+  "shared_event_fields": {
+    "required": [
+      "event_id",
+      "program",
+      "protocol",
+      "jurisdiction",
+      "project_id",
+      "site_id",
+      "team",
+      "observers",
+      "start_time",
+      "end_time",
+      "geometry",
+      "design_asset_id"
+    ],
+    "optional": [
+      "weather",
+      "habitat",
+      "admin_region",
+      "notes",
+      "track_log_id",
+      "media_attachments"
+    ]
+  },
+  "shared_record_fields": {
+    "required": [
+      "record_id",
+      "event_id",
+      "taxon_id",
+      "observation_time",
+      "geometry",
+      "evidence_type"
+    ],
+    "optional": [
+      "count",
+      "abundance_code",
+      "life_stage",
+      "sex",
+      "behavior",
+      "confidence",
+      "notes",
+      "media_attachments",
+      "protected_coordinate_policy"
+    ]
+  },
+  "protocols": [
+    {
+      "protocol_id": "bird_line_transect",
+      "version": "1.0",
+      "program": "terrestrial_vertebrates",
+      "module": "terrestrial_vertebrates",
+      "submodules": [
+        "birds"
+      ],
+      "display_name": "Bird Line Transect",
+      "description": "Line-transect bird survey with route-linked observations and effort tracking.",
+      "jurisdictions": [
+        "mainland_china",
+        "taiwan"
+      ],
+      "sampling_unit": "transect_walk",
+      "design_asset_types": [
+        "route",
+        "transect_segment"
+      ],
+      "track_policy": "required",
+      "offline_requirements": [
+        "offline_map_package",
+        "route_geometry",
+        "species_lookup_cache"
+      ],
+      "event_fields": {
+        "required": [
+          "transect_name",
+          "transect_length_m",
+          "survey_round",
+          "start_time",
+          "end_time",
+          "weather",
+          "observer_count"
+        ],
+        "optional": [
+          "wind_code",
+          "cloud_code",
+          "precipitation_code",
+          "habitat_type",
+          "disturbance_notes"
+        ],
+        "effort": [
+          "distance_walked_m",
+          "duration_min",
+          "pace_m_per_min"
+        ]
+      },
+      "record_fields": {
+        "required": [
+          "taxon_id",
+          "detection_type",
+          "count",
+          "observation_time"
+        ],
+        "optional": [
+          "distance_band",
+          "bearing",
+          "behavior",
+          "breeding_code",
+          "flock_size",
+          "route_segment_id"
+        ]
+      },
+      "export_profiles": [
+        "mainland_event_summary",
+        "mainland_species_list",
+        "taiwan_event_summary",
+        "taiwan_species_list"
+      ],
+      "standards_refs": [
+        "HJ 710.4-2014",
+        "MEE County Biodiversity Survey Regulations 2018 (birds)",
+        "Taiwan Bird Monitoring SOP"
+      ]
+    },
+    {
+      "protocol_id": "bird_point_count",
+      "version": "1.0",
+      "program": "terrestrial_vertebrates",
+      "module": "terrestrial_vertebrates",
+      "submodules": [
+        "birds"
+      ],
+      "display_name": "Bird Point Count",
+      "description": "Station-based bird count protocol with fixed duration and point geometry.",
+      "jurisdictions": [
+        "mainland_china",
+        "taiwan"
+      ],
+      "sampling_unit": "point_count_station_visit",
+      "design_asset_types": [
+        "route",
+        "transect_segment"
+      ],
+      "track_policy": "optional",
+      "offline_requirements": [
+        "offline_map_package",
+        "station_geometry",
+        "species_lookup_cache"
+      ],
+      "event_fields": {
+        "required": [
+          "point_id",
+          "point_visit_index",
+          "point_duration_min",
+          "start_time",
+          "end_time",
+          "weather",
+          "observer_count"
+        ],
+        "optional": [
+          "point_radius_m",
+          "wind_code",
+          "cloud_code",
+          "precipitation_code",
+          "habitat_type"
+        ],
+        "effort": [
+          "point_duration_min",
+          "station_count",
+          "travel_distance_m"
+        ]
+      },
+      "record_fields": {
+        "required": [
+          "taxon_id",
+          "detection_type",
+          "count",
+          "observation_time"
+        ],
+        "optional": [
+          "distance_band",
+          "behavior",
+          "breeding_code",
+          "point_id",
+          "flock_size",
+          "confidence"
+        ]
+      },
+      "export_profiles": [
+        "mainland_event_summary",
+        "mainland_species_list",
+        "taiwan_event_summary",
+        "taiwan_species_list"
+      ],
+      "standards_refs": [
+        "HJ 710.4-2014",
+        "MEE County Biodiversity Survey Regulations 2018 (birds)",
+        "Taiwan Bird Monitoring SOP"
+      ]
+    },
+    {
+      "protocol_id": "mammal_trap_net",
+      "version": "1.0",
+      "program": "terrestrial_vertebrates",
+      "module": "terrestrial_vertebrates",
+      "submodules": [
+        "mammals"
+      ],
+      "display_name": "Mammal Trap or Net Survey",
+      "description": "Trap or net deployment event with capture and release records for terrestrial mammals.",
+      "jurisdictions": [
+        "mainland_china",
+        "taiwan"
+      ],
+      "sampling_unit": "trap_station_night_or_check",
+      "design_asset_types": [
+        "trap_station",
+        "route"
+      ],
+      "track_policy": "optional",
+      "offline_requirements": [
+        "offline_map_package",
+        "trap_station_geometry",
+        "species_lookup_cache"
+      ],
+      "event_fields": {
+        "required": [
+          "trap_method",
+          "trap_station_count",
+          "deployment_start_time",
+          "deployment_end_time",
+          "bait_type",
+          "observer_count"
+        ],
+        "optional": [
+          "trap_model",
+          "check_interval_h",
+          "microhabitat",
+          "permit_reference",
+          "animal_welfare_notes"
+        ],
+        "effort": [
+          "trap_nights",
+          "active_trap_count",
+          "checked_station_count"
+        ]
+      },
+      "record_fields": {
+        "required": [
+          "taxon_id",
+          "capture_status",
+          "observation_time",
+          "trap_station_id"
+        ],
+        "optional": [
+          "individual_mark",
+          "protected_coordinate_policy",
+          "sex",
+          "life_stage",
+          "body_mass_g",
+          "release_status",
+          "sample_collected"
+        ]
+      },
+      "export_profiles": [
+        "mainland_event_summary",
+        "mainland_species_list",
+        "taiwan_event_summary",
+        "taiwan_species_list"
+      ],
+      "standards_refs": [
+        "HJ 710.3-2014",
+        "MEE County Biodiversity Survey Regulations 2018 (mammals)"
+      ]
+    },
+    {
+      "protocol_id": "herp_infrared_camera",
+      "version": "1.0",
+      "program": "terrestrial_vertebrates",
+      "module": "terrestrial_vertebrates",
+      "submodules": [
+        "reptiles",
+        "amphibians"
+      ],
+      "display_name": "Amphibian and Reptile Infrared Camera",
+      "description": "Infrared camera deployment, maintenance, and detection workflow for herpetofauna monitoring.",
+      "jurisdictions": [
+        "mainland_china",
+        "taiwan"
+      ],
+      "sampling_unit": "camera_station_deployment_or_check",
+      "design_asset_types": [
+        "camera_station",
+        "route"
+      ],
+      "track_policy": "optional",
+      "offline_requirements": [
+        "offline_map_package",
+        "camera_station_geometry",
+        "species_lookup_cache"
+      ],
+      "event_fields": {
+        "required": [
+          "camera_station_id",
+          "camera_action",
+          "deployment_start_time",
+          "deployment_end_time",
+          "camera_model",
+          "observer_count"
+        ],
+        "optional": [
+          "sensor_mode",
+          "trigger_interval_s",
+          "height_cm",
+          "orientation",
+          "bait_or_lure",
+          "habitat_type"
+        ],
+        "effort": [
+          "camera_days",
+          "active_camera_count",
+          "image_or_video_file_count"
+        ]
+      },
+      "record_fields": {
+        "required": [
+          "taxon_id",
+          "detection_time",
+          "evidence_type",
+          "camera_station_id"
+        ],
+        "optional": [
+          "individual_count",
+          "life_stage",
+          "behavior",
+          "media_file_id",
+          "sequence_id",
+          "detection_confidence"
+        ]
+      },
+      "export_profiles": [
+        "mainland_event_summary",
+        "mainland_species_list",
+        "taiwan_event_summary",
+        "taiwan_species_list"
+      ],
+      "standards_refs": [
+        "HJ 710.5-2014",
+        "HJ 710.6-2014",
+        "MEE County Biodiversity Survey Regulations 2018 (reptiles/amphibians)",
+        "MEE Infrared Camera Standard 2024",
+        "Taiwan Amphibian Monitoring SOP"
+      ]
+    },
+    {
+      "protocol_id": "plant_quadrat",
+      "version": "1.0",
+      "program": "plants",
+      "module": "plants",
+      "submodules": [
+        "plants"
+      ],
+      "display_name": "Plant Quadrat Survey",
+      "description": "Fixed-plot or quadrat vegetation survey with plot-level structure and species cover fields.",
+      "jurisdictions": [
+        "mainland_china",
+        "taiwan"
+      ],
+      "sampling_unit": "plot_visit",
+      "design_asset_types": [
+        "plot"
+      ],
+      "track_policy": "optional",
+      "offline_requirements": [
+        "offline_map_package",
+        "plot_geometry",
+        "species_lookup_cache"
+      ],
+      "event_fields": {
+        "required": [
+          "plot_id",
+          "plot_area_m2",
+          "plot_shape",
+          "start_time",
+          "end_time",
+          "observer_count"
+        ],
+        "optional": [
+          "canopy_cover_pct",
+          "slope_deg",
+          "aspect",
+          "substrate_type",
+          "disturbance_notes"
+        ],
+        "effort": [
+          "sampled_area_m2",
+          "subplot_count",
+          "duration_min"
+        ]
+      },
+      "record_fields": {
+        "required": [
+          "taxon_id",
+          "observation_time"
+        ],
+        "optional": [
+          "cover_pct",
+          "height_cm",
+          "dbh_cm",
+          "abundance_code",
+          "phenology",
+          "specimen_reference"
+        ]
+      },
+      "export_profiles": [
+        "mainland_event_summary",
+        "mainland_species_list",
+        "taiwan_event_summary",
+        "taiwan_species_list"
+      ],
+      "standards_refs": [
+        "HJ 710.1-2014",
+        "HJ 710.14-2023",
+        "MEE County Biodiversity Survey Regulations 2018 (plants)"
+      ]
+    },
+    {
+      "protocol_id": "plant_transect",
+      "version": "1.0",
+      "program": "plants",
+      "module": "plants",
+      "submodules": [
+        "plants"
+      ],
+      "display_name": "Plant Transect Survey",
+      "description": "Vegetation survey using line-transect segments and associated subplots.",
+      "jurisdictions": [
+        "mainland_china",
+        "taiwan"
+      ],
+      "sampling_unit": "vegetation_transect_visit",
+      "design_asset_types": [
+        "route",
+        "transect_segment",
+        "plot"
+      ],
+      "track_policy": "optional",
+      "offline_requirements": [
+        "offline_map_package",
+        "transect_geometry",
+        "species_lookup_cache"
+      ],
+      "event_fields": {
+        "required": [
+          "transect_name",
+          "transect_length_m",
+          "subplot_count",
+          "start_time",
+          "end_time",
+          "observer_count"
+        ],
+        "optional": [
+          "transect_width_m",
+          "slope_deg",
+          "aspect",
+          "dominant_community",
+          "disturbance_notes"
+        ],
+        "effort": [
+          "sampled_length_m",
+          "sampled_area_m2",
+          "duration_min"
+        ]
+      },
+      "record_fields": {
+        "required": [
+          "taxon_id",
+          "observation_time"
+        ],
+        "optional": [
+          "cover_pct",
+          "height_cm",
+          "dbh_cm",
+          "abundance_code",
+          "phenology",
+          "subplot_id"
+        ]
+      },
+      "export_profiles": [
+        "mainland_event_summary",
+        "mainland_species_list",
+        "taiwan_event_summary",
+        "taiwan_species_list"
+      ],
+      "standards_refs": [
+        "HJ 710.1-2014",
+        "HJ 710.14-2023",
+        "MEE County Biodiversity Survey Regulations 2018 (plants)"
+      ]
+    },
+    {
+      "protocol_id": "insect_transect",
+      "version": "1.0",
+      "program": "insects",
+      "module": "insects",
+      "submodules": [
+        "insects"
+      ],
+      "display_name": "Insect Transect Survey",
+      "description": "Transect-based insect observation workflow for count and abundance records.",
+      "jurisdictions": [
+        "mainland_china",
+        "taiwan"
+      ],
+      "sampling_unit": "insect_transect_walk",
+      "design_asset_types": [
+        "route",
+        "transect_segment"
+      ],
+      "track_policy": "required",
+      "offline_requirements": [
+        "offline_map_package",
+        "transect_geometry",
+        "species_lookup_cache"
+      ],
+      "event_fields": {
+        "required": [
+          "transect_name",
+          "transect_length_m",
+          "start_time",
+          "end_time",
+          "weather",
+          "observer_count"
+        ],
+        "optional": [
+          "temperature_c",
+          "wind_code",
+          "cloud_code",
+          "habitat_type",
+          "microhabitat_notes"
+        ],
+        "effort": [
+          "distance_walked_m",
+          "duration_min",
+          "sampled_band_width_m"
+        ]
+      },
+      "record_fields": {
+        "required": [
+          "taxon_id",
+          "count",
+          "observation_time"
+        ],
+        "optional": [
+          "life_stage",
+          "behavior",
+          "microhabitat",
+          "route_segment_id",
+          "capture_release_flag"
+        ]
+      },
+      "export_profiles": [
+        "mainland_event_summary",
+        "mainland_species_list",
+        "taiwan_event_summary",
+        "taiwan_species_list"
+      ],
+      "standards_refs": [
+        "MEE County Biodiversity Survey Regulations 2018 (insects)"
+      ]
+    }
+  ]
+}

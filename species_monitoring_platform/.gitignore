@@ -26,6 +26,12 @@ frontend/node_modules/
 frontend/dist/
 
 data/
+# CI seed assets: backend/data top-level JSONs (protocols / taxonomy packages
+# / export profiles) are contract inputs required by pytest + docker health.
+# Runtime subdirs (survey_store/, detections/, images/, ...) stay ignored.
+!backend/data/
+backend/data/*
+!backend/data/*.json
 checkpoints/
 checkpoints_gpu_baseline/
 checkpoints_gpu_lite/

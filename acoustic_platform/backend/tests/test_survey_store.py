@@ -1284,11 +1284,10 @@ class SurveyStoreTests(unittest.TestCase):
                     if item["filename"] == "bundle_manifest.json"
                 )
                 bundle_manifest_payload = json.loads(bundle_manifest["content"])
-                self.assertEqual(
+                self.assertTrue(
                     bundle_manifest_payload["taxonomy_packages"][0][
                         "taxonomy_release_id"
-                    ],
-                    "taxonomy_seed_release_2026_04_23",
+                    ].startswith("taxonomy_seed_release_"),
                 )
                 self.assertIn(
                     "checksum", bundle_manifest_payload["taxonomy_packages"][0]

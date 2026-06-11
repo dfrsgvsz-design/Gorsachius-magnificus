@@ -1,0 +1,290 @@
+{
+  "schema_version": "1.0",
+  "asset_version": "2026.04-seed",
+  "description": "Representative terrestrial vertebrate taxonomy seed for mainland China and Taiwan biodiversity survey workflows. This file supports offline lookup, taxon assignment, and export-time masking decisions. It is intentionally non-exhaustive.",
+  "shared_taxon_key": "internal_taxon_id",
+  "seed_only": true,
+  "exhaustive_species_content": false,
+  "supported_name_fields": [
+    "scientific_name",
+    "simplified_chinese_name",
+    "traditional_chinese_name",
+    "english_common_name"
+  ],
+  "jurisdictions": [
+    "mainland_china",
+    "taiwan"
+  ],
+  "taxon_groups": [
+    "birds",
+    "mammals",
+    "amphibians",
+    "reptiles"
+  ],
+  "entries": [
+    {
+      "internal_taxon_id": "vert-bird-gorsachius-magnificus",
+      "taxon_group": "birds",
+      "scientific_name": "Gorsachius magnificus",
+      "simplified_chinese_name": "\u767d\u8033\u591c\u9e6d",
+      "traditional_chinese_name": "\u767d\u8033\u591c\u9dfa",
+      "english_common_name": "White-eared Night Heron",
+      "jurisdictions": {
+        "mainland_china": {
+          "present": true,
+          "national_protection_status": "first_class",
+          "red_list_status": "EN",
+          "sensitive_coordinate_policy": "masked_10km"
+        },
+        "taiwan": {
+          "present": false,
+          "taiwan_protection_status": null,
+          "red_list_status": null,
+          "sensitive_coordinate_policy": "not_applicable"
+        }
+      }
+    },
+    {
+      "internal_taxon_id": "vert-bird-urocissa-caerulea",
+      "taxon_group": "birds",
+      "scientific_name": "Urocissa caerulea",
+      "simplified_chinese_name": "\u53f0\u6e7e\u84dd\u9e4a",
+      "traditional_chinese_name": "\u81fa\u7063\u85cd\u9d72",
+      "english_common_name": "Taiwan Blue Magpie",
+      "jurisdictions": {
+        "mainland_china": {
+          "present": false,
+          "national_protection_status": null,
+          "red_list_status": null,
+          "sensitive_coordinate_policy": "not_applicable"
+        },
+        "taiwan": {
+          "present": true,
+          "taiwan_protection_status": "protected_wildlife_category_ii",
+          "red_list_status": "NT",
+          "sensitive_coordinate_policy": "masked_1km"
+        }
+      }
+    },
+    {
+      "internal_taxon_id": "vert-bird-passer-montanus",
+      "taxon_group": "birds",
+      "scientific_name": "Passer montanus",
+      "simplified_chinese_name": "\u6811\u9ebb\u96c0",
+      "traditional_chinese_name": "\u6a39\u9ebb\u96c0",
+      "english_common_name": "Eurasian Tree Sparrow",
+      "jurisdictions": {
+        "mainland_china": {
+          "present": true,
+          "national_protection_status": null,
+          "red_list_status": "LC",
+          "sensitive_coordinate_policy": "public"
+        },
+        "taiwan": {
+          "present": true,
+          "taiwan_protection_status": null,
+          "red_list_status": "LC",
+          "sensitive_coordinate_policy": "public"
+        }
+      }
+    },
+    {
+      "internal_taxon_id": "vert-mammal-manis-pentadactyla",
+      "taxon_group": "mammals",
+      "scientific_name": "Manis pentadactyla",
+      "simplified_chinese_name": "\u4e2d\u534e\u7a7f\u5c71\u7532",
+      "traditional_chinese_name": "\u4e2d\u83ef\u7a7f\u5c71\u7532",
+      "english_common_name": "Chinese Pangolin",
+      "jurisdictions": {
+        "mainland_china": {
+          "present": true,
+          "national_protection_status": "first_class",
+          "red_list_status": "CR",
+          "sensitive_coordinate_policy": "masked_10km"
+        },
+        "taiwan": {
+          "present": true,
+          "taiwan_protection_status": "protected_wildlife_category_i",
+          "red_list_status": "EN",
+          "sensitive_coordinate_policy": "masked_10km"
+        }
+      }
+    },
+    {
+      "internal_taxon_id": "vert-mammal-macaca-cyclopis",
+      "taxon_group": "mammals",
+      "scientific_name": "Macaca cyclopis",
+      "simplified_chinese_name": "\u53f0\u6e7e\u7334",
+      "traditional_chinese_name": "\u81fa\u7063\u7374",
+      "english_common_name": "Taiwan Macaque",
+      "jurisdictions": {
+        "mainland_china": {
+          "present": false,
+          "national_protection_status": null,
+          "red_list_status": null,
+          "sensitive_coordinate_policy": "not_applicable"
+        },
+        "taiwan": {
+          "present": true,
+          "taiwan_protection_status": "protected_wildlife_category_ii",
+          "red_list_status": "LC",
+          "sensitive_coordinate_policy": "masked_1km"
+        }
+      }
+    },
+    {
+      "internal_taxon_id": "vert-mammal-muntiacus-reevesi",
+      "taxon_group": "mammals",
+      "scientific_name": "Muntiacus reevesi",
+      "simplified_chinese_name": "\u72cd\u7346",
+      "traditional_chinese_name": "\u737e",
+      "english_common_name": "Reeves's Muntjac",
+      "jurisdictions": {
+        "mainland_china": {
+          "present": true,
+          "national_protection_status": null,
+          "red_list_status": "LC",
+          "sensitive_coordinate_policy": "public"
+        },
+        "taiwan": {
+          "present": false,
+          "taiwan_protection_status": null,
+          "red_list_status": null,
+          "sensitive_coordinate_policy": "not_applicable"
+        }
+      }
+    },
+    {
+      "internal_taxon_id": "vert-amphibian-andrias-davidianus",
+      "taxon_group": "amphibians",
+      "scientific_name": "Andrias davidianus",
+      "simplified_chinese_name": "\u5927\u9cb5",
+      "traditional_chinese_name": "\u5927\u9be2",
+      "english_common_name": "Chinese Giant Salamander",
+      "jurisdictions": {
+        "mainland_china": {
+          "present": true,
+          "national_protection_status": "second_class",
+          "red_list_status": "CR",
+          "sensitive_coordinate_policy": "masked_10km"
+        },
+        "taiwan": {
+          "present": false,
+          "taiwan_protection_status": null,
+          "red_list_status": null,
+          "sensitive_coordinate_policy": "not_applicable"
+        }
+      }
+    },
+    {
+      "internal_taxon_id": "vert-amphibian-zhangixalus-moltrechti",
+      "taxon_group": "amphibians",
+      "scientific_name": "Zhangixalus moltrechti",
+      "simplified_chinese_name": "\u83ab\u6c0f\u6811\u86d9",
+      "traditional_chinese_name": "\u83ab\u6c0f\u6a39\u86d9",
+      "english_common_name": "Moltrecht's Green Tree Frog",
+      "jurisdictions": {
+        "mainland_china": {
+          "present": false,
+          "national_protection_status": null,
+          "red_list_status": null,
+          "sensitive_coordinate_policy": "not_applicable"
+        },
+        "taiwan": {
+          "present": true,
+          "taiwan_protection_status": null,
+          "red_list_status": "LC",
+          "sensitive_coordinate_policy": "public"
+        }
+      }
+    },
+    {
+      "internal_taxon_id": "vert-amphibian-duttaphrynus-melanostictus",
+      "taxon_group": "amphibians",
+      "scientific_name": "Duttaphrynus melanostictus",
+      "simplified_chinese_name": "\u9ed1\u7736\u87fe",
+      "traditional_chinese_name": "\u9ed1\u7709\u87fe",
+      "english_common_name": "Asian Common Toad",
+      "jurisdictions": {
+        "mainland_china": {
+          "present": true,
+          "national_protection_status": null,
+          "red_list_status": "LC",
+          "sensitive_coordinate_policy": "public"
+        },
+        "taiwan": {
+          "present": true,
+          "taiwan_protection_status": null,
+          "red_list_status": "LC",
+          "sensitive_coordinate_policy": "public"
+        }
+      }
+    },
+    {
+      "internal_taxon_id": "vert-reptile-cuora-flavomarginata",
+      "taxon_group": "reptiles",
+      "scientific_name": "Cuora flavomarginata",
+      "simplified_chinese_name": "\u9ec4\u7f18\u95ed\u58f3\u9f9f",
+      "traditional_chinese_name": "\u9ec3\u7de3\u9589\u6bbc\u9f9c",
+      "english_common_name": "Yellow-margined Box Turtle",
+      "jurisdictions": {
+        "mainland_china": {
+          "present": true,
+          "national_protection_status": "second_class",
+          "red_list_status": "EN",
+          "sensitive_coordinate_policy": "masked_10km"
+        },
+        "taiwan": {
+          "present": true,
+          "taiwan_protection_status": "protected_wildlife_category_ii",
+          "red_list_status": "EN",
+          "sensitive_coordinate_policy": "masked_10km"
+        }
+      }
+    },
+    {
+      "internal_taxon_id": "vert-reptile-diploderma-swinhonis",
+      "taxon_group": "reptiles",
+      "scientific_name": "Diploderma swinhonis",
+      "simplified_chinese_name": "\u65af\u6587\u8c6a\u6c0f\u6538\u8725",
+      "traditional_chinese_name": "\u65af\u6587\u8c6a\u6c0f\u6500\u8725",
+      "english_common_name": "Swinhoe's Japalure",
+      "jurisdictions": {
+        "mainland_china": {
+          "present": false,
+          "national_protection_status": null,
+          "red_list_status": null,
+          "sensitive_coordinate_policy": "not_applicable"
+        },
+        "taiwan": {
+          "present": true,
+          "taiwan_protection_status": null,
+          "red_list_status": "LC",
+          "sensitive_coordinate_policy": "public"
+        }
+      }
+    },
+    {
+      "internal_taxon_id": "vert-reptile-elaphe-carinata",
+      "taxon_group": "reptiles",
+      "scientific_name": "Elaphe carinata",
+      "simplified_chinese_name": "\u738b\u9526\u86c7",
+      "traditional_chinese_name": "\u738b\u9326\u86c7",
+      "english_common_name": "King Ratsnake",
+      "jurisdictions": {
+        "mainland_china": {
+          "present": true,
+          "national_protection_status": null,
+          "red_list_status": "LC",
+          "sensitive_coordinate_policy": "masked_1km"
+        },
+        "taiwan": {
+          "present": false,
+          "taiwan_protection_status": null,
+          "red_list_status": null,
+          "sensitive_coordinate_policy": "not_applicable"
+        }
+      }
+    }
+  ]
+}
