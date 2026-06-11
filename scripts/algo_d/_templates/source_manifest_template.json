@@ -1,0 +1,71 @@
+{
+  "_comment": "Algo-D W2 source_manifest.json template. Required fields (per taxonomy_release_builder.REQUIRED_SOURCE_MANIFEST_FIELDS): release_id, jurisdiction, program, submodule_counts, official_expected_count, source_files, source_version_date, license_note, mapping_notes. Place under backend/data/taxonomy_sources/<release_id>/<jurisdiction>/<program>/source_manifest.json. source_files[].path must resolve under backend/data/taxonomy_releases/<release_id>/.",
+
+  "release_id": "taxonomy_full_release_2026_W2",
+  "jurisdiction": "mainland_china",
+  "program": "terrestrial_vertebrates",
+
+  "submodule_counts": {
+    "birds": 1505,
+    "mammals": 700,
+    "reptiles": 450,
+    "amphibians": 430
+  },
+  "official_expected_count": 3085,
+
+  "source_files": [
+    {
+      "path": "national_protection_2021/parsed.json",
+      "kind": "national_key_protected_species_list",
+      "source_version_date": "2021-02-09",
+      "source_url": "https://www.gov.cn/zhengce/zhengceku/2021-02/09/content_5586227.htm",
+      "expected_row_count": 988,
+      "notes": "国家重点保护野生动植物名录 2021 (980 动物 + 8 植物); only the 980 vertebrate entries map into this manifest's submodule_counts; the 8 plant entries go to the plants source manifest"
+    },
+    {
+      "path": "hainan_protection_2024/parsed.json",
+      "kind": "provincial_protected_species_list",
+      "source_version_date": "2024-XX-XX",
+      "source_url": "https://www.hainan.gov.cn/  (search for 海南省重点保护野生动植物名录 2024)",
+      "expected_row_count": 418,
+      "notes": "海南省级保护名录 2024 (212 动物 + 206 植物); animals are vertebrate-mostly, contributing to mainland_china/terrestrial_vertebrates; plants belong to plants source manifest"
+    },
+    {
+      "path": "china_red_list_vertebrates_2016/parsed.json",
+      "kind": "iucn_status_mapping",
+      "source_version_date": "2016-08-01",
+      "source_url": "Jiang et al. (2016) Biodiversity Science 25(5)",
+      "expected_row_count": null,
+      "notes": "不是新种、是给已有种打 IUCN 标签；ingestion 时 merge 到 red_list_status 字段"
+    }
+  ],
+
+  "source_version_date": "2026-06-10",
+  "license_note": "国家公告均在公开域；本平台仅做学术研究/调查 metadata 用途；引用时请保留原始公告链接",
+  "mapping_notes": "本 release 拼装规则: 1) national_protection_2021 vertebrate 部分按 protection_level (I/II) 映射到 national_protection_status; 2) hainan_protection_2024 animal 部分按 hainan_provincial 映射到 provincial_protection_status; 3) china_red_list_vertebrates_2016 按 scientific_name match 上 red_list_status; 重名按 IOC v14 优先",
+
+  "supported_names": [
+    "scientific_name",
+    "simplified_chinese_name",
+    "english_common_name",
+    "synonyms"
+  ],
+  "status_support": [
+    "national_protection_status",
+    "provincial_protection_status",
+    "red_list_status",
+    "sensitive_coordinate_policy"
+  ],
+  "sample_taxon_examples": [
+    {
+      "internal_taxon_id": "vert-bird-gorsachius-magnificus",
+      "scientific_name": "Gorsachius magnificus",
+      "simplified_chinese_name": "白耳夜鹭",
+      "english_common_name": "White-eared Night Heron",
+      "group": "birds",
+      "national_protection_status": "I",
+      "red_list_status": "EN",
+      "source_evidence": ["national_protection_2021/parsed.json#L<TODO>", "china_red_list_vertebrates_2016/parsed.json#L<TODO>"]
+    }
+  ]
+}

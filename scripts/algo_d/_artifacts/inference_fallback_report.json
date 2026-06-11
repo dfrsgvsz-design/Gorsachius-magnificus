@@ -1,0 +1,53 @@
+{
+  "ran_at_utc": "2026-06-10T09:26:00.064558+00:00",
+  "passes": 5,
+  "fails": 0,
+  "checks": [
+    {
+      "name": "F1 module imports cleanly",
+      "status": "PASS",
+      "detail": "ok"
+    },
+    {
+      "name": "F2 tiers_status() shape correct",
+      "status": "PASS",
+      "detail": "keys=['tier1_birdnet_embedding', 'tier1_knn_index', 'tier2_birdnet_classifier']"
+    },
+    {
+      "name": "F3a predict_species_fallback returns canonical shape",
+      "status": "PASS",
+      "detail": "top1_keys=['_meta', 'confidence', 'reliable', 'species_chinese', 'species_english', 'species_scientific']"
+    },
+    {
+      "name": "F3b _meta has fallback_engine and fallback_reason",
+      "status": "PASS",
+      "detail": "engine=none"
+    },
+    {
+      "name": "F4 safe_predict_species catches OOM-like exception",
+      "status": "PASS",
+      "detail": "engine=none reason=out_of_memory"
+    }
+  ],
+  "tiers_status_snapshot": {
+    "tier1_birdnet_embedding": {
+      "loaded": false,
+      "load_attempted": false,
+      "load_error": null
+    },
+    "tier1_knn_index": {
+      "available": false,
+      "load_attempted": false,
+      "load_error": null,
+      "n_embeddings": 0,
+      "dim": 0,
+      "n_species": 0,
+      "index_dir": "F:\\Gorsachius magnificus\\species_monitoring_platform\\backend\\checkpoints\\birdnet_knn",
+      "meta": {}
+    },
+    "tier2_birdnet_classifier": {
+      "available": false,
+      "load_error": "No module named 'shared'"
+    }
+  }
+}
