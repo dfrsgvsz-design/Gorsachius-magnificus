@@ -316,6 +316,166 @@ class SurveyStoreTests(unittest.TestCase):
             finally:
                 store.close()
 
+    def _create_observation_conflict(self, store):
+        """Helper: produce a real conflict row and return (conflict, original)."""
+        project = store.upsert_project({"name": "Conflict Test", "region": "Guangxi"})
+        site = store.upsert_site(
+            {
+                "project_id": project["project_id"],
+                "name": "Conflict Site",
+                "latitude": 22.45,
+                "longitude": 106.95,
+            }
+        )
+        event = store.upsert_event(
+            {
+                "project_id": project["project_id"],
+                "site_id": site["site_id"],
+                "program": "terrestrial_vertebrates",
+                "protocol": "bird_point_count",
+                "jurisdiction": "mainland_china",
+                "started_at": "2026-04-18T00:00:00Z",
+                "ended_at": "2026-04-18T00:10:00Z",
+                "observers": ["tester"],
+            }
+        )
+        original = store.upsert_observation(
+            {
+                "project_id": project["project_id"],
+                "site_id": site["site_id"],
+                "event_id": event["event_id"],
+                "program": "terrestrial_vertebrates",
+                "protocol": "bird_point_count",
+                "jurisdiction": "mainland_china",
+                "scientific_name": "Gorsachius magnificus",
+                "count": 1,
+                "latitude": 22.451,
+                "longitude": 106.951,
+            }
+        )
+        time.sleep(0.01)
+        store.upsert_observation({**original, "count": 2})
+        result = store.sync_push(
+            device_id="device-a",
+            user_id="tester",
+            operations=[
+                {
+                    "entity_type": "observation",
+                    "operation": "upsert",
+                    "entity_id": original["observation_id"],
+                    "payload": {
+                        **original,
+                        "count": 4,
+                        "server_updated_at": original["updated_at"],
+                    },
+                }
+            ],
+        )
+        self.assertEqual(len(result["conflicts"]), 1)
+        return result["conflicts"][0], original
+
+    def test_resolve_conflict_keep_local_force_upserts_incoming(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            store = SurveyStore(storage_dir=temp_dir)
+            try:
+                conflict, original = self._create_observation_conflict(store)
+                result = store.resolve_conflict(
+                    conflict["conflict_id"], strategy="keep_local"
+                )
+                self.assertEqual(result["status"], "resolved")
+                self.assertEqual(result["resolution"], "keep_local")
+                self.assertEqual(result["entity_type"], "observation")
+                self.assertEqual(result["entity_id"], original["observation_id"])
+                self.assertEqual(result["record"]["count"], 4)
+                live = store.list_observations(
+                    project_id=original["project_id"]
+                )
+                matching = [
+                    o
+                    for o in live
+                    if o.get("observation_id") == original["observation_id"]
+                ]
+                self.assertEqual(len(matching), 1)
+                self.assertEqual(matching[0]["count"], 4)
+            finally:
+                store.close()
+
+    def test_resolve_conflict_keep_server_preserves_server_state(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            store = SurveyStore(storage_dir=temp_dir)
+            try:
+                conflict, original = self._create_observation_conflict(store)
+                result = store.resolve_conflict(
+                    conflict["conflict_id"], strategy="keep_server"
+                )
+                self.assertEqual(result["status"], "resolved")
+                self.assertEqual(result["resolution"], "keep_server")
+                # Server retained count=2 from the intermediate update.
+                self.assertEqual(result["record"]["count"], 2)
+            finally:
+                store.close()
+
+    def test_resolve_conflict_merge_requires_payload_and_applies_it(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            store = SurveyStore(storage_dir=temp_dir)
+            try:
+                conflict, original = self._create_observation_conflict(store)
+                with self.assertRaises(ValueError):
+                    store.resolve_conflict(
+                        conflict["conflict_id"], strategy="merge"
+                    )
+                merged = {
+                    **original,
+                    "count": 3,
+                    "behavior": "agreed-by-team",
+                }
+                result = store.resolve_conflict(
+                    conflict["conflict_id"],
+                    strategy="merge",
+                    merged_payload=merged,
+                )
+                self.assertEqual(result["status"], "resolved")
+                self.assertEqual(result["resolution"], "merge")
+                self.assertEqual(result["record"]["count"], 3)
+                self.assertEqual(
+                    result["record"]["behavior"], "agreed-by-team"
+                )
+            finally:
+                store.close()
+
+    def test_resolve_conflict_is_idempotent_on_replay(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            store = SurveyStore(storage_dir=temp_dir)
+            try:
+                conflict, original = self._create_observation_conflict(store)
+                first = store.resolve_conflict(
+                    conflict["conflict_id"], strategy="keep_local"
+                )
+                second = store.resolve_conflict(
+                    conflict["conflict_id"], strategy="keep_server"
+                )
+                self.assertEqual(first["status"], "resolved")
+                self.assertEqual(second["status"], "resolved")
+                self.assertTrue(second.get("idempotent_replay"))
+                # First call's outcome wins; second call's strategy is ignored.
+                self.assertEqual(second["record"]["count"], 4)
+            finally:
+                store.close()
+
+    def test_resolve_conflict_rejects_bad_strategy_and_unknown_id(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            store = SurveyStore(storage_dir=temp_dir)
+            try:
+                with self.assertRaises(ValueError):
+                    store.resolve_conflict("anything", strategy="ignore")
+                with self.assertRaises(KeyError):
+                    store.resolve_conflict(
+                        "conflict_does_not_exist",
+                        strategy="keep_server",
+                    )
+            finally:
+                store.close()
+
     def test_sync_push_replayed_equivalent_observation_is_treated_as_no_op(self):
         with tempfile.TemporaryDirectory() as temp_dir:
             store = SurveyStore(storage_dir=temp_dir)
@@ -1284,11 +1444,16 @@ class SurveyStoreTests(unittest.TestCase):
                     if item["filename"] == "bundle_manifest.json"
                 )
                 bundle_manifest_payload = json.loads(bundle_manifest["content"])
-                self.assertEqual(
-                    bundle_manifest_payload["taxonomy_packages"][0][
-                        "taxonomy_release_id"
-                    ],
-                    "taxonomy_seed_release_2026_04_23",
+                # Release ID is date-stamped at bootstrap; instead of pinning
+                # the historic 2026-04-23 value, assert the manifest carries
+                # a well-formed seed-release identifier that namespaces the
+                # current bootstrap date.
+                exported_release_id = bundle_manifest_payload[
+                    "taxonomy_packages"
+                ][0]["taxonomy_release_id"]
+                self.assertRegex(
+                    exported_release_id,
+                    r"^taxonomy_seed_release_\d{4}_\d{2}_\d{2}$",
                 )
                 self.assertIn(
                     "checksum", bundle_manifest_payload["taxonomy_packages"][0]

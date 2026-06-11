@@ -1,8 +1,14 @@
-"""Algo-D / P0-W1: temperature scaling for the trained V7 student model.
+r"""Algo-D / P0-W1: temperature scaling for the trained V7 student model.
 
 Writes a calibration.json compatible with backend/main.py:load_model() which
 reads `temperature`, `ece_after`, `model_version`. ECE_before and ECE_after
 are computed with the standard equal-width-binning estimator (15 bins).
+
+This docstring is a raw string (r-prefix) so the Windows example paths
+below keep their literal backslashes. Without the prefix, 'data' followed
+by a backslash and 'xc_expanded' would be parsed as a truncated hex
+escape (Python sees \x then an underscore) and the repo-wide AST sweep /
+compileall chokes here.
 
 Usage (Windows):
 
