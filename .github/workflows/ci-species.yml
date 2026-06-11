@@ -92,7 +92,16 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Prepare environment
-        run: cp .env.example .env
+        run: |
+          cp .env.example .env
+          # Seed the writable backend-data bind-mount source with the contract
+          # JSON files baked into the image. Without this, the empty default
+          # host directory (./deploy/pilot/volumes/backend-data) masks
+          # /app/backend/data inside the container at startup, causing
+          # SurveyStore/TaxonomyCatalog loaders to find no protocols and the
+          # /api/health endpoint to never reach 200.
+          mkdir -p deploy/pilot/volumes/backend-data
+          cp backend/data/*.json deploy/pilot/volumes/backend-data/
 
       - name: Build application image
         run: docker build -t biodiversity-field-survey:ci .
@@ -108,7 +117,10 @@ jobs:
             fi
             sleep 5
           done
-          docker compose logs
+          echo "=== docker compose ps ==="
+          docker compose ps
+          echo "=== docker compose logs (tail 200) ==="
+          docker compose logs --tail 200
           exit 1
 
       - name: Stop stack
