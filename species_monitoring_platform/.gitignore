@@ -19,13 +19,21 @@ frontend/android/release-signing.env
 KEYSTORE_INFO.txt
 
 backend/static/
-backend/data/detections/
 backend/.xc_api_key
 
 frontend/node_modules/
 frontend/dist/
 
-data/
+# backend/data/ : top-level JSON files are contract assets (survey_protocols,
+# taxonomy_packages, china_birds, vertebrate_export_profiles, platform_config,
+# survey_sites, *_taxonomy_seed) — REQUIRED by tests + runtime, tracked in git.
+# Only mutable runtime subdirectories (detections/, images/, survey_store/,
+# taxonomy_releases/, taxonomy_sources/, biodiversity_references/,
+# birdnet_classifiers/, fewshot_detectors/, multimodal_surveys/) are ignored.
+backend/data/*/
+
+# Top-level data/ (model artifacts, generic mutable state) stays ignored.
+/data/
 checkpoints/
 checkpoints_gpu_baseline/
 checkpoints_gpu_lite/

@@ -1,0 +1,79 @@
+{
+  "platform": {
+    "name": "Ecoacoustic Index Platform",
+    "name_zh": "声景生态指数平台",
+    "short_name": "EcoAcoustic",
+    "short_name_zh": "声景指数",
+    "subtitle": "Soundscape analysis and ecosystem health monitoring for conservation research",
+    "subtitle_zh": "面向保护研究的声景分析与生态系统健康监测",
+    "version": "7.0.0",
+    "institution": "Cornell Lab of Ornithology",
+    "institution_zh": "康奈尔大学鸟类学实验室",
+    "logo_url": ""
+  },
+  "target_species": {
+    "scientific_name": "Gorsachius magnificus",
+    "common_name": "White-eared Night Heron",
+    "common_name_zh": "海南鳽",
+    "gbif_query": "Gorsachius magnificus",
+    "inat_query": "Gorsachius magnificus"
+  },
+  "study_region": {
+    "name": "Southern China",
+    "name_zh": "华南地区",
+    "center_lat": 24.7,
+    "center_lon": 110.5,
+    "default_zoom": 5,
+    "country_code": "CN",
+    "ebird_region": "CN-GX",
+    "bounding_box": {
+      "min_lat": 18.0,
+      "max_lat": 32.0,
+      "min_lon": 100.0,
+      "max_lon": 122.0
+    }
+  },
+  "map": {
+    "tile_url": "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+    "tile_attribution": "&copy; OpenStreetMap contributors",
+    "max_zoom": 18
+  },
+  "features": {
+    "birdnet_comparison": true,
+    "sdm_display": false,
+    "embeddings_analysis": true,
+    "camera_trap": false,
+    "multi_group_entry": false,
+    "xeno_canto_search": true,
+    "ebird_integration": true,
+    "gbif_integration": true,
+    "inat_integration": true,
+    "realtime_streaming": false,
+    "image_analysis": false,
+    "batch_import": true,
+    "html_report": false,
+    "darwin_core_export": true,
+    "user_accounts": false,
+    "soundscape_analysis": true,
+    "phenology": true,
+    "occupancy_modeling": true,
+    "fewshot_detection": true,
+    "alert_push": true
+  },
+  "theme": {
+    "primary_color": "#B31B1B",
+    "secondary_color": "#006699",
+    "accent_color": "#0D7377",
+    "chart_colors": [
+      "#006699", "#0D7377", "#2D6A4F", "#B31B1B", "#A2998B",
+      "#4A7C59", "#1B4965", "#9FAD9F", "#D4A373", "#5C4033"
+    ]
+  },
+  "analysis": {
+    "default_top_k": 5,
+    "confidence_threshold": 0.1,
+    "max_upload_mb": 100,
+    "max_image_mb": 20,
+    "max_batch_files": 50
+  }
+}

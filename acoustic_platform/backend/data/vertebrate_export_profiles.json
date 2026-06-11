@@ -1,0 +1,2802 @@
+{
+  "schema_version": "1.0",
+  "profile_version": "2026-04-19",
+  "export_strategy": "shared_core_official_exports",
+  "supported_jurisdictions": [
+    "mainland_china",
+    "taiwan"
+  ],
+  "supported_protocols": [
+    "bird_line_transect",
+    "bird_point_count",
+    "mammal_trap_net",
+    "herp_infrared_camera"
+  ],
+  "required_bundle_outputs": [
+    "event_summary",
+    "species_list",
+    "effort_summary",
+    "station_or_route_summary"
+  ],
+  "shared_masking_policy": {
+    "storage_rule": "canonical_coordinates_remain_unmasked_in_backend",
+    "export_rule": "mask_sensitive_coordinates_at_export_time_only",
+    "masking_trigger_sources": [
+      "taxonomy.status_flags.is_sensitive",
+      "taxonomy.status_flags.is_protected",
+      "record.protected_coordinate_policy"
+    ],
+    "masked_coordinate_fields": [
+      "latitude",
+      "longitude",
+      "geometry_wkt"
+    ],
+    "masking_output_fields": [
+      "coordinate_masked",
+      "masking_reason",
+      "display_latitude",
+      "display_longitude",
+      "display_geometry_wkt"
+    ]
+  },
+  "profiles": {
+    "mainland_china": {
+      "display_name": "Mainland China terrestrial vertebrate export bundle",
+      "column_language": "zh_cn",
+      "taxon_name_priority": [
+        "taxonomy.names.zh_cn",
+        "taxonomy.names.en",
+        "taxonomy.names.scientific"
+      ],
+      "status_field_priority": [
+        "taxonomy.status_flags.mainland_china.protection_level",
+        "taxonomy.status_flags.mainland_china.red_list_status",
+        "taxonomy.status_flags.mainland_china.is_sensitive"
+      ],
+      "protocols": {
+        "bird_line_transect": {
+          "program": "terrestrial_vertebrates",
+          "sampling_unit": "transect_walk",
+          "event_payload_keys": {
+            "required": [
+              "transect_name",
+              "transect_length_m",
+              "survey_round",
+              "observer_count",
+              "weather",
+              "distance_walked_m",
+              "duration_min"
+            ],
+            "optional": [
+              "pace_m_per_min",
+              "wind_code",
+              "cloud_code",
+              "precipitation_code",
+              "habitat_type",
+              "disturbance_notes"
+            ]
+          },
+          "record_payload_keys": {
+            "required": [
+              "taxon_id",
+              "detection_type",
+              "count",
+              "observation_time"
+            ],
+            "optional": [
+              "distance_band",
+              "bearing",
+              "behavior",
+              "breeding_code",
+              "flock_size",
+              "route_segment_id"
+            ]
+          },
+          "bundle_outputs": {
+            "event_summary": {
+              "file_stub": "bird_line_transect_event_summary_cn",
+              "format": "csv",
+              "columns": [
+                {
+                  "column_id": "event_id",
+                  "label": "事件编号",
+                  "source": "event.event_id"
+                },
+                {
+                  "column_id": "project_id",
+                  "label": "项目编号",
+                  "source": "event.project_id"
+                },
+                {
+                  "column_id": "site_id",
+                  "label": "样地编号",
+                  "source": "event.site_id"
+                },
+                {
+                  "column_id": "transect_name",
+                  "label": "样线名称",
+                  "source": "event.event_payload.transect_name"
+                },
+                {
+                  "column_id": "transect_length_m",
+                  "label": "样线长度(米)",
+                  "source": "event.event_payload.transect_length_m"
+                },
+                {
+                  "column_id": "survey_round",
+                  "label": "调查轮次",
+                  "source": "event.event_payload.survey_round"
+                },
+                {
+                  "column_id": "observer_count",
+                  "label": "观察人数",
+                  "source": "event.event_payload.observer_count"
+                },
+                {
+                  "column_id": "weather",
+                  "label": "天气",
+                  "source": "event.event_payload.weather"
+                },
+                {
+                  "column_id": "start_time",
+                  "label": "开始时间",
+                  "source": "event.start_time"
+                },
+                {
+                  "column_id": "end_time",
+                  "label": "结束时间",
+                  "source": "event.end_time"
+                },
+                {
+                  "column_id": "distance_walked_m",
+                  "label": "行进距离(米)",
+                  "source": "event.event_payload.distance_walked_m"
+                },
+                {
+                  "column_id": "duration_min",
+                  "label": "调查时长(分钟)",
+                  "source": "event.event_payload.duration_min"
+                },
+                {
+                  "column_id": "pace_m_per_min",
+                  "label": "平均速度(米/分钟)",
+                  "source": "event.event_payload.pace_m_per_min"
+                },
+                {
+                  "column_id": "wind_code",
+                  "label": "风力代码",
+                  "source": "event.event_payload.wind_code"
+                },
+                {
+                  "column_id": "cloud_code",
+                  "label": "云量代码",
+                  "source": "event.event_payload.cloud_code"
+                },
+                {
+                  "column_id": "precipitation_code",
+                  "label": "降水代码",
+                  "source": "event.event_payload.precipitation_code"
+                },
+                {
+                  "column_id": "habitat_type",
+                  "label": "生境类型",
+                  "source": "event.event_payload.habitat_type"
+                },
+                {
+                  "column_id": "disturbance_notes",
+                  "label": "干扰说明",
+                  "source": "event.event_payload.disturbance_notes"
+                },
+                {
+                  "column_id": "route_id",
+                  "label": "样线资产编号",
+                  "source": "event.design_asset_id"
+                }
+              ],
+              "masking_relevant_fields": []
+            },
+            "species_list": {
+              "file_stub": "bird_line_transect_species_list_cn",
+              "format": "csv",
+              "aggregation": "group_by_event_and_taxon",
+              "columns": [
+                {
+                  "column_id": "event_id",
+                  "label": "事件编号",
+                  "source": "event.event_id"
+                },
+                {
+                  "column_id": "taxon_id",
+                  "label": "物种内部编号",
+                  "source": "record.record_payload.taxon_id"
+                },
+                {
+                  "column_id": "species_name_cn",
+                  "label": "中文名",
+                  "source": "taxonomy.names.zh_cn"
+                },
+                {
+                  "column_id": "scientific_name",
+                  "label": "学名",
+                  "source": "taxonomy.names.scientific"
+                },
+                {
+                  "column_id": "english_name",
+                  "label": "英文名",
+                  "source": "taxonomy.names.en"
+                },
+                {
+                  "column_id": "detection_type",
+                  "label": "发现方式",
+                  "source": "record.record_payload.detection_type"
+                },
+                {
+                  "column_id": "total_count",
+                  "label": "数量合计",
+                  "source": "record.record_payload.count",
+                  "aggregation": "sum"
+                },
+                {
+                  "column_id": "first_observation_time",
+                  "label": "首次记录时间",
+                  "source": "record.record_payload.observation_time",
+                  "aggregation": "min"
+                },
+                {
+                  "column_id": "distance_band",
+                  "label": "距离带",
+                  "source": "record.record_payload.distance_band"
+                },
+                {
+                  "column_id": "behavior",
+                  "label": "行为",
+                  "source": "record.record_payload.behavior"
+                },
+                {
+                  "column_id": "breeding_code",
+                  "label": "繁殖代码",
+                  "source": "record.record_payload.breeding_code"
+                },
+                {
+                  "column_id": "flock_size",
+                  "label": "群体大小",
+                  "source": "record.record_payload.flock_size",
+                  "aggregation": "max"
+                },
+                {
+                  "column_id": "route_segment_id",
+                  "label": "样线分段",
+                  "source": "record.record_payload.route_segment_id"
+                },
+                {
+                  "column_id": "protection_level",
+                  "label": "保护等级",
+                  "source": "taxonomy.status_flags.mainland_china.protection_level"
+                },
+                {
+                  "column_id": "red_list_status",
+                  "label": "红色名录等级",
+                  "source": "taxonomy.status_flags.mainland_china.red_list_status"
+                },
+                {
+                  "column_id": "coordinate_masked",
+                  "label": "坐标已脱敏",
+                  "source": "record.export_mask.coordinate_masked"
+                },
+                {
+                  "column_id": "masking_reason",
+                  "label": "脱敏原因",
+                  "source": "record.export_mask.masking_reason"
+                },
+                {
+                  "column_id": "display_latitude",
+                  "label": "展示纬度",
+                  "source": "record.export_mask.display_latitude"
+                },
+                {
+                  "column_id": "display_longitude",
+                  "label": "展示经度",
+                  "source": "record.export_mask.display_longitude"
+                }
+              ],
+              "masking_relevant_fields": [
+                "display_latitude",
+                "display_longitude",
+                "coordinate_masked",
+                "masking_reason"
+              ]
+            },
+            "effort_summary": {
+              "file_stub": "bird_line_transect_effort_summary_cn",
+              "format": "csv",
+              "columns": [
+                {
+                  "column_id": "event_id",
+                  "label": "事件编号",
+                  "source": "event.event_id"
+                },
+                {
+                  "column_id": "transect_name",
+                  "label": "样线名称",
+                  "source": "event.event_payload.transect_name"
+                },
+                {
+                  "column_id": "transect_length_m",
+                  "label": "样线长度(米)",
+                  "source": "event.event_payload.transect_length_m"
+                },
+                {
+                  "column_id": "distance_walked_m",
+                  "label": "行进距离(米)",
+                  "source": "event.event_payload.distance_walked_m"
+                },
+                {
+                  "column_id": "duration_min",
+                  "label": "调查时长(分钟)",
+                  "source": "event.event_payload.duration_min"
+                },
+                {
+                  "column_id": "pace_m_per_min",
+                  "label": "平均速度(米/分钟)",
+                  "source": "event.event_payload.pace_m_per_min"
+                },
+                {
+                  "column_id": "observer_count",
+                  "label": "观察人数",
+                  "source": "event.event_payload.observer_count"
+                },
+                {
+                  "column_id": "record_count",
+                  "label": "记录条数",
+                  "source": "records",
+                  "aggregation": "count"
+                },
+                {
+                  "column_id": "species_richness",
+                  "label": "物种数",
+                  "source": "record.record_payload.taxon_id",
+                  "aggregation": "count_distinct"
+                },
+                {
+                  "column_id": "track_log_id",
+                  "label": "轨迹编号",
+                  "source": "event.track_log_id"
+                }
+              ],
+              "masking_relevant_fields": []
+            },
+            "station_or_route_summary": {
+              "file_stub": "bird_line_transect_route_summary_cn",
+              "format": "csv",
+              "aggregation": "group_by_route_or_segment",
+              "columns": [
+                {
+                  "column_id": "route_id",
+                  "label": "样线资产编号",
+                  "source": "event.design_asset_id"
+                },
+                {
+                  "column_id": "transect_name",
+                  "label": "样线名称",
+                  "source": "event.event_payload.transect_name"
+                },
+                {
+                  "column_id": "route_segment_id",
+                  "label": "样线分段",
+                  "source": "record.record_payload.route_segment_id"
+                },
+                {
+                  "column_id": "event_count",
+                  "label": "事件数",
+                  "source": "event.event_id",
+                  "aggregation": "count_distinct"
+                },
+                {
+                  "column_id": "species_richness",
+                  "label": "物种数",
+                  "source": "record.record_payload.taxon_id",
+                  "aggregation": "count_distinct"
+                },
+                {
+                  "column_id": "individual_total",
+                  "label": "个体总数",
+                  "source": "record.record_payload.count",
+                  "aggregation": "sum"
+                },
+                {
+                  "column_id": "distance_walked_m",
+                  "label": "行进距离(米)",
+                  "source": "event.event_payload.distance_walked_m",
+                  "aggregation": "sum"
+                },
+                {
+                  "column_id": "duration_min",
+                  "label": "调查时长(分钟)",
+                  "source": "event.event_payload.duration_min",
+                  "aggregation": "sum"
+                }
+              ],
+              "masking_relevant_fields": []
+            }
+          }
+        },
+        "bird_point_count": {
+          "program": "terrestrial_vertebrates",
+          "sampling_unit": "point_count_station_visit",
+          "event_payload_keys": {
+            "required": [
+              "point_id",
+              "point_visit_index",
+              "point_duration_min",
+              "observer_count",
+              "weather"
+            ],
+            "optional": [
+              "point_radius_m",
+              "station_count",
+              "travel_distance_m",
+              "wind_code",
+              "cloud_code",
+              "precipitation_code",
+              "habitat_type"
+            ]
+          },
+          "record_payload_keys": {
+            "required": [
+              "taxon_id",
+              "detection_type",
+              "count",
+              "observation_time"
+            ],
+            "optional": [
+              "distance_band",
+              "behavior",
+              "breeding_code",
+              "point_id",
+              "flock_size",
+              "confidence"
+            ]
+          },
+          "bundle_outputs": {
+            "event_summary": {
+              "file_stub": "bird_point_count_event_summary_cn",
+              "format": "csv",
+              "columns": [
+                {
+                  "column_id": "event_id",
+                  "label": "事件编号",
+                  "source": "event.event_id"
+                },
+                {
+                  "column_id": "project_id",
+                  "label": "项目编号",
+                  "source": "event.project_id"
+                },
+                {
+                  "column_id": "site_id",
+                  "label": "样地编号",
+                  "source": "event.site_id"
+                },
+                {
+                  "column_id": "point_id",
+                  "label": "样点编号",
+                  "source": "event.event_payload.point_id"
+                },
+                {
+                  "column_id": "point_visit_index",
+                  "label": "重复次数",
+                  "source": "event.event_payload.point_visit_index"
+                },
+                {
+                  "column_id": "point_duration_min",
+                  "label": "计数时长(分钟)",
+                  "source": "event.event_payload.point_duration_min"
+                },
+                {
+                  "column_id": "observer_count",
+                  "label": "观察人数",
+                  "source": "event.event_payload.observer_count"
+                },
+                {
+                  "column_id": "weather",
+                  "label": "天气",
+                  "source": "event.event_payload.weather"
+                },
+                {
+                  "column_id": "start_time",
+                  "label": "开始时间",
+                  "source": "event.start_time"
+                },
+                {
+                  "column_id": "end_time",
+                  "label": "结束时间",
+                  "source": "event.end_time"
+                },
+                {
+                  "column_id": "point_radius_m",
+                  "label": "观察半径(米)",
+                  "source": "event.event_payload.point_radius_m"
+                },
+                {
+                  "column_id": "station_count",
+                  "label": "样点总数",
+                  "source": "event.event_payload.station_count"
+                },
+                {
+                  "column_id": "travel_distance_m",
+                  "label": "点间移动距离(米)",
+                  "source": "event.event_payload.travel_distance_m"
+                },
+                {
+                  "column_id": "wind_code",
+                  "label": "风力代码",
+                  "source": "event.event_payload.wind_code"
+                },
+                {
+                  "column_id": "cloud_code",
+                  "label": "云量代码",
+                  "source": "event.event_payload.cloud_code"
+                },
+                {
+                  "column_id": "precipitation_code",
+                  "label": "降水代码",
+                  "source": "event.event_payload.precipitation_code"
+                },
+                {
+                  "column_id": "habitat_type",
+                  "label": "生境类型",
+                  "source": "event.event_payload.habitat_type"
+                }
+              ],
+              "masking_relevant_fields": []
+            },
+            "species_list": {
+              "file_stub": "bird_point_count_species_list_cn",
+              "format": "csv",
+              "aggregation": "group_by_event_point_and_taxon",
+              "columns": [
+                {
+                  "column_id": "event_id",
+                  "label": "事件编号",
+                  "source": "event.event_id"
+                },
+                {
+                  "column_id": "point_id",
+                  "label": "样点编号",
+                  "source": "record.record_payload.point_id",
+                  "fallback_source": "event.event_payload.point_id"
+                },
+                {
+                  "column_id": "taxon_id",
+                  "label": "物种内部编号",
+                  "source": "record.record_payload.taxon_id"
+                },
+                {
+                  "column_id": "species_name_cn",
+                  "label": "中文名",
+                  "source": "taxonomy.names.zh_cn"
+                },
+                {
+                  "column_id": "scientific_name",
+                  "label": "学名",
+                  "source": "taxonomy.names.scientific"
+                },
+                {
+                  "column_id": "english_name",
+                  "label": "英文名",
+                  "source": "taxonomy.names.en"
+                },
+                {
+                  "column_id": "detection_type",
+                  "label": "发现方式",
+                  "source": "record.record_payload.detection_type"
+                },
+                {
+                  "column_id": "total_count",
+                  "label": "数量合计",
+                  "source": "record.record_payload.count",
+                  "aggregation": "sum"
+                },
+                {
+                  "column_id": "first_observation_time",
+                  "label": "首次记录时间",
+                  "source": "record.record_payload.observation_time",
+                  "aggregation": "min"
+                },
+                {
+                  "column_id": "distance_band",
+                  "label": "距离带",
+                  "source": "record.record_payload.distance_band"
+                },
+                {
+                  "column_id": "behavior",
+                  "label": "行为",
+                  "source": "record.record_payload.behavior"
+                },
+                {
+                  "column_id": "breeding_code",
+                  "label": "繁殖代码",
+                  "source": "record.record_payload.breeding_code"
+                },
+                {
+                  "column_id": "flock_size",
+                  "label": "群体大小",
+                  "source": "record.record_payload.flock_size",
+                  "aggregation": "max"
+                },
+                {
+                  "column_id": "confidence",
+                  "label": "Confidence",
+                  "source": "record.record_payload.confidence",
+                  "aggregation": "max"
+                },
+                {
+                  "column_id": "protection_level",
+                  "label": "保护等级",
+                  "source": "taxonomy.status_flags.mainland_china.protection_level"
+                },
+                {
+                  "column_id": "coordinate_masked",
+                  "label": "坐标已脱敏",
+                  "source": "record.export_mask.coordinate_masked"
+                },
+                {
+                  "column_id": "masking_reason",
+                  "label": "脱敏原因",
+                  "source": "record.export_mask.masking_reason"
+                },
+                {
+                  "column_id": "display_latitude",
+                  "label": "展示纬度",
+                  "source": "record.export_mask.display_latitude"
+                },
+                {
+                  "column_id": "display_longitude",
+                  "label": "展示经度",
+                  "source": "record.export_mask.display_longitude"
+                }
+              ],
+              "masking_relevant_fields": [
+                "display_latitude",
+                "display_longitude",
+                "coordinate_masked",
+                "masking_reason"
+              ]
+            },
+            "effort_summary": {
+              "file_stub": "bird_point_count_effort_summary_cn",
+              "format": "csv",
+              "columns": [
+                {
+                  "column_id": "event_id",
+                  "label": "事件编号",
+                  "source": "event.event_id"
+                },
+                {
+                  "column_id": "point_id",
+                  "label": "样点编号",
+                  "source": "event.event_payload.point_id"
+                },
+                {
+                  "column_id": "point_visit_index",
+                  "label": "重复次数",
+                  "source": "event.event_payload.point_visit_index"
+                },
+                {
+                  "column_id": "point_duration_min",
+                  "label": "计数时长(分钟)",
+                  "source": "event.event_payload.point_duration_min"
+                },
+                {
+                  "column_id": "point_radius_m",
+                  "label": "观察半径(米)",
+                  "source": "event.event_payload.point_radius_m"
+                },
+                {
+                  "column_id": "station_count",
+                  "label": "样点总数",
+                  "source": "event.event_payload.station_count"
+                },
+                {
+                  "column_id": "travel_distance_m",
+                  "label": "点间移动距离(米)",
+                  "source": "event.event_payload.travel_distance_m"
+                },
+                {
+                  "column_id": "observer_count",
+                  "label": "观察人数",
+                  "source": "event.event_payload.observer_count"
+                },
+                {
+                  "column_id": "record_count",
+                  "label": "记录条数",
+                  "source": "records",
+                  "aggregation": "count"
+                },
+                {
+                  "column_id": "species_richness",
+                  "label": "物种数",
+                  "source": "record.record_payload.taxon_id",
+                  "aggregation": "count_distinct"
+                }
+              ],
+              "masking_relevant_fields": []
+            },
+            "station_or_route_summary": {
+              "file_stub": "bird_point_count_station_summary_cn",
+              "format": "csv",
+              "aggregation": "group_by_point_id",
+              "columns": [
+                {
+                  "column_id": "point_id",
+                  "label": "样点编号",
+                  "source": "event.event_payload.point_id"
+                },
+                {
+                  "column_id": "event_count",
+                  "label": "重复调查次数",
+                  "source": "event.event_id",
+                  "aggregation": "count_distinct"
+                },
+                {
+                  "column_id": "species_richness",
+                  "label": "物种数",
+                  "source": "record.record_payload.taxon_id",
+                  "aggregation": "count_distinct"
+                },
+                {
+                  "column_id": "individual_total",
+                  "label": "个体总数",
+                  "source": "record.record_payload.count",
+                  "aggregation": "sum"
+                },
+                {
+                  "column_id": "point_duration_min",
+                  "label": "累计调查时长(分钟)",
+                  "source": "event.event_payload.point_duration_min",
+                  "aggregation": "sum"
+                },
+                {
+                  "column_id": "travel_distance_m",
+                  "label": "累计移动距离(米)",
+                  "source": "event.event_payload.travel_distance_m",
+                  "aggregation": "sum"
+                }
+              ],
+              "masking_relevant_fields": []
+            }
+          }
+        },
+        "mammal_trap_net": {
+          "program": "terrestrial_vertebrates",
+          "sampling_unit": "trap_station_night_or_check",
+          "event_payload_keys": {
+            "required": [
+              "trap_method",
+              "trap_station_count",
+              "deployment_start_time",
+              "deployment_end_time",
+              "bait_type",
+              "observer_count"
+            ],
+            "optional": [
+              "trap_model",
+              "check_interval_h",
+              "microhabitat",
+              "permit_reference",
+              "welfare_notes",
+              "trap_nights",
+              "active_trap_count",
+              "checked_station_count"
+            ]
+          },
+          "record_payload_keys": {
+            "required": [
+              "taxon_id",
+              "capture_status",
+              "observation_time",
+              "trap_station_id"
+            ],
+            "optional": [
+              "protected_coordinate_policy",
+              "mark_code",
+              "sex",
+              "life_stage",
+              "body_mass_g",
+              "release_status",
+              "sample_collected"
+            ]
+          },
+          "bundle_outputs": {
+            "event_summary": {
+              "file_stub": "mammal_trap_net_event_summary_cn",
+              "format": "csv",
+              "columns": [
+                {
+                  "column_id": "event_id",
+                  "label": "事件编号",
+                  "source": "event.event_id"
+                },
+                {
+                  "column_id": "project_id",
+                  "label": "项目编号",
+                  "source": "event.project_id"
+                },
+                {
+                  "column_id": "site_id",
+                  "label": "样地编号",
+                  "source": "event.site_id"
+                },
+                {
+                  "column_id": "trap_method",
+                  "label": "样法类型",
+                  "source": "event.event_payload.trap_method"
+                },
+                {
+                  "column_id": "trap_station_count",
+                  "label": "布设站点数",
+                  "source": "event.event_payload.trap_station_count"
+                },
+                {
+                  "column_id": "deployment_start_time",
+                  "label": "布设开始时间",
+                  "source": "event.event_payload.deployment_start_time"
+                },
+                {
+                  "column_id": "deployment_end_time",
+                  "label": "布设结束时间",
+                  "source": "event.event_payload.deployment_end_time"
+                },
+                {
+                  "column_id": "bait_type",
+                  "label": "诱饵类型",
+                  "source": "event.event_payload.bait_type"
+                },
+                {
+                  "column_id": "observer_count",
+                  "label": "调查人数",
+                  "source": "event.event_payload.observer_count"
+                },
+                {
+                  "column_id": "trap_model",
+                  "label": "器具型号",
+                  "source": "event.event_payload.trap_model"
+                },
+                {
+                  "column_id": "check_interval_h",
+                  "label": "检查间隔(小时)",
+                  "source": "event.event_payload.check_interval_h"
+                },
+                {
+                  "column_id": "microhabitat",
+                  "label": "微生境",
+                  "source": "event.event_payload.microhabitat"
+                },
+                {
+                  "column_id": "permit_reference",
+                  "label": "许可编号",
+                  "source": "event.event_payload.permit_reference"
+                },
+                {
+                  "column_id": "welfare_notes",
+                  "label": "福利说明",
+                  "source": "event.event_payload.welfare_notes"
+                }
+              ],
+              "masking_relevant_fields": []
+            },
+            "species_list": {
+              "file_stub": "mammal_trap_net_species_list_cn",
+              "format": "csv",
+              "aggregation": "group_by_event_and_taxon",
+              "columns": [
+                {
+                  "column_id": "event_id",
+                  "label": "事件编号",
+                  "source": "event.event_id"
+                },
+                {
+                  "column_id": "taxon_id",
+                  "label": "物种内部编号",
+                  "source": "record.record_payload.taxon_id"
+                },
+                {
+                  "column_id": "species_name_cn",
+                  "label": "中文名",
+                  "source": "taxonomy.names.zh_cn"
+                },
+                {
+                  "column_id": "scientific_name",
+                  "label": "学名",
+                  "source": "taxonomy.names.scientific"
+                },
+                {
+                  "column_id": "english_name",
+                  "label": "英文名",
+                  "source": "taxonomy.names.en"
+                },
+                {
+                  "column_id": "capture_status",
+                  "label": "捕获状态",
+                  "source": "record.record_payload.capture_status"
+                },
+                {
+                  "column_id": "first_observation_time",
+                  "label": "首次记录时间",
+                  "source": "record.record_payload.observation_time",
+                  "aggregation": "min"
+                },
+                {
+                  "column_id": "trap_station_id",
+                  "label": "捕获站点",
+                  "source": "record.record_payload.trap_station_id"
+                },
+                {
+                  "column_id": "sex",
+                  "label": "性别",
+                  "source": "record.record_payload.sex"
+                },
+                {
+                  "column_id": "life_stage",
+                  "label": "龄级",
+                  "source": "record.record_payload.life_stage"
+                },
+                {
+                  "column_id": "body_mass_g",
+                  "label": "体重(克)",
+                  "source": "record.record_payload.body_mass_g",
+                  "aggregation": "max"
+                },
+                {
+                  "column_id": "release_status",
+                  "label": "放归状态",
+                  "source": "record.record_payload.release_status"
+                },
+                {
+                  "column_id": "sample_collected",
+                  "label": "是否采样",
+                  "source": "record.record_payload.sample_collected"
+                },
+                {
+                  "column_id": "protection_level",
+                  "label": "保护等级",
+                  "source": "taxonomy.status_flags.mainland_china.protection_level"
+                },
+                {
+                  "column_id": "coordinate_masked",
+                  "label": "坐标已脱敏",
+                  "source": "record.export_mask.coordinate_masked"
+                },
+                {
+                  "column_id": "masking_reason",
+                  "label": "脱敏原因",
+                  "source": "record.export_mask.masking_reason"
+                },
+                {
+                  "column_id": "display_latitude",
+                  "label": "展示纬度",
+                  "source": "record.export_mask.display_latitude"
+                },
+                {
+                  "column_id": "display_longitude",
+                  "label": "展示经度",
+                  "source": "record.export_mask.display_longitude"
+                }
+              ],
+              "masking_relevant_fields": [
+                "display_latitude",
+                "display_longitude",
+                "coordinate_masked",
+                "masking_reason"
+              ]
+            },
+            "effort_summary": {
+              "file_stub": "mammal_trap_net_effort_summary_cn",
+              "format": "csv",
+              "columns": [
+                {
+                  "column_id": "event_id",
+                  "label": "事件编号",
+                  "source": "event.event_id"
+                },
+                {
+                  "column_id": "trap_method",
+                  "label": "样法类型",
+                  "source": "event.event_payload.trap_method"
+                },
+                {
+                  "column_id": "trap_station_count",
+                  "label": "布设站点数",
+                  "source": "event.event_payload.trap_station_count"
+                },
+                {
+                  "column_id": "active_trap_count",
+                  "label": "有效器具数",
+                  "source": "event.event_payload.active_trap_count"
+                },
+                {
+                  "column_id": "checked_station_count",
+                  "label": "检查站点数",
+                  "source": "event.event_payload.checked_station_count"
+                },
+                {
+                  "column_id": "trap_nights",
+                  "label": "夹夜数",
+                  "source": "event.event_payload.trap_nights"
+                },
+                {
+                  "column_id": "check_interval_h",
+                  "label": "检查间隔(小时)",
+                  "source": "event.event_payload.check_interval_h"
+                },
+                {
+                  "column_id": "capture_record_count",
+                  "label": "捕获记录数",
+                  "source": "records",
+                  "aggregation": "count"
+                },
+                {
+                  "column_id": "species_richness",
+                  "label": "物种数",
+                  "source": "record.record_payload.taxon_id",
+                  "aggregation": "count_distinct"
+                }
+              ],
+              "masking_relevant_fields": []
+            },
+            "station_or_route_summary": {
+              "file_stub": "mammal_trap_net_station_summary_cn",
+              "format": "csv",
+              "aggregation": "group_by_trap_station_id",
+              "columns": [
+                {
+                  "column_id": "trap_station_id",
+                  "label": "捕获站点",
+                  "source": "record.record_payload.trap_station_id"
+                },
+                {
+                  "column_id": "event_count",
+                  "label": "事件数",
+                  "source": "event.event_id",
+                  "aggregation": "count_distinct"
+                },
+                {
+                  "column_id": "species_richness",
+                  "label": "物种数",
+                  "source": "record.record_payload.taxon_id",
+                  "aggregation": "count_distinct"
+                },
+                {
+                  "column_id": "capture_total",
+                  "label": "捕获记录数",
+                  "source": "record.record_id",
+                  "aggregation": "count_distinct"
+                },
+                {
+                  "column_id": "active_trap_count",
+                  "label": "有效器具数",
+                  "source": "event.event_payload.active_trap_count",
+                  "aggregation": "sum"
+                },
+                {
+                  "column_id": "trap_nights",
+                  "label": "累计夹夜数",
+                  "source": "event.event_payload.trap_nights",
+                  "aggregation": "sum"
+                }
+              ],
+              "masking_relevant_fields": []
+            }
+          }
+        },
+        "herp_infrared_camera": {
+          "program": "terrestrial_vertebrates",
+          "sampling_unit": "camera_station_deployment_cycle",
+          "event_payload_keys": {
+            "required": [
+              "camera_station_id",
+              "camera_action",
+              "deployment_start_time",
+              "deployment_end_time",
+              "camera_model",
+              "observer_count"
+            ],
+            "optional": [
+              "sensor_mode",
+              "trigger_interval_s",
+              "camera_height_cm",
+              "orientation",
+              "bait_lure",
+              "habitat",
+              "camera_days",
+              "active_camera_count",
+              "file_count"
+            ]
+          },
+          "record_payload_keys": {
+            "required": [
+              "taxon_id",
+              "observation_time",
+              "evidence_type",
+              "camera_station_id"
+            ],
+            "optional": [
+              "individual_count",
+              "life_stage",
+              "behavior",
+              "media_file_id",
+              "sequence_id",
+              "confidence"
+            ]
+          },
+          "bundle_outputs": {
+            "event_summary": {
+              "file_stub": "herp_infrared_camera_event_summary_cn",
+              "format": "csv",
+              "columns": [
+                {
+                  "column_id": "event_id",
+                  "label": "事件编号",
+                  "source": "event.event_id"
+                },
+                {
+                  "column_id": "project_id",
+                  "label": "项目编号",
+                  "source": "event.project_id"
+                },
+                {
+                  "column_id": "site_id",
+                  "label": "样地编号",
+                  "source": "event.site_id"
+                },
+                {
+                  "column_id": "camera_station_id",
+                  "label": "相机站点编号",
+                  "source": "event.event_payload.camera_station_id"
+                },
+                {
+                  "column_id": "camera_action",
+                  "label": "相机操作",
+                  "source": "event.event_payload.camera_action"
+                },
+                {
+                  "column_id": "deployment_start_time",
+                  "label": "布设开始时间",
+                  "source": "event.event_payload.deployment_start_time"
+                },
+                {
+                  "column_id": "deployment_end_time",
+                  "label": "布设结束时间",
+                  "source": "event.event_payload.deployment_end_time"
+                },
+                {
+                  "column_id": "camera_model",
+                  "label": "相机型号",
+                  "source": "event.event_payload.camera_model"
+                },
+                {
+                  "column_id": "observer_count",
+                  "label": "调查人数",
+                  "source": "event.event_payload.observer_count"
+                },
+                {
+                  "column_id": "sensor_mode",
+                  "label": "感应模式",
+                  "source": "event.event_payload.sensor_mode"
+                },
+                {
+                  "column_id": "trigger_interval_s",
+                  "label": "触发间隔(秒)",
+                  "source": "event.event_payload.trigger_interval_s"
+                },
+                {
+                  "column_id": "camera_height_cm",
+                  "label": "安装高度(厘米)",
+                  "source": "event.event_payload.camera_height_cm"
+                },
+                {
+                  "column_id": "orientation",
+                  "label": "朝向",
+                  "source": "event.event_payload.orientation"
+                },
+                {
+                  "column_id": "bait_lure",
+                  "label": "诱引措施",
+                  "source": "event.event_payload.bait_lure"
+                },
+                {
+                  "column_id": "habitat",
+                  "label": "生境",
+                  "source": "event.event_payload.habitat"
+                }
+              ],
+              "masking_relevant_fields": []
+            },
+            "species_list": {
+              "file_stub": "herp_infrared_camera_species_list_cn",
+              "format": "csv",
+              "aggregation": "group_by_event_station_and_taxon",
+              "columns": [
+                {
+                  "column_id": "event_id",
+                  "label": "事件编号",
+                  "source": "event.event_id"
+                },
+                {
+                  "column_id": "camera_station_id",
+                  "label": "相机站点编号",
+                  "source": "record.record_payload.camera_station_id",
+                  "fallback_source": "event.event_payload.camera_station_id"
+                },
+                {
+                  "column_id": "taxon_id",
+                  "label": "物种内部编号",
+                  "source": "record.record_payload.taxon_id"
+                },
+                {
+                  "column_id": "species_name_cn",
+                  "label": "中文名",
+                  "source": "taxonomy.names.zh_cn"
+                },
+                {
+                  "column_id": "scientific_name",
+                  "label": "学名",
+                  "source": "taxonomy.names.scientific"
+                },
+                {
+                  "column_id": "english_name",
+                  "label": "英文名",
+                  "source": "taxonomy.names.en"
+                },
+                {
+                  "column_id": "evidence_type",
+                  "label": "证据类型",
+                  "source": "record.record_payload.evidence_type"
+                },
+                {
+                  "column_id": "first_observation_time",
+                  "label": "首次记录时间",
+                  "source": "record.record_payload.observation_time",
+                  "aggregation": "min"
+                },
+                {
+                  "column_id": "individual_count",
+                  "label": "个体数",
+                  "source": "record.record_payload.individual_count",
+                  "aggregation": "sum"
+                },
+                {
+                  "column_id": "life_stage",
+                  "label": "龄级",
+                  "source": "record.record_payload.life_stage"
+                },
+                {
+                  "column_id": "behavior",
+                  "label": "行为",
+                  "source": "record.record_payload.behavior"
+                },
+                {
+                  "column_id": "media_file_id",
+                  "label": "媒体文件编号",
+                  "source": "record.record_payload.media_file_id"
+                },
+                {
+                  "column_id": "sequence_id",
+                  "label": "序列编号",
+                  "source": "record.record_payload.sequence_id"
+                },
+                {
+                  "column_id": "confidence",
+                  "label": "可信度",
+                  "source": "record.record_payload.confidence"
+                },
+                {
+                  "column_id": "protection_level",
+                  "label": "保护等级",
+                  "source": "taxonomy.status_flags.mainland_china.protection_level"
+                },
+                {
+                  "column_id": "coordinate_masked",
+                  "label": "坐标已脱敏",
+                  "source": "record.export_mask.coordinate_masked"
+                },
+                {
+                  "column_id": "masking_reason",
+                  "label": "脱敏原因",
+                  "source": "record.export_mask.masking_reason"
+                },
+                {
+                  "column_id": "display_latitude",
+                  "label": "展示纬度",
+                  "source": "record.export_mask.display_latitude"
+                },
+                {
+                  "column_id": "display_longitude",
+                  "label": "展示经度",
+                  "source": "record.export_mask.display_longitude"
+                }
+              ],
+              "masking_relevant_fields": [
+                "display_latitude",
+                "display_longitude",
+                "coordinate_masked",
+                "masking_reason"
+              ]
+            },
+            "effort_summary": {
+              "file_stub": "herp_infrared_camera_effort_summary_cn",
+              "format": "csv",
+              "columns": [
+                {
+                  "column_id": "event_id",
+                  "label": "事件编号",
+                  "source": "event.event_id"
+                },
+                {
+                  "column_id": "camera_station_id",
+                  "label": "相机站点编号",
+                  "source": "event.event_payload.camera_station_id"
+                },
+                {
+                  "column_id": "camera_action",
+                  "label": "相机操作",
+                  "source": "event.event_payload.camera_action"
+                },
+                {
+                  "column_id": "camera_days",
+                  "label": "相机工作日",
+                  "source": "event.event_payload.camera_days"
+                },
+                {
+                  "column_id": "active_camera_count",
+                  "label": "有效相机数",
+                  "source": "event.event_payload.active_camera_count"
+                },
+                {
+                  "column_id": "file_count",
+                  "label": "文件数",
+                  "source": "event.event_payload.file_count"
+                },
+                {
+                  "column_id": "trigger_interval_s",
+                  "label": "触发间隔(秒)",
+                  "source": "event.event_payload.trigger_interval_s"
+                },
+                {
+                  "column_id": "record_count",
+                  "label": "识别记录数",
+                  "source": "records",
+                  "aggregation": "count"
+                },
+                {
+                  "column_id": "species_richness",
+                  "label": "物种数",
+                  "source": "record.record_payload.taxon_id",
+                  "aggregation": "count_distinct"
+                }
+              ],
+              "masking_relevant_fields": []
+            },
+            "station_or_route_summary": {
+              "file_stub": "herp_infrared_camera_station_summary_cn",
+              "format": "csv",
+              "aggregation": "group_by_camera_station_id",
+              "columns": [
+                {
+                  "column_id": "camera_station_id",
+                  "label": "相机站点编号",
+                  "source": "event.event_payload.camera_station_id"
+                },
+                {
+                  "column_id": "event_count",
+                  "label": "事件数",
+                  "source": "event.event_id",
+                  "aggregation": "count_distinct"
+                },
+                {
+                  "column_id": "species_richness",
+                  "label": "物种数",
+                  "source": "record.record_payload.taxon_id",
+                  "aggregation": "count_distinct"
+                },
+                {
+                  "column_id": "detection_total",
+                  "label": "检测记录数",
+                  "source": "record.record_id",
+                  "aggregation": "count_distinct"
+                },
+                {
+                  "column_id": "camera_days",
+                  "label": "累计相机工作日",
+                  "source": "event.event_payload.camera_days",
+                  "aggregation": "sum"
+                },
+                {
+                  "column_id": "file_count",
+                  "label": "累计文件数",
+                  "source": "event.event_payload.file_count",
+                  "aggregation": "sum"
+                }
+              ],
+              "masking_relevant_fields": []
+            }
+          }
+        }
+      }
+    },
+    "taiwan": {
+      "display_name": "Taiwan terrestrial vertebrate export bundle",
+      "column_language": "zh_tw",
+      "taxon_name_priority": [
+        "taxonomy.names.zh_tw",
+        "taxonomy.names.en",
+        "taxonomy.names.scientific"
+      ],
+      "status_field_priority": [
+        "taxonomy.status_flags.taiwan.protection_level",
+        "taxonomy.status_flags.taiwan.red_list_status",
+        "taxonomy.status_flags.taiwan.is_sensitive"
+      ],
+      "protocols": {
+        "bird_line_transect": {
+          "program": "terrestrial_vertebrates",
+          "sampling_unit": "transect_walk",
+          "event_payload_keys": {
+            "required": [
+              "transect_name",
+              "transect_length_m",
+              "survey_round",
+              "observer_count",
+              "weather",
+              "distance_walked_m",
+              "duration_min"
+            ],
+            "optional": [
+              "pace_m_per_min",
+              "wind_code",
+              "cloud_code",
+              "precipitation_code",
+              "habitat_type",
+              "disturbance_notes"
+            ]
+          },
+          "record_payload_keys": {
+            "required": [
+              "taxon_id",
+              "detection_type",
+              "count",
+              "observation_time"
+            ],
+            "optional": [
+              "distance_band",
+              "bearing",
+              "behavior",
+              "breeding_code",
+              "flock_size",
+              "route_segment_id"
+            ]
+          },
+          "bundle_outputs": {
+            "event_summary": {
+              "file_stub": "bird_line_transect_event_summary_tw",
+              "format": "csv",
+              "columns": [
+                {
+                  "column_id": "event_id",
+                  "label": "事件編號",
+                  "source": "event.event_id"
+                },
+                {
+                  "column_id": "project_id",
+                  "label": "計畫編號",
+                  "source": "event.project_id"
+                },
+                {
+                  "column_id": "site_id",
+                  "label": "樣區編號",
+                  "source": "event.site_id"
+                },
+                {
+                  "column_id": "transect_name",
+                  "label": "樣線名稱",
+                  "source": "event.event_payload.transect_name"
+                },
+                {
+                  "column_id": "transect_length_m",
+                  "label": "樣線長度(公尺)",
+                  "source": "event.event_payload.transect_length_m"
+                },
+                {
+                  "column_id": "survey_round",
+                  "label": "調查輪次",
+                  "source": "event.event_payload.survey_round"
+                },
+                {
+                  "column_id": "observer_count",
+                  "label": "調查人數",
+                  "source": "event.event_payload.observer_count"
+                },
+                {
+                  "column_id": "weather",
+                  "label": "天氣",
+                  "source": "event.event_payload.weather"
+                },
+                {
+                  "column_id": "start_time",
+                  "label": "開始時間",
+                  "source": "event.start_time"
+                },
+                {
+                  "column_id": "end_time",
+                  "label": "結束時間",
+                  "source": "event.end_time"
+                },
+                {
+                  "column_id": "distance_walked_m",
+                  "label": "行走距離(公尺)",
+                  "source": "event.event_payload.distance_walked_m"
+                },
+                {
+                  "column_id": "duration_min",
+                  "label": "調查時長(分鐘)",
+                  "source": "event.event_payload.duration_min"
+                },
+                {
+                  "column_id": "pace_m_per_min",
+                  "label": "平均步速(公尺/分鐘)",
+                  "source": "event.event_payload.pace_m_per_min"
+                },
+                {
+                  "column_id": "wind_code",
+                  "label": "風級代碼",
+                  "source": "event.event_payload.wind_code"
+                },
+                {
+                  "column_id": "cloud_code",
+                  "label": "雲量代碼",
+                  "source": "event.event_payload.cloud_code"
+                },
+                {
+                  "column_id": "precipitation_code",
+                  "label": "降水代碼",
+                  "source": "event.event_payload.precipitation_code"
+                },
+                {
+                  "column_id": "habitat_type",
+                  "label": "棲地類型",
+                  "source": "event.event_payload.habitat_type"
+                },
+                {
+                  "column_id": "disturbance_notes",
+                  "label": "干擾備註",
+                  "source": "event.event_payload.disturbance_notes"
+                }
+              ],
+              "masking_relevant_fields": []
+            },
+            "species_list": {
+              "file_stub": "bird_line_transect_species_list_tw",
+              "format": "csv",
+              "aggregation": "group_by_event_and_taxon",
+              "columns": [
+                {
+                  "column_id": "event_id",
+                  "label": "事件編號",
+                  "source": "event.event_id"
+                },
+                {
+                  "column_id": "taxon_id",
+                  "label": "物種內部編號",
+                  "source": "record.record_payload.taxon_id"
+                },
+                {
+                  "column_id": "species_name_tw",
+                  "label": "中文名",
+                  "source": "taxonomy.names.zh_tw"
+                },
+                {
+                  "column_id": "scientific_name",
+                  "label": "學名",
+                  "source": "taxonomy.names.scientific"
+                },
+                {
+                  "column_id": "english_name",
+                  "label": "英文名",
+                  "source": "taxonomy.names.en"
+                },
+                {
+                  "column_id": "detection_type",
+                  "label": "發現方式",
+                  "source": "record.record_payload.detection_type"
+                },
+                {
+                  "column_id": "total_count",
+                  "label": "數量合計",
+                  "source": "record.record_payload.count",
+                  "aggregation": "sum"
+                },
+                {
+                  "column_id": "first_observation_time",
+                  "label": "首次紀錄時間",
+                  "source": "record.record_payload.observation_time",
+                  "aggregation": "min"
+                },
+                {
+                  "column_id": "distance_band",
+                  "label": "距離帶",
+                  "source": "record.record_payload.distance_band"
+                },
+                {
+                  "column_id": "behavior",
+                  "label": "行為",
+                  "source": "record.record_payload.behavior"
+                },
+                {
+                  "column_id": "breeding_code",
+                  "label": "繁殖代碼",
+                  "source": "record.record_payload.breeding_code"
+                },
+                {
+                  "column_id": "flock_size",
+                  "label": "群體大小",
+                  "source": "record.record_payload.flock_size",
+                  "aggregation": "max"
+                },
+                {
+                  "column_id": "route_segment_id",
+                  "label": "樣線分段",
+                  "source": "record.record_payload.route_segment_id"
+                },
+                {
+                  "column_id": "protection_level",
+                  "label": "保育等級",
+                  "source": "taxonomy.status_flags.taiwan.protection_level"
+                },
+                {
+                  "column_id": "red_list_status",
+                  "label": "紅皮書狀態",
+                  "source": "taxonomy.status_flags.taiwan.red_list_status"
+                },
+                {
+                  "column_id": "coordinate_masked",
+                  "label": "座標已遮罩",
+                  "source": "record.export_mask.coordinate_masked"
+                },
+                {
+                  "column_id": "masking_reason",
+                  "label": "遮罩原因",
+                  "source": "record.export_mask.masking_reason"
+                },
+                {
+                  "column_id": "display_latitude",
+                  "label": "顯示緯度",
+                  "source": "record.export_mask.display_latitude"
+                },
+                {
+                  "column_id": "display_longitude",
+                  "label": "顯示經度",
+                  "source": "record.export_mask.display_longitude"
+                }
+              ],
+              "masking_relevant_fields": [
+                "display_latitude",
+                "display_longitude",
+                "coordinate_masked",
+                "masking_reason"
+              ]
+            },
+            "effort_summary": {
+              "file_stub": "bird_line_transect_effort_summary_tw",
+              "format": "csv",
+              "columns": [
+                {
+                  "column_id": "event_id",
+                  "label": "事件編號",
+                  "source": "event.event_id"
+                },
+                {
+                  "column_id": "transect_name",
+                  "label": "樣線名稱",
+                  "source": "event.event_payload.transect_name"
+                },
+                {
+                  "column_id": "transect_length_m",
+                  "label": "樣線長度(公尺)",
+                  "source": "event.event_payload.transect_length_m"
+                },
+                {
+                  "column_id": "distance_walked_m",
+                  "label": "行走距離(公尺)",
+                  "source": "event.event_payload.distance_walked_m"
+                },
+                {
+                  "column_id": "duration_min",
+                  "label": "調查時長(分鐘)",
+                  "source": "event.event_payload.duration_min"
+                },
+                {
+                  "column_id": "pace_m_per_min",
+                  "label": "平均步速(公尺/分鐘)",
+                  "source": "event.event_payload.pace_m_per_min"
+                },
+                {
+                  "column_id": "observer_count",
+                  "label": "調查人數",
+                  "source": "event.event_payload.observer_count"
+                },
+                {
+                  "column_id": "record_count",
+                  "label": "紀錄筆數",
+                  "source": "records",
+                  "aggregation": "count"
+                },
+                {
+                  "column_id": "species_richness",
+                  "label": "物種數",
+                  "source": "record.record_payload.taxon_id",
+                  "aggregation": "count_distinct"
+                }
+              ],
+              "masking_relevant_fields": []
+            },
+            "station_or_route_summary": {
+              "file_stub": "bird_line_transect_route_summary_tw",
+              "format": "csv",
+              "aggregation": "group_by_route_or_segment",
+              "columns": [
+                {
+                  "column_id": "route_id",
+                  "label": "樣線資產編號",
+                  "source": "event.design_asset_id"
+                },
+                {
+                  "column_id": "transect_name",
+                  "label": "樣線名稱",
+                  "source": "event.event_payload.transect_name"
+                },
+                {
+                  "column_id": "route_segment_id",
+                  "label": "樣線分段",
+                  "source": "record.record_payload.route_segment_id"
+                },
+                {
+                  "column_id": "event_count",
+                  "label": "事件數",
+                  "source": "event.event_id",
+                  "aggregation": "count_distinct"
+                },
+                {
+                  "column_id": "species_richness",
+                  "label": "物種數",
+                  "source": "record.record_payload.taxon_id",
+                  "aggregation": "count_distinct"
+                },
+                {
+                  "column_id": "individual_total",
+                  "label": "個體總數",
+                  "source": "record.record_payload.count",
+                  "aggregation": "sum"
+                },
+                {
+                  "column_id": "distance_walked_m",
+                  "label": "行走距離(公尺)",
+                  "source": "event.event_payload.distance_walked_m",
+                  "aggregation": "sum"
+                },
+                {
+                  "column_id": "duration_min",
+                  "label": "調查時長(分鐘)",
+                  "source": "event.event_payload.duration_min",
+                  "aggregation": "sum"
+                }
+              ],
+              "masking_relevant_fields": []
+            }
+          }
+        },
+        "bird_point_count": {
+          "program": "terrestrial_vertebrates",
+          "sampling_unit": "point_count_station_visit",
+          "event_payload_keys": {
+            "required": [
+              "point_id",
+              "point_visit_index",
+              "point_duration_min",
+              "observer_count",
+              "weather"
+            ],
+            "optional": [
+              "point_radius_m",
+              "station_count",
+              "travel_distance_m",
+              "wind_code",
+              "cloud_code",
+              "precipitation_code",
+              "habitat_type"
+            ]
+          },
+          "record_payload_keys": {
+            "required": [
+              "taxon_id",
+              "detection_type",
+              "count",
+              "observation_time"
+            ],
+            "optional": [
+              "distance_band",
+              "behavior",
+              "breeding_code",
+              "point_id",
+              "flock_size",
+              "confidence"
+            ]
+          },
+          "bundle_outputs": {
+            "event_summary": {
+              "file_stub": "bird_point_count_event_summary_tw",
+              "format": "csv",
+              "columns": [
+                {
+                  "column_id": "event_id",
+                  "label": "事件編號",
+                  "source": "event.event_id"
+                },
+                {
+                  "column_id": "project_id",
+                  "label": "計畫編號",
+                  "source": "event.project_id"
+                },
+                {
+                  "column_id": "site_id",
+                  "label": "樣區編號",
+                  "source": "event.site_id"
+                },
+                {
+                  "column_id": "point_id",
+                  "label": "樣點編號",
+                  "source": "event.event_payload.point_id"
+                },
+                {
+                  "column_id": "point_visit_index",
+                  "label": "重複次數",
+                  "source": "event.event_payload.point_visit_index"
+                },
+                {
+                  "column_id": "point_duration_min",
+                  "label": "計數時長(分鐘)",
+                  "source": "event.event_payload.point_duration_min"
+                },
+                {
+                  "column_id": "observer_count",
+                  "label": "調查人數",
+                  "source": "event.event_payload.observer_count"
+                },
+                {
+                  "column_id": "weather",
+                  "label": "天氣",
+                  "source": "event.event_payload.weather"
+                },
+                {
+                  "column_id": "start_time",
+                  "label": "開始時間",
+                  "source": "event.start_time"
+                },
+                {
+                  "column_id": "end_time",
+                  "label": "結束時間",
+                  "source": "event.end_time"
+                },
+                {
+                  "column_id": "point_radius_m",
+                  "label": "觀察半徑(公尺)",
+                  "source": "event.event_payload.point_radius_m"
+                },
+                {
+                  "column_id": "station_count",
+                  "label": "樣點總數",
+                  "source": "event.event_payload.station_count"
+                },
+                {
+                  "column_id": "travel_distance_m",
+                  "label": "點間移動距離(公尺)",
+                  "source": "event.event_payload.travel_distance_m"
+                },
+                {
+                  "column_id": "wind_code",
+                  "label": "風級代碼",
+                  "source": "event.event_payload.wind_code"
+                },
+                {
+                  "column_id": "cloud_code",
+                  "label": "雲量代碼",
+                  "source": "event.event_payload.cloud_code"
+                },
+                {
+                  "column_id": "precipitation_code",
+                  "label": "降水代碼",
+                  "source": "event.event_payload.precipitation_code"
+                },
+                {
+                  "column_id": "habitat_type",
+                  "label": "棲地類型",
+                  "source": "event.event_payload.habitat_type"
+                }
+              ],
+              "masking_relevant_fields": []
+            },
+            "species_list": {
+              "file_stub": "bird_point_count_species_list_tw",
+              "format": "csv",
+              "aggregation": "group_by_event_point_and_taxon",
+              "columns": [
+                {
+                  "column_id": "event_id",
+                  "label": "事件編號",
+                  "source": "event.event_id"
+                },
+                {
+                  "column_id": "point_id",
+                  "label": "樣點編號",
+                  "source": "record.record_payload.point_id",
+                  "fallback_source": "event.event_payload.point_id"
+                },
+                {
+                  "column_id": "taxon_id",
+                  "label": "物種內部編號",
+                  "source": "record.record_payload.taxon_id"
+                },
+                {
+                  "column_id": "species_name_tw",
+                  "label": "中文名",
+                  "source": "taxonomy.names.zh_tw"
+                },
+                {
+                  "column_id": "scientific_name",
+                  "label": "學名",
+                  "source": "taxonomy.names.scientific"
+                },
+                {
+                  "column_id": "english_name",
+                  "label": "英文名",
+                  "source": "taxonomy.names.en"
+                },
+                {
+                  "column_id": "detection_type",
+                  "label": "發現方式",
+                  "source": "record.record_payload.detection_type"
+                },
+                {
+                  "column_id": "total_count",
+                  "label": "數量合計",
+                  "source": "record.record_payload.count",
+                  "aggregation": "sum"
+                },
+                {
+                  "column_id": "first_observation_time",
+                  "label": "首次紀錄時間",
+                  "source": "record.record_payload.observation_time",
+                  "aggregation": "min"
+                },
+                {
+                  "column_id": "distance_band",
+                  "label": "距離帶",
+                  "source": "record.record_payload.distance_band"
+                },
+                {
+                  "column_id": "behavior",
+                  "label": "行為",
+                  "source": "record.record_payload.behavior"
+                },
+                {
+                  "column_id": "breeding_code",
+                  "label": "繁殖代碼",
+                  "source": "record.record_payload.breeding_code"
+                },
+                {
+                  "column_id": "flock_size",
+                  "label": "群體大小",
+                  "source": "record.record_payload.flock_size",
+                  "aggregation": "max"
+                },
+                {
+                  "column_id": "confidence",
+                  "label": "Confidence",
+                  "source": "record.record_payload.confidence",
+                  "aggregation": "max"
+                },
+                {
+                  "column_id": "protection_level",
+                  "label": "保育等級",
+                  "source": "taxonomy.status_flags.taiwan.protection_level"
+                },
+                {
+                  "column_id": "coordinate_masked",
+                  "label": "座標已遮罩",
+                  "source": "record.export_mask.coordinate_masked"
+                },
+                {
+                  "column_id": "masking_reason",
+                  "label": "遮罩原因",
+                  "source": "record.export_mask.masking_reason"
+                },
+                {
+                  "column_id": "display_latitude",
+                  "label": "顯示緯度",
+                  "source": "record.export_mask.display_latitude"
+                },
+                {
+                  "column_id": "display_longitude",
+                  "label": "顯示經度",
+                  "source": "record.export_mask.display_longitude"
+                }
+              ],
+              "masking_relevant_fields": [
+                "display_latitude",
+                "display_longitude",
+                "coordinate_masked",
+                "masking_reason"
+              ]
+            },
+            "effort_summary": {
+              "file_stub": "bird_point_count_effort_summary_tw",
+              "format": "csv",
+              "columns": [
+                {
+                  "column_id": "event_id",
+                  "label": "事件編號",
+                  "source": "event.event_id"
+                },
+                {
+                  "column_id": "point_id",
+                  "label": "樣點編號",
+                  "source": "event.event_payload.point_id"
+                },
+                {
+                  "column_id": "point_visit_index",
+                  "label": "重複次數",
+                  "source": "event.event_payload.point_visit_index"
+                },
+                {
+                  "column_id": "point_duration_min",
+                  "label": "計數時長(分鐘)",
+                  "source": "event.event_payload.point_duration_min"
+                },
+                {
+                  "column_id": "point_radius_m",
+                  "label": "觀察半徑(公尺)",
+                  "source": "event.event_payload.point_radius_m"
+                },
+                {
+                  "column_id": "station_count",
+                  "label": "樣點總數",
+                  "source": "event.event_payload.station_count"
+                },
+                {
+                  "column_id": "travel_distance_m",
+                  "label": "點間移動距離(公尺)",
+                  "source": "event.event_payload.travel_distance_m"
+                },
+                {
+                  "column_id": "observer_count",
+                  "label": "調查人數",
+                  "source": "event.event_payload.observer_count"
+                },
+                {
+                  "column_id": "record_count",
+                  "label": "紀錄筆數",
+                  "source": "records",
+                  "aggregation": "count"
+                },
+                {
+                  "column_id": "species_richness",
+                  "label": "物種數",
+                  "source": "record.record_payload.taxon_id",
+                  "aggregation": "count_distinct"
+                }
+              ],
+              "masking_relevant_fields": []
+            },
+            "station_or_route_summary": {
+              "file_stub": "bird_point_count_station_summary_tw",
+              "format": "csv",
+              "aggregation": "group_by_point_id",
+              "columns": [
+                {
+                  "column_id": "point_id",
+                  "label": "樣點編號",
+                  "source": "event.event_payload.point_id"
+                },
+                {
+                  "column_id": "event_count",
+                  "label": "重複調查次數",
+                  "source": "event.event_id",
+                  "aggregation": "count_distinct"
+                },
+                {
+                  "column_id": "species_richness",
+                  "label": "物種數",
+                  "source": "record.record_payload.taxon_id",
+                  "aggregation": "count_distinct"
+                },
+                {
+                  "column_id": "individual_total",
+                  "label": "個體總數",
+                  "source": "record.record_payload.count",
+                  "aggregation": "sum"
+                },
+                {
+                  "column_id": "point_duration_min",
+                  "label": "累計調查時長(分鐘)",
+                  "source": "event.event_payload.point_duration_min",
+                  "aggregation": "sum"
+                },
+                {
+                  "column_id": "travel_distance_m",
+                  "label": "累計移動距離(公尺)",
+                  "source": "event.event_payload.travel_distance_m",
+                  "aggregation": "sum"
+                }
+              ],
+              "masking_relevant_fields": []
+            }
+          }
+        },
+        "mammal_trap_net": {
+          "program": "terrestrial_vertebrates",
+          "sampling_unit": "trap_station_night_or_check",
+          "event_payload_keys": {
+            "required": [
+              "trap_method",
+              "trap_station_count",
+              "deployment_start_time",
+              "deployment_end_time",
+              "bait_type",
+              "observer_count"
+            ],
+            "optional": [
+              "trap_model",
+              "check_interval_h",
+              "microhabitat",
+              "permit_reference",
+              "welfare_notes",
+              "trap_nights",
+              "active_trap_count",
+              "checked_station_count"
+            ]
+          },
+          "record_payload_keys": {
+            "required": [
+              "taxon_id",
+              "capture_status",
+              "observation_time",
+              "trap_station_id"
+            ],
+            "optional": [
+              "protected_coordinate_policy",
+              "mark_code",
+              "sex",
+              "life_stage",
+              "body_mass_g",
+              "release_status",
+              "sample_collected"
+            ]
+          },
+          "bundle_outputs": {
+            "event_summary": {
+              "file_stub": "mammal_trap_net_event_summary_tw",
+              "format": "csv",
+              "columns": [
+                {
+                  "column_id": "event_id",
+                  "label": "事件編號",
+                  "source": "event.event_id"
+                },
+                {
+                  "column_id": "project_id",
+                  "label": "計畫編號",
+                  "source": "event.project_id"
+                },
+                {
+                  "column_id": "site_id",
+                  "label": "樣區編號",
+                  "source": "event.site_id"
+                },
+                {
+                  "column_id": "trap_method",
+                  "label": "樣法類型",
+                  "source": "event.event_payload.trap_method"
+                },
+                {
+                  "column_id": "trap_station_count",
+                  "label": "布設站點數",
+                  "source": "event.event_payload.trap_station_count"
+                },
+                {
+                  "column_id": "deployment_start_time",
+                  "label": "布設開始時間",
+                  "source": "event.event_payload.deployment_start_time"
+                },
+                {
+                  "column_id": "deployment_end_time",
+                  "label": "布設結束時間",
+                  "source": "event.event_payload.deployment_end_time"
+                },
+                {
+                  "column_id": "bait_type",
+                  "label": "誘餌類型",
+                  "source": "event.event_payload.bait_type"
+                },
+                {
+                  "column_id": "observer_count",
+                  "label": "調查人數",
+                  "source": "event.event_payload.observer_count"
+                },
+                {
+                  "column_id": "trap_model",
+                  "label": "器具型號",
+                  "source": "event.event_payload.trap_model"
+                },
+                {
+                  "column_id": "check_interval_h",
+                  "label": "檢查間隔(小時)",
+                  "source": "event.event_payload.check_interval_h"
+                },
+                {
+                  "column_id": "microhabitat",
+                  "label": "微棲地",
+                  "source": "event.event_payload.microhabitat"
+                },
+                {
+                  "column_id": "permit_reference",
+                  "label": "許可編號",
+                  "source": "event.event_payload.permit_reference"
+                },
+                {
+                  "column_id": "welfare_notes",
+                  "label": "動物福利備註",
+                  "source": "event.event_payload.welfare_notes"
+                }
+              ],
+              "masking_relevant_fields": []
+            },
+            "species_list": {
+              "file_stub": "mammal_trap_net_species_list_tw",
+              "format": "csv",
+              "aggregation": "group_by_event_and_taxon",
+              "columns": [
+                {
+                  "column_id": "event_id",
+                  "label": "事件編號",
+                  "source": "event.event_id"
+                },
+                {
+                  "column_id": "taxon_id",
+                  "label": "物種內部編號",
+                  "source": "record.record_payload.taxon_id"
+                },
+                {
+                  "column_id": "species_name_tw",
+                  "label": "中文名",
+                  "source": "taxonomy.names.zh_tw"
+                },
+                {
+                  "column_id": "scientific_name",
+                  "label": "學名",
+                  "source": "taxonomy.names.scientific"
+                },
+                {
+                  "column_id": "english_name",
+                  "label": "英文名",
+                  "source": "taxonomy.names.en"
+                },
+                {
+                  "column_id": "capture_status",
+                  "label": "捕捉狀態",
+                  "source": "record.record_payload.capture_status"
+                },
+                {
+                  "column_id": "first_observation_time",
+                  "label": "首次紀錄時間",
+                  "source": "record.record_payload.observation_time",
+                  "aggregation": "min"
+                },
+                {
+                  "column_id": "trap_station_id",
+                  "label": "捕捉站點",
+                  "source": "record.record_payload.trap_station_id"
+                },
+                {
+                  "column_id": "sex",
+                  "label": "性別",
+                  "source": "record.record_payload.sex"
+                },
+                {
+                  "column_id": "life_stage",
+                  "label": "齡級",
+                  "source": "record.record_payload.life_stage"
+                },
+                {
+                  "column_id": "body_mass_g",
+                  "label": "體重(公克)",
+                  "source": "record.record_payload.body_mass_g",
+                  "aggregation": "max"
+                },
+                {
+                  "column_id": "release_status",
+                  "label": "放歸狀態",
+                  "source": "record.record_payload.release_status"
+                },
+                {
+                  "column_id": "sample_collected",
+                  "label": "是否採樣",
+                  "source": "record.record_payload.sample_collected"
+                },
+                {
+                  "column_id": "protection_level",
+                  "label": "保育等級",
+                  "source": "taxonomy.status_flags.taiwan.protection_level"
+                },
+                {
+                  "column_id": "coordinate_masked",
+                  "label": "座標已遮罩",
+                  "source": "record.export_mask.coordinate_masked"
+                },
+                {
+                  "column_id": "masking_reason",
+                  "label": "遮罩原因",
+                  "source": "record.export_mask.masking_reason"
+                },
+                {
+                  "column_id": "display_latitude",
+                  "label": "顯示緯度",
+                  "source": "record.export_mask.display_latitude"
+                },
+                {
+                  "column_id": "display_longitude",
+                  "label": "顯示經度",
+                  "source": "record.export_mask.display_longitude"
+                }
+              ],
+              "masking_relevant_fields": [
+                "display_latitude",
+                "display_longitude",
+                "coordinate_masked",
+                "masking_reason"
+              ]
+            },
+            "effort_summary": {
+              "file_stub": "mammal_trap_net_effort_summary_tw",
+              "format": "csv",
+              "columns": [
+                {
+                  "column_id": "event_id",
+                  "label": "事件編號",
+                  "source": "event.event_id"
+                },
+                {
+                  "column_id": "trap_method",
+                  "label": "樣法類型",
+                  "source": "event.event_payload.trap_method"
+                },
+                {
+                  "column_id": "trap_station_count",
+                  "label": "布設站點數",
+                  "source": "event.event_payload.trap_station_count"
+                },
+                {
+                  "column_id": "active_trap_count",
+                  "label": "有效器具數",
+                  "source": "event.event_payload.active_trap_count"
+                },
+                {
+                  "column_id": "checked_station_count",
+                  "label": "檢查站點數",
+                  "source": "event.event_payload.checked_station_count"
+                },
+                {
+                  "column_id": "trap_nights",
+                  "label": "陷阱夜數",
+                  "source": "event.event_payload.trap_nights"
+                },
+                {
+                  "column_id": "check_interval_h",
+                  "label": "檢查間隔(小時)",
+                  "source": "event.event_payload.check_interval_h"
+                },
+                {
+                  "column_id": "capture_record_count",
+                  "label": "捕捉紀錄數",
+                  "source": "records",
+                  "aggregation": "count"
+                },
+                {
+                  "column_id": "species_richness",
+                  "label": "物種數",
+                  "source": "record.record_payload.taxon_id",
+                  "aggregation": "count_distinct"
+                }
+              ],
+              "masking_relevant_fields": []
+            },
+            "station_or_route_summary": {
+              "file_stub": "mammal_trap_net_station_summary_tw",
+              "format": "csv",
+              "aggregation": "group_by_trap_station_id",
+              "columns": [
+                {
+                  "column_id": "trap_station_id",
+                  "label": "捕捉站點",
+                  "source": "record.record_payload.trap_station_id"
+                },
+                {
+                  "column_id": "event_count",
+                  "label": "事件數",
+                  "source": "event.event_id",
+                  "aggregation": "count_distinct"
+                },
+                {
+                  "column_id": "species_richness",
+                  "label": "物種數",
+                  "source": "record.record_payload.taxon_id",
+                  "aggregation": "count_distinct"
+                },
+                {
+                  "column_id": "capture_total",
+                  "label": "捕捉紀錄數",
+                  "source": "record.record_id",
+                  "aggregation": "count_distinct"
+                },
+                {
+                  "column_id": "active_trap_count",
+                  "label": "有效器具數",
+                  "source": "event.event_payload.active_trap_count",
+                  "aggregation": "sum"
+                },
+                {
+                  "column_id": "trap_nights",
+                  "label": "累計陷阱夜數",
+                  "source": "event.event_payload.trap_nights",
+                  "aggregation": "sum"
+                }
+              ],
+              "masking_relevant_fields": []
+            }
+          }
+        },
+        "herp_infrared_camera": {
+          "program": "terrestrial_vertebrates",
+          "sampling_unit": "camera_station_deployment_cycle",
+          "event_payload_keys": {
+            "required": [
+              "camera_station_id",
+              "camera_action",
+              "deployment_start_time",
+              "deployment_end_time",
+              "camera_model",
+              "observer_count"
+            ],
+            "optional": [
+              "sensor_mode",
+              "trigger_interval_s",
+              "camera_height_cm",
+              "orientation",
+              "bait_lure",
+              "habitat",
+              "camera_days",
+              "active_camera_count",
+              "file_count"
+            ]
+          },
+          "record_payload_keys": {
+            "required": [
+              "taxon_id",
+              "observation_time",
+              "evidence_type",
+              "camera_station_id"
+            ],
+            "optional": [
+              "individual_count",
+              "life_stage",
+              "behavior",
+              "media_file_id",
+              "sequence_id",
+              "confidence"
+            ]
+          },
+          "bundle_outputs": {
+            "event_summary": {
+              "file_stub": "herp_infrared_camera_event_summary_tw",
+              "format": "csv",
+              "columns": [
+                {
+                  "column_id": "event_id",
+                  "label": "事件編號",
+                  "source": "event.event_id"
+                },
+                {
+                  "column_id": "project_id",
+                  "label": "計畫編號",
+                  "source": "event.project_id"
+                },
+                {
+                  "column_id": "site_id",
+                  "label": "樣區編號",
+                  "source": "event.site_id"
+                },
+                {
+                  "column_id": "camera_station_id",
+                  "label": "相機站點編號",
+                  "source": "event.event_payload.camera_station_id"
+                },
+                {
+                  "column_id": "camera_action",
+                  "label": "相機操作",
+                  "source": "event.event_payload.camera_action"
+                },
+                {
+                  "column_id": "deployment_start_time",
+                  "label": "布設開始時間",
+                  "source": "event.event_payload.deployment_start_time"
+                },
+                {
+                  "column_id": "deployment_end_time",
+                  "label": "布設結束時間",
+                  "source": "event.event_payload.deployment_end_time"
+                },
+                {
+                  "column_id": "camera_model",
+                  "label": "相機型號",
+                  "source": "event.event_payload.camera_model"
+                },
+                {
+                  "column_id": "observer_count",
+                  "label": "調查人數",
+                  "source": "event.event_payload.observer_count"
+                },
+                {
+                  "column_id": "sensor_mode",
+                  "label": "感測模式",
+                  "source": "event.event_payload.sensor_mode"
+                },
+                {
+                  "column_id": "trigger_interval_s",
+                  "label": "觸發間隔(秒)",
+                  "source": "event.event_payload.trigger_interval_s"
+                },
+                {
+                  "column_id": "camera_height_cm",
+                  "label": "安裝高度(公分)",
+                  "source": "event.event_payload.camera_height_cm"
+                },
+                {
+                  "column_id": "orientation",
+                  "label": "朝向",
+                  "source": "event.event_payload.orientation"
+                },
+                {
+                  "column_id": "bait_lure",
+                  "label": "誘引措施",
+                  "source": "event.event_payload.bait_lure"
+                },
+                {
+                  "column_id": "habitat",
+                  "label": "棲地",
+                  "source": "event.event_payload.habitat"
+                }
+              ],
+              "masking_relevant_fields": []
+            },
+            "species_list": {
+              "file_stub": "herp_infrared_camera_species_list_tw",
+              "format": "csv",
+              "aggregation": "group_by_event_station_and_taxon",
+              "columns": [
+                {
+                  "column_id": "event_id",
+                  "label": "事件編號",
+                  "source": "event.event_id"
+                },
+                {
+                  "column_id": "camera_station_id",
+                  "label": "相機站點編號",
+                  "source": "record.record_payload.camera_station_id",
+                  "fallback_source": "event.event_payload.camera_station_id"
+                },
+                {
+                  "column_id": "taxon_id",
+                  "label": "物種內部編號",
+                  "source": "record.record_payload.taxon_id"
+                },
+                {
+                  "column_id": "species_name_tw",
+                  "label": "中文名",
+                  "source": "taxonomy.names.zh_tw"
+                },
+                {
+                  "column_id": "scientific_name",
+                  "label": "學名",
+                  "source": "taxonomy.names.scientific"
+                },
+                {
+                  "column_id": "english_name",
+                  "label": "英文名",
+                  "source": "taxonomy.names.en"
+                },
+                {
+                  "column_id": "evidence_type",
+                  "label": "證據類型",
+                  "source": "record.record_payload.evidence_type"
+                },
+                {
+                  "column_id": "first_observation_time",
+                  "label": "首次紀錄時間",
+                  "source": "record.record_payload.observation_time",
+                  "aggregation": "min"
+                },
+                {
+                  "column_id": "individual_count",
+                  "label": "個體數",
+                  "source": "record.record_payload.individual_count",
+                  "aggregation": "sum"
+                },
+                {
+                  "column_id": "life_stage",
+                  "label": "齡級",
+                  "source": "record.record_payload.life_stage"
+                },
+                {
+                  "column_id": "behavior",
+                  "label": "行為",
+                  "source": "record.record_payload.behavior"
+                },
+                {
+                  "column_id": "media_file_id",
+                  "label": "媒體檔案編號",
+                  "source": "record.record_payload.media_file_id"
+                },
+                {
+                  "column_id": "sequence_id",
+                  "label": "序列編號",
+                  "source": "record.record_payload.sequence_id"
+                },
+                {
+                  "column_id": "confidence",
+                  "label": "可信度",
+                  "source": "record.record_payload.confidence"
+                },
+                {
+                  "column_id": "protection_level",
+                  "label": "保育等級",
+                  "source": "taxonomy.status_flags.taiwan.protection_level"
+                },
+                {
+                  "column_id": "coordinate_masked",
+                  "label": "座標已遮罩",
+                  "source": "record.export_mask.coordinate_masked"
+                },
+                {
+                  "column_id": "masking_reason",
+                  "label": "遮罩原因",
+                  "source": "record.export_mask.masking_reason"
+                },
+                {
+                  "column_id": "display_latitude",
+                  "label": "顯示緯度",
+                  "source": "record.export_mask.display_latitude"
+                },
+                {
+                  "column_id": "display_longitude",
+                  "label": "顯示經度",
+                  "source": "record.export_mask.display_longitude"
+                }
+              ],
+              "masking_relevant_fields": [
+                "display_latitude",
+                "display_longitude",
+                "coordinate_masked",
+                "masking_reason"
+              ]
+            },
+            "effort_summary": {
+              "file_stub": "herp_infrared_camera_effort_summary_tw",
+              "format": "csv",
+              "columns": [
+                {
+                  "column_id": "event_id",
+                  "label": "事件編號",
+                  "source": "event.event_id"
+                },
+                {
+                  "column_id": "camera_station_id",
+                  "label": "相機站點編號",
+                  "source": "event.event_payload.camera_station_id"
+                },
+                {
+                  "column_id": "camera_action",
+                  "label": "相機操作",
+                  "source": "event.event_payload.camera_action"
+                },
+                {
+                  "column_id": "camera_days",
+                  "label": "相機工作日",
+                  "source": "event.event_payload.camera_days"
+                },
+                {
+                  "column_id": "active_camera_count",
+                  "label": "有效相機數",
+                  "source": "event.event_payload.active_camera_count"
+                },
+                {
+                  "column_id": "file_count",
+                  "label": "檔案數",
+                  "source": "event.event_payload.file_count"
+                },
+                {
+                  "column_id": "trigger_interval_s",
+                  "label": "觸發間隔(秒)",
+                  "source": "event.event_payload.trigger_interval_s"
+                },
+                {
+                  "column_id": "record_count",
+                  "label": "辨識紀錄數",
+                  "source": "records",
+                  "aggregation": "count"
+                },
+                {
+                  "column_id": "species_richness",
+                  "label": "物種數",
+                  "source": "record.record_payload.taxon_id",
+                  "aggregation": "count_distinct"
+                }
+              ],
+              "masking_relevant_fields": []
+            },
+            "station_or_route_summary": {
+              "file_stub": "herp_infrared_camera_station_summary_tw",
+              "format": "csv",
+              "aggregation": "group_by_camera_station_id",
+              "columns": [
+                {
+                  "column_id": "camera_station_id",
+                  "label": "相機站點編號",
+                  "source": "event.event_payload.camera_station_id"
+                },
+                {
+                  "column_id": "event_count",
+                  "label": "事件數",
+                  "source": "event.event_id",
+                  "aggregation": "count_distinct"
+                },
+                {
+                  "column_id": "species_richness",
+                  "label": "物種數",
+                  "source": "record.record_payload.taxon_id",
+                  "aggregation": "count_distinct"
+                },
+                {
+                  "column_id": "detection_total",
+                  "label": "檢出紀錄數",
+                  "source": "record.record_id",
+                  "aggregation": "count_distinct"
+                },
+                {
+                  "column_id": "camera_days",
+                  "label": "累計相機工作日",
+                  "source": "event.event_payload.camera_days",
+                  "aggregation": "sum"
+                },
+                {
+                  "column_id": "file_count",
+                  "label": "累計檔案數",
+                  "source": "event.event_payload.file_count",
+                  "aggregation": "sum"
+                }
+              ],
+              "masking_relevant_fields": []
+            }
+          }
+        }
+      }
+    }
+  }
+}

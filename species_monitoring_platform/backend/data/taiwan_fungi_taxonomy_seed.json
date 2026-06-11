@@ -1,0 +1,25 @@
+{
+  "entries": [
+    {
+      "internal_taxon_id": "tw-fungi-antrodia-cinnamomea",
+      "scientific_name": "Taiwanofungus camphoratus",
+      "traditional_chinese_name": "牛樟芝",
+      "english_common_name": "Antrodia Camphorata",
+      "group": "macrofungi"
+    },
+    {
+      "internal_taxon_id": "tw-fungi-volvariella-volvacea",
+      "scientific_name": "Volvariella volvacea",
+      "traditional_chinese_name": "草菇",
+      "english_common_name": "Paddy Straw Mushroom",
+      "group": "macrofungi"
+    },
+    {
+      "internal_taxon_id": "tw-fungi-cladonia-squamosa",
+      "scientific_name": "Cladonia squamosa",
+      "traditional_chinese_name": "鱗石蕊",
+      "english_common_name": "Dragon Cladonia",
+      "group": "lichens"
+    }
+  ]
+}

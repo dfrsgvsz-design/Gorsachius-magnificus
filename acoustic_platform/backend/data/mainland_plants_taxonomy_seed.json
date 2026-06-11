@@ -1,0 +1,18 @@
+{
+  "entries": [
+    {
+      "internal_taxon_id": "cn-plant-schima-superba",
+      "scientific_name": "Schima superba",
+      "simplified_chinese_name": "木荷",
+      "english_common_name": "Schima",
+      "group": "trees"
+    },
+    {
+      "internal_taxon_id": "cn-plant-pinus-massoniana",
+      "scientific_name": "Pinus massoniana",
+      "simplified_chinese_name": "马尾松",
+      "english_common_name": "Masson Pine",
+      "group": "trees"
+    }
+  ]
+}

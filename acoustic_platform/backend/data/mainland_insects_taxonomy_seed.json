@@ -1,0 +1,18 @@
+{
+  "entries": [
+    {
+      "internal_taxon_id": "cn-insect-papilio-bianor",
+      "scientific_name": "Papilio bianor",
+      "simplified_chinese_name": "翠凤蝶",
+      "english_common_name": "Chinese Peacock",
+      "group": "butterflies"
+    },
+    {
+      "internal_taxon_id": "cn-insect-actias-ningpoana",
+      "scientific_name": "Actias ningpoana",
+      "simplified_chinese_name": "宁波大蚕蛾",
+      "english_common_name": "Chinese Moon Moth",
+      "group": "moths"
+    }
+  ]
+}
