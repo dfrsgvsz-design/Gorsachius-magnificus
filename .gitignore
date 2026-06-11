@@ -89,3 +89,11 @@ playwright_*.txt
 # Coverage / build reports
 coverage/
 *.coverage
+
+# PChat session archives (transient — never commit)
+Cursor上下文存档-*.md
+
+# Local agent runtime config / scratch (not product code)
+agents.toml
+.agents/.gitignore
+.agents/skills/IMPORTED.md

@@ -191,7 +191,7 @@ _LIFESPAN_STARTUP_HANDLERS: list = []
 _LIFESPAN_SHUTDOWN_HANDLERS: list = []
 _LIFESPAN_REQUIRED_STORES: tuple[str, ...] = (
     "survey_store",
-    "detection_store",
+    "det_store",  # backwards-compat name for the detection store global
     "taxonomy_catalog",
 )
 
@@ -1246,6 +1246,134 @@ def predict_species(
             meta["model_version"] = "v7"
         results[0]["_meta"] = meta
     return results
+
+
+def safe_predict_species(
+    mel_spectrogram: np.ndarray,
+    *,
+    audio_path: Optional[str] = None,
+    top_k: int = 5,
+    use_tta: bool = False,
+    mc_dropout_passes: int = 0,
+):
+    """Algo-D / P2-W3 :: fail-tolerant wrapper around :func:`predict_species`.
+
+    Drop-in replacement. Catches CNN-side failures (OOM, missing model,
+    runtime errors) and falls back to ``inference_fallback`` (BirdNET
+    embedding + KNN, then BirdNET classifier). Returns the same list[dict]
+    shape as :func:`predict_species`.
+
+    Owned by Algo-D; see docs/algo_d/2026-06-10_inference_fallback_design.md.
+    """
+    from inference_fallback import (
+        safe_predict_species as _safe,
+        predict_species_fallback as _fallback,
+    )
+
+    if model is None:
+        if audio_path is None:
+            logger.warning(
+                "safe_predict_species called with no model and no audio_path; "
+                "returning empty fallback result."
+            )
+            return []
+        return _fallback(
+            audio_path,
+            top_k=top_k,
+            reason="no_model",
+            chinese_lookup=lambda sci: species_to_chinese.get(sci, ""),
+            english_lookup=lambda sci: species_to_english.get(sci, ""),
+        )
+
+    if audio_path is None:
+        return predict_species(
+            mel_spectrogram,
+            top_k=top_k,
+            use_tta=use_tta,
+            mc_dropout_passes=mc_dropout_passes,
+        )
+
+    return _safe(
+        primary=predict_species,
+        primary_kwargs={
+            "mel_spectrogram": mel_spectrogram,
+            "top_k": top_k,
+            "use_tta": use_tta,
+            "mc_dropout_passes": mc_dropout_passes,
+        },
+        audio_path=audio_path,
+        top_k=top_k,
+        chinese_lookup=lambda sci: species_to_chinese.get(sci, ""),
+        english_lookup=lambda sci: species_to_english.get(sci, ""),
+    )
+
+
+def safe_predict_species_with_explicit_routing(
+    mel_spectrogram: np.ndarray,
+    *,
+    audio_path: Optional[str] = None,
+    top_k: int = 5,
+    use_tta: bool = False,
+    mc_dropout_passes: int = 0,
+):
+    """Algo-D / P0-W1 PIVOT (GPU-off) :: CNN + proactive BirdNET routing.
+
+    Used when the current CNN head is smaller than the historical mapping
+    (because GPU is unavailable so we trimmed mapping to head=217 instead
+    of retraining to head=223). For species that were trimmed off the
+    mapping (listed in
+    ``backend/checkpoints/explicit_fallback_species.json``), runs
+    ``inference_fallback.proactive_predict_for_explicit_species`` on the
+    same audio file and merges those predictions with the CNN ones,
+    re-sorted by confidence and capped to ``top_k``.
+
+    ``audio_path`` is required for explicit routing. If absent or no sidecar
+    exists, this degrades to plain ``safe_predict_species`` semantics.
+    """
+    cnn_results = safe_predict_species(
+        mel_spectrogram,
+        audio_path=audio_path,
+        top_k=top_k,
+        use_tta=use_tta,
+        mc_dropout_passes=mc_dropout_passes,
+    )
+
+    if not audio_path:
+        return cnn_results
+
+    from inference_fallback import (
+        proactive_predict_for_explicit_species,
+        explicit_fallback_species,
+    )
+
+    if not explicit_fallback_species():
+        return cnn_results
+
+    explicit_results = proactive_predict_for_explicit_species(
+        audio_path,
+        top_k=top_k,
+        chinese_lookup=lambda sci: species_to_chinese.get(sci, ""),
+        english_lookup=lambda sci: species_to_english.get(sci, ""),
+    )
+    if not explicit_results:
+        return cnn_results
+
+    seen: dict[str, dict] = {}
+    for row in (cnn_results + explicit_results):
+        sci = row.get("species_scientific", "")
+        if not sci:
+            continue
+        prior = seen.get(sci)
+        if prior is None or float(row.get("confidence", 0.0)) > float(prior.get("confidence", 0.0)):
+            seen[sci] = row
+    merged = sorted(seen.values(),
+                    key=lambda r: -float(r.get("confidence", 0.0)))[:top_k]
+    if merged:
+        meta = dict(merged[0].get("_meta", {})) if isinstance(merged[0].get("_meta"), dict) else {}
+        meta["explicit_routing_used"] = True
+        meta["explicit_routing_count"] = len(explicit_results)
+        merged[0]["_meta"] = meta
+    return merged
 
 
 # ──────────────────────────────────────────────

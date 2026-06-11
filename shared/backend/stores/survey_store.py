@@ -2531,6 +2531,26 @@ class SurveyStore:
         self._dir = root
         self._dir.mkdir(parents=True, exist_ok=True)
         self._db_path = self._dir / "survey_store.db"
+        # P0 W3 alembic integration: bring the DB up to head BEFORE opening
+        # the long-lived connection so migrations run in their own short-
+        # lived alembic-controlled transaction. Pre-alembic databases get
+        # stamped at baseline without DDL replay. If alembic is missing the
+        # helper logs a warning and returns None — the executescript +
+        # _migrate_schema fallback below still produces a usable schema.
+        try:
+            from .migrations_runtime import apply_survey_store_migrations
+
+            apply_survey_store_migrations(self._db_path)
+        except Exception:  # noqa: BLE001 — never let migrations break boot
+            # Last-resort guard. If alembic itself raises (e.g. corrupted
+            # alembic_version row), fall back to the legacy DDL path so the
+            # API still comes up degraded rather than refusing to start.
+            import logging as _logging
+
+            _logging.getLogger("field_survey_platform.migrations").exception(
+                "survey_store alembic upgrade failed; falling back to "
+                "_init_schema CREATE IF NOT EXISTS path"
+            )
         self._lock = threading.Lock()
         self._conn = sqlite3.connect(
             str(self._db_path),
@@ -2540,6 +2560,9 @@ class SurveyStore:
         self._conn.row_factory = sqlite3.Row
         self._configure_connection()
         with self._lock:
+            # Defensive idempotent CREATE IF NOT EXISTS: covers the
+            # alembic-unavailable case AND any column added by _migrate_schema
+            # before its DDL was promoted into the baseline migration.
             self._conn.executescript(self._DDL)
             with self._conn:
                 self._migrate_schema()
@@ -6005,6 +6028,115 @@ class SurveyStore:
                 }
             )
         return conflicts
+
+    _VALID_CONFLICT_STRATEGIES: frozenset = frozenset(
+        {"keep_local", "keep_server", "merge"}
+    )
+
+    def resolve_conflict(
+        self,
+        conflict_id: str,
+        *,
+        strategy: str,
+        merged_payload: Optional[dict] = None,
+    ) -> dict:
+        """Resolve a stored sync conflict using one of three operator strategies.
+
+        Strategies:
+            keep_local  - incoming payload (the client device's value) wins;
+                          server row is force-upserted to match.
+            keep_server - incoming is discarded; the server row stays as-is
+                          and the conflict is closed.
+            merge       - caller-merged ``merged_payload`` wins; server row is
+                          force-upserted to match. Required for merge.
+
+        Conflict row status flips to ``"resolved"`` in all three cases. The
+        method is idempotent: re-resolving an already-resolved conflict
+        returns the recorded outcome without re-applying the upsert.
+
+        Raises:
+            KeyError    - conflict_id does not exist.
+            ValueError  - strategy not in {keep_local, keep_server, merge}, or
+                          merge strategy passed without a dict ``merged_payload``.
+        """
+
+        strategy_norm = (strategy or "").strip().lower()
+        if strategy_norm not in self._VALID_CONFLICT_STRATEGIES:
+            raise ValueError(
+                f"invalid conflict resolution strategy: {strategy!r} "
+                f"(allowed: {sorted(self._VALID_CONFLICT_STRATEGIES)})"
+            )
+        if strategy_norm == "merge" and not isinstance(merged_payload, dict):
+            raise ValueError(
+                "merge strategy requires a `merged_payload` dict (the final "
+                "merged entity contents)"
+            )
+
+        def _resolve_locked() -> dict:
+            row = self._conn.execute(
+                "SELECT * FROM survey_sync_conflicts WHERE conflict_id=?",
+                (conflict_id,),
+            ).fetchone()
+            if not row:
+                raise KeyError(f"unknown conflict_id: {conflict_id}")
+
+            entity_type = row["entity_type"]
+            entity_id = row["entity_id"]
+            existing_status = (row["status"] or "open").strip().lower()
+            incoming = _loads_json(row["incoming_json"], {})
+            server = _loads_json(row["server_json"], {})
+
+            if existing_status == "resolved":
+                current_record = self._get_by_id_locked(entity_type, entity_id)
+                return {
+                    "conflict_id": conflict_id,
+                    "sync_job_id": row["sync_job_id"],
+                    "resolution": strategy_norm,
+                    "status": "resolved",
+                    "entity_type": entity_type,
+                    "entity_id": entity_id,
+                    "record": current_record or server,
+                    "updated_at": row["updated_at"],
+                    "idempotent_replay": True,
+                }
+
+            if strategy_norm == "keep_server":
+                final_record = (
+                    self._get_by_id_locked(entity_type, entity_id) or server
+                )
+            else:
+                if strategy_norm == "keep_local":
+                    payload = dict(incoming)
+                else:
+                    payload = dict(merged_payload or {})
+                meta = self._ENTITY_META.get(entity_type)
+                if meta and entity_id:
+                    payload[meta["id_field"]] = entity_id
+                payload.pop("server_updated_at", None)
+                payload.pop("base_updated_at", None)
+                final_record = self._apply_entity_upsert_locked(
+                    entity_type, payload
+                )
+
+            now = _utc_now()
+            self._conn.execute(
+                "UPDATE survey_sync_conflicts SET status='resolved', "
+                "updated_at=? WHERE conflict_id=?",
+                (now, conflict_id),
+            )
+
+            return {
+                "conflict_id": conflict_id,
+                "sync_job_id": row["sync_job_id"],
+                "resolution": strategy_norm,
+                "status": "resolved",
+                "entity_type": entity_type,
+                "entity_id": entity_id,
+                "record": final_record,
+                "updated_at": now,
+            }
+
+        return self._run_with_retry(_resolve_locked, write=True)
 
     def delete_entity(self, entity_type: str, entity_id: str) -> bool:
         return self._run_with_retry(

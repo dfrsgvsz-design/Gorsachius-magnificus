@@ -36,6 +36,14 @@ httpx==0.28.1
 # Async SQLite
 aiosqlite==0.22.1
 
+# Schema migrations for survey_store SQLite database (P0 W3).
+# Operators run `python scripts/db_migrate.py upgrade head` / `... downgrade -1`
+# / `... current`. The application also runs `alembic upgrade head` at boot
+# via shared.backend.stores.migrations_runtime; pre-alembic databases are
+# stamped at baseline without re-creating tables.
+alembic==1.13.3
+SQLAlchemy==2.0.36
+
 # Authentication
 PyJWT==2.8.0
 passlib[bcrypt]==1.7.4

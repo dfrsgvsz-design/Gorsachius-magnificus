@@ -506,7 +506,9 @@ async def compare_engines(
             else:
                 seg = np.pad(y, (0, seg_len - len(y)))
             mel = compute_dual_channel_mel(seg, sr=48000)
-            cnn_results = _m.predict_species(mel, top_k=top_k)
+            cnn_results = _m.safe_predict_species_with_explicit_routing(
+                mel, audio_path=tmp_path, top_k=top_k
+            )
         except Exception as e:
             cnn_results = [{"error": str(e)}]
 

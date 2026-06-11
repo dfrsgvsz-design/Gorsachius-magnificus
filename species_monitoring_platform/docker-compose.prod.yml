@@ -1,0 +1,92 @@
+version: "3.9"
+
+# Production overlay: layer on top of docker-compose.yml when serving public
+# traffic with automatic HTTPS via Let's Encrypt. The full operator runbook
+# lives at docs/release_b/2026-06-10_production_deploy_runbook.md.
+#
+#   docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build
+#
+# Required env vars (put them in .env, see .env.example for the rest):
+#   APP_DOMAIN=swdyx.eu.cc                       # PM-assigned production hostname
+#   ACME_LETSENCRYPT_EMAIL=ops@example.org       # contact for cert renewals
+#   APP_ENV=production
+#   BIRD_API_KEY=...                             # required in production
+#   CORS_ORIGINS=https://swdyx.eu.cc
+#
+# What this overlay changes vs. the base compose:
+#   • The `app` container no longer publishes :8000 on the host; nginx-proxy
+#     reaches it on the internal `web` network.
+#   • nginx-proxy auto-generates a vhost for $APP_DOMAIN → app:8000 by
+#     reading the `VIRTUAL_HOST` env var on the app container.
+#   • acme-companion watches the same vhost label and obtains/renews the
+#     certificate from Let's Encrypt (HTTP-01 challenge).
+#   • Renewals run in the background; the operator does not touch certbot.
+
+services:
+  app:
+    # Drop the published port; nginx reaches the app on the internal network.
+    ports: !reset []
+    expose:
+      - "8000"
+    environment:
+      # nginx-proxy auto-discovers vhosts by reading these on each container.
+      VIRTUAL_HOST: ${APP_DOMAIN}
+      VIRTUAL_PORT: "8000"
+      LETSENCRYPT_HOST: ${APP_DOMAIN}
+      LETSENCRYPT_EMAIL: ${ACME_LETSENCRYPT_EMAIL}
+    networks:
+      - web
+
+  nginx-proxy:
+    image: nginxproxy/nginx-proxy:1.6
+    container_name: nginx-proxy
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - certs:/etc/nginx/certs
+      - vhost:/etc/nginx/vhost.d
+      - html:/usr/share/nginx/html
+      - type: bind
+        source: ${BSP_NGINX_LOG_DIR:-./deploy/pilot/volumes/nginx-logs}
+        target: /var/log/nginx
+    networks:
+      - web
+    labels:
+      com.github.nginx-proxy.nginx: "true"
+    security_opt:
+      - no-new-privileges:true
+
+  acme-companion:
+    image: nginxproxy/acme-companion:2.4
+    container_name: nginx-proxy-acme
+    restart: unless-stopped
+    depends_on:
+      - nginx-proxy
+    environment:
+      DEFAULT_EMAIL: ${ACME_LETSENCRYPT_EMAIL}
+      # Use the Let's Encrypt v2 staging server when LE_STAGING=1 (avoid
+      # rate-limit issues during initial wiring).
+      ACME_CA_URI: ${ACME_CA_URI:-https://acme-v02.api.letsencrypt.org/directory}
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - certs:/etc/nginx/certs
+      - vhost:/etc/nginx/vhost.d
+      - html:/usr/share/nginx/html
+      - acme:/etc/acme.sh
+    networks:
+      - web
+    security_opt:
+      - no-new-privileges:true
+
+networks:
+  web:
+    driver: bridge
+
+volumes:
+  certs:
+  vhost:
+  html:
+  acme:

@@ -227,6 +227,20 @@ class SyncPushRequest(BaseModel):
     operations: List[SyncOperationRequest] = Field(default_factory=list)
 
 
+class ConflictResolveRequest(BaseModel):
+    """Operator's chosen resolution for a stored sync conflict.
+
+    Strategies:
+        keep_local  - incoming (client) value wins; force-upsert.
+        keep_server - discard the client value; server row stays untouched.
+        merge       - apply ``merged_payload`` (caller-merged) to the server row.
+                      ``merged_payload`` is REQUIRED for this strategy.
+    """
+
+    strategy: str
+    merged_payload: Optional[Dict[str, Any]] = None
+
+
 class DeviceRegisterRequest(BaseModel):
     name: str
     device_type: str = "generic"

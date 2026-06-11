@@ -20,6 +20,7 @@ from models.schemas import (
     SamplingEventRequest,
     ExportJobRequest,
     SyncPushRequest,
+    ConflictResolveRequest,
 )
 
 router = APIRouter()
@@ -411,6 +412,42 @@ async def push_field_sync(req: SyncPushRequest):
         operations=[_main._model_to_dict(item) for item in req.operations],
     )
     return {"status": "ok", "sync_job": result}
+
+
+@router.get("/api/surveys/sync/conflicts", tags=["Field Survey"])
+async def list_sync_conflicts(limit: int = Query(default=100, ge=1, le=500)):
+    """List recent sync conflicts (open + resolved) for the conflict drawer."""
+    if not _main.survey_store:
+        return {"total": 0, "conflicts": []}
+    conflicts = _main.survey_store.get_conflicts(limit=limit)
+    return {"total": len(conflicts), "conflicts": conflicts}
+
+
+@router.post(
+    "/api/surveys/sync/conflicts/{conflict_id}/resolve",
+    tags=["Field Survey"],
+)
+async def resolve_sync_conflict(conflict_id: str, req: ConflictResolveRequest):
+    """Apply the operator's chosen strategy for a stored sync conflict.
+
+    See ``ConflictResolveRequest`` for the three accepted strategies. The
+    response payload mirrors ``survey_store.resolve_conflict`` and is the
+    authoritative post-resolution state of the entity (so the client can
+    refresh local cache without a follow-up pull).
+    """
+    if not _main.survey_store:
+        raise HTTPException(status_code=503, detail="Survey store unavailable")
+    try:
+        result = _main.survey_store.resolve_conflict(
+            conflict_id,
+            strategy=req.strategy,
+            merged_payload=req.merged_payload,
+        )
+    except KeyError as exc:
+        raise HTTPException(status_code=404, detail=str(exc)) from exc
+    except ValueError as exc:
+        raise HTTPException(status_code=422, detail=str(exc)) from exc
+    return {"status": "ok", "resolution": result}
 
 
 @router.get("/api/surveys/sync/pull", tags=["Field Survey"])
