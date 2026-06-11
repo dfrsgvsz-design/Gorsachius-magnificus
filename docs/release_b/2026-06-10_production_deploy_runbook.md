@@ -150,15 +150,44 @@ docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build
 # nginx-proxy + acme-companion 容器不重启，证书状态不变
 ```
 
-## 6. 应急回滚（轻量、临时）
+## 6. 应急回滚（数据层）
 
-> 完整 Alembic 迁移历史在 P0 W3 里上，本节只是 W2 期间的应急脚本化路径。
+> 区分两个轴：**数据回滚**（本节，恢复 survey_store.db 到某个快照）和
+> **schema 回滚**（`python scripts/db_migrate.py downgrade -1`，见
+> `docs/release_b/2026-06-11_alembic_integration.md`）。出事先判断是哪一类。
+
+### 6.1 首选 · 脚本化快照/恢复（commit a0da1fa 起可用）
+
+`scripts/snapshot_survey_store.ps1` + `scripts/restore_survey_store.ps1`，
+在装有 PowerShell（Windows 或 Linux `pwsh`）+ Python 3 的机器上运行，
+数据目录用 `-DataDir` 或 `SURVEY_DATA_DIR` 指定。
+
+```powershell
+# 例行 / 发版前：打快照（应用不用停 — 走 sqlite3 backup API，WAL 安全；
+# 严禁直接 cp/copy 一个正在写的 WAL 库，会拷出坏文件）
+.\scripts\snapshot_survey_store.ps1 -Tag before_v0_9 -Keep 10
+
+# 出事时：停应用 → 恢复最新快照 → 起应用 → 烟测
+docker compose stop app
+.\scripts\restore_survey_store.ps1 -Latest    # 交互确认；自动化加 -Force
+docker compose start app
+curl https://swdyx.eu.cc/api/health/readiness
+```
+
+restore 自带五道安全闸：坏备份拒绝恢复 / EXCLUSIVE 锁证明应用已停 /
+自动留 `pre_restore_<ts>.db` 副本（恢复本身可反悔）/ 清理残留
+`-wal`/`-shm` / 恢复后 integrity_check + 打印 alembic 版本。快照落在
+`<DataDir>/backups/`，恢复后若快照早于当前 schema，按提示跑
+`python scripts/db_migrate.py upgrade head`。
+
+### 6.2 兜底 · 纯 Linux 手工路径（主机无 pwsh 时）
 
 ```bash
-# 备份
+# 备份（必须先停应用 — tar 直拷不具备 WAL 一致性保障）
 docker compose stop app
 tar -czf "/var/backups/survey_store_$(date +%Y%m%d_%H%M%S).tar.gz" \
   deploy/pilot/volumes/backend-data/survey_store/
+docker compose start app
 
 # 回滚到前一次备份
 docker compose stop app
@@ -169,9 +198,6 @@ docker compose start app
 # 验证
 curl https://swdyx.eu.cc/api/health/readiness
 ```
-
-scripts/snapshot_survey_store.ps1 和 restore_survey_store.ps1 这两个
-helper 脚本在 #2 选项里，PM 拍了再上。
 
 ## 7. Let's Encrypt 速率限制提醒
 
