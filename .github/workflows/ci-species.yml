@@ -95,12 +95,15 @@ jobs:
         run: cp .env.example .env
 
       - name: Build application image
-        run: docker build -t biodiversity-field-survey:ci .
+        working-directory: ${{ github.workspace }}
+        run: docker build -t biodiversity-field-survey:ci -f species_monitoring_platform/Dockerfile .
 
       - name: Start field release stack
+        working-directory: species_monitoring_platform
         run: docker compose up -d --build
 
       - name: Wait for health endpoint
+        working-directory: species_monitoring_platform
         run: |
           for attempt in $(seq 1 30); do
             if curl -fsS http://127.0.0.1:8000/api/health; then
@@ -113,4 +116,5 @@ jobs:
 
       - name: Stop stack
         if: always()
+        working-directory: species_monitoring_platform
         run: docker compose down -v
