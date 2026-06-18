@@ -136,6 +136,7 @@ import {
 } from '../../lib/mobileNative'
 import { DEFAULT_SURVEY_MODULE_ID, FIELD_RELEASE_MODE } from '../../constants'
 
+const TAXONOMY_SEARCH_MAX_LIMIT = 200
 
 export default function FieldOpsTab({
   activeModule = DEFAULT_SURVEY_MODULE_ID,
@@ -610,7 +611,7 @@ export default function FieldOpsTab({
       program: protocolDefinition.program,
       protocol: protocolDefinition.id,
       taxon_group: activeTaxonomySearchGroup,
-      limit: deferredSpeciesQuery ? 80 : 250,
+      limit: deferredSpeciesQuery ? 80 : TAXONOMY_SEARCH_MAX_LIMIT,
     })
       .then((data) => {
         if (cancelled) return
