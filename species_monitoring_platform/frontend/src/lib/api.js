@@ -1022,6 +1022,12 @@ export async function getSurveyTaxonomyPackages(filters = {}) {
 
 export async function searchSurveyTaxonomy(filters = {}) {
   const params = buildSurveyParams(filters);
+  if (params.limit != null) {
+    const limit = Number(params.limit);
+    if (Number.isFinite(limit)) {
+      params.limit = Math.max(1, Math.min(Math.trunc(limit), 200));
+    }
+  }
   if (params.taxon_group && !params.submodule) {
     params.submodule = params.taxon_group;
   }
