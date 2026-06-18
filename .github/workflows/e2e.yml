@@ -49,6 +49,16 @@ jobs:
         working-directory: species_monitoring_platform
         run: cp .env.example .env
 
+      - name: Prepare writable species compose volumes
+        working-directory: species_monitoring_platform
+        run: |
+          mkdir -p \
+            deploy/pilot/volumes/app-data \
+            deploy/pilot/volumes/backend-data \
+            deploy/pilot/volumes/config \
+            deploy/pilot/volumes/logs
+          chmod -R a+rwx deploy/pilot/volumes
+
       - name: Build & start species docker compose stack
         working-directory: species_monitoring_platform
         run: |

@@ -97,6 +97,15 @@ jobs:
       - name: Prepare environment
         run: cp .env.example .env
 
+      - name: Prepare writable compose volumes
+        run: |
+          mkdir -p \
+            deploy/pilot/volumes/app-data \
+            deploy/pilot/volumes/backend-data \
+            deploy/pilot/volumes/config \
+            deploy/pilot/volumes/logs
+          chmod -R a+rwx deploy/pilot/volumes
+
       - name: Build application image
         working-directory: ${{ github.workspace }}
         run: docker build -t biodiversity-field-survey:ci -f acoustic_platform/Dockerfile .
