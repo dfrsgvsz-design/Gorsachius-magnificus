@@ -47,7 +47,21 @@ jobs:
 
       - name: Prepare species .env for docker compose
         working-directory: species_monitoring_platform
-        run: cp .env.example .env
+        run: |
+          cp .env.example .env
+          # Match container-verification: the default backend-data bind mount
+          # masks image-baked JSONs and is not writable by the appuser unless CI
+          # prepares it before docker compose starts.
+          mkdir -p \
+            deploy/pilot/volumes/app-data \
+            deploy/pilot/volumes/backend-data/images \
+            deploy/pilot/volumes/backend-data/detections \
+            deploy/pilot/volumes/backend-data/survey_store \
+            deploy/pilot/volumes/backend-data/taxonomy_releases \
+            deploy/pilot/volumes/config \
+            deploy/pilot/volumes/logs
+          cp backend/data/*.json deploy/pilot/volumes/backend-data/
+          chmod -R a+rwX deploy/pilot/volumes
 
       - name: Build & start species docker compose stack
         working-directory: species_monitoring_platform
