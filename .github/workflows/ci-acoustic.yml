@@ -103,8 +103,19 @@ jobs:
           # /app/backend/data inside the container at startup, causing
           # SurveyStore/TaxonomyCatalog loaders to find no protocols and the
           # /api/health endpoint to never reach 200.
-          mkdir -p deploy/pilot/volumes/backend-data
+          mkdir -p \
+            deploy/pilot/volumes/app-data \
+            deploy/pilot/volumes/backend-data/images \
+            deploy/pilot/volumes/backend-data/detections \
+            deploy/pilot/volumes/backend-data/survey_store \
+            deploy/pilot/volumes/backend-data/taxonomy_releases \
+            deploy/pilot/volumes/config \
+            deploy/pilot/volumes/logs
           cp backend/data/*.json deploy/pilot/volumes/backend-data/
+          # The container runs as appuser, while CI creates bind-mount sources
+          # as the runner user. Make the ephemeral verification volumes writable
+          # so startup can create runtime files under /app/backend/data.
+          chmod -R a+rwX deploy/pilot/volumes
 
       - name: Build application image
         run: docker build -f Dockerfile -t biodiversity-field-survey:ci ..
