@@ -107,7 +107,7 @@ jobs:
           cp backend/data/*.json deploy/pilot/volumes/backend-data/
 
       - name: Build application image
-        run: docker build -t biodiversity-field-survey:ci .
+        run: docker build -f Dockerfile -t biodiversity-field-survey:ci ..
 
       - name: Start field release stack
         run: docker compose up -d --build
