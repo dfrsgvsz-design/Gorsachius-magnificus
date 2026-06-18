@@ -4,8 +4,8 @@ services:
   app:
     image: biodiversity-field-survey:release
     build:
-      context: .
-      dockerfile: Dockerfile
+      context: ..
+      dockerfile: acoustic_platform/Dockerfile
     ports:
       - "${APP_PORT:-8000}:8000"
     env_file:
@@ -17,6 +17,8 @@ services:
       BIRD_API_KEY: ${BIRD_API_KEY:-}
       XC_API_KEY: ${XC_API_KEY:-}
       BIRD_PLATFORM_DATA_DIR: /app/data
+      BIRD_PLATFORM_OUTPUT_DIR: /app/output
+      BIRD_PLATFORM_RUNTIME_DIR: /app/runtime
     volumes:
       # Writable field release data owned by the VM operator.
       - type: bind
@@ -31,6 +33,12 @@ services:
       - type: bind
         source: ${BSP_LOG_DIR:-./deploy/pilot/volumes/logs}
         target: /var/log/bird_sound_platform
+      - type: bind
+        source: ${BSP_OUTPUT_DIR:-./deploy/pilot/volumes/output}
+        target: /app/output
+      - type: bind
+        source: ${BSP_RUNTIME_DIR:-./deploy/pilot/volumes/runtime}
+        target: /app/runtime
       # Repo-managed model assets: mount read-only so an empty host directory
       # cannot mask the checkpoints baked into the checkout.
       - type: bind

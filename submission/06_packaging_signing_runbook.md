@@ -95,6 +95,12 @@ powershell -ExecutionPolicy Bypass -File "f:\Gorsachius magnificus\scripts\verif
 - 后果：upload key 丢失/泄露可申请重置（48h SLA），主体不丢；本地 keystore 丢失也**不再等于上架主体丢失**。
 - 一旦启用**不可关闭**（这是 Google 的策略），所以决策点在第 1 步。
 
+### PM 版 4 步指底（双签模板）
+
+面向 PM 的启用 checklist 独立一份：[`docs/release_b/play_app_signing_4_steps.md`](../docs/release_b/play_app_signing_4_steps.md)（B 起草，顶部有工程与 PM 双签表 + 不可逆警告 + DRI B 预备动作 + 4 步 PM 活动 + 发布后 checklist）。
+
+本节下面的 4 步表是"工程侧技术接入"视角，与 B 的文档互补：B 里重点是"PM 拍谁、什么时候不能后悔"；本节重点是"engineering 供货什么 + 下游怎么接受 SHA 变更"。两者都看。
+
 ### 启用流程（4 步，每步附验收）
 
 | # | 动作 | 在哪里做 | 验收信号 |

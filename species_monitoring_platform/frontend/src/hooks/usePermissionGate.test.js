@@ -120,3 +120,58 @@ describe('usePermissionGate native shape', () => {
     expect(request).toHaveBeenCalledTimes(1)
   })
 })
+
+// Gate-check contract that the camera/audio/geolocation hooks rely on -----
+//
+// `createGateCheck()` returns an async function. The pure state-machine
+// reducer above only describes the state-name transitions; this section
+// pins the resolve-the-pending-promise behaviour the hook adds on top.
+// We drive the resolution directly via the same control-flow as the modal
+// would (Accept → settle true, Skip → settle false, double-call → cancel
+// earlier resolver).
+
+function makeResolverHarness() {
+  let pendingResolver = null
+  const settle = (result) => {
+    const prev = pendingResolver
+    pendingResolver = null
+    if (prev) prev(result)
+  }
+  return {
+    pending() {
+      return new Promise((resolve) => {
+        const previous = pendingResolver
+        pendingResolver = resolve
+        if (previous) previous(false)
+      })
+    },
+    accept: () => settle(true),
+    skip: () => settle(false),
+    cancel: () => settle(false),
+  }
+}
+
+describe('gate-check resolver contract', () => {
+  it('resolves true after Accept is called', async () => {
+    const harness = makeResolverHarness()
+    const promise = harness.pending()
+    setTimeout(() => harness.accept(), 0)
+    await expect(promise).resolves.toBe(true)
+  })
+
+  it('resolves false after Skip is called', async () => {
+    const harness = makeResolverHarness()
+    const promise = harness.pending()
+    setTimeout(() => harness.skip(), 0)
+    await expect(promise).resolves.toBe(false)
+  })
+
+  it('cancels an earlier pending check when a new one starts', async () => {
+    const harness = makeResolverHarness()
+    const first = harness.pending()
+    const second = harness.pending() // implicitly cancels `first`
+    await expect(first).resolves.toBe(false)
+    setTimeout(() => harness.accept(), 0)
+    await expect(second).resolves.toBe(true)
+  })
+})

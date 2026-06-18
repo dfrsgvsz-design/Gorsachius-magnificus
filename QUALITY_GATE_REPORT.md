@@ -74,6 +74,33 @@ Overall expected gate result: **PASS** (pending local dev verification).
    - `requirements-dev.txt` now exists for both apps, listed in `ci.yml` cache
      keys, and referenced by both `.ps1` gates and the GitHub Actions workflow.
 
+## A-side and B-side complementary gates (2026-06 additions)
+
+The following A- and B-contributed pieces are now in tree and complement C's gates.
+
+> **Attribution corrected 2026-06-10 (follow-on commit)**: an earlier draft
+> of this section misattributed `runtime-contract-gate`,
+> `scripts/assert_runtime_contract.py`, and `scripts/pressure_test_projects.py`
+> to B. Per A's 2026-06-10 reply (`git log .github/workflows/release_gate.yml`
+> showed those changes were only in working tree as M before C's commit, not
+> in any B commit; the YAML comment says "introduced in Batch A (P0 W1)"),
+> they are A's contributions. The table below carries the corrected attribution.
+
+| File | Author | Provides |
+|---|---|---|
+| `release_gate.yml` `runtime-contract-gate` job | A | Repo-wide assertion that `describe_runtime_paths()` returns all `*_externalized` flags True + `platform_config.json` loads. Catches accidental demo-mode regressions before any other gate runs. Delegates the actual checking to `scripts/assert_runtime_contract.py`. |
+| `scripts/assert_runtime_contract.py` | A | Single-source-of-truth Python script for the production runtime contract gate. Called by both `release_gate.ps1` (local) and `release_gate.yml` (CI) so the two never drift. |
+| `scripts/pressure_test_projects.py` | A | 200×sequential POST `/api/surveys/projects` via FastAPI TestClient (full lifespan). Asserts no 503/500 + every response has `X-Request-ID`. Wired into `release_gate.yml` `backend-gate` as the unit-layer no-503 SLO step. Companion production-layer crontab probe is in B's `docs/release_b/2026-06-10_production_deploy_runbook.md` §4.3. |
+| `scripts/smoke_production_health.sh` | B | 1-line production smoke against `https://swdyx.eu.cc` + `https://acoustic.swdyx.eu.cc` covering DNS, cert, all 3 health endpoints, readiness.mode=production, runtime_paths.mutable_runtime_externalized. |
+| `scripts/archive_mapping.ps1` | B | One-line mapping archive per release. Path-reconciled with `scripts/deobfuscate.ps1` (-VersionName fallback) — see `submission/_mapping_archive/README.md`. |
+| `docs/release_b/2026-06-10_production_deploy_runbook.md` | B | Production deployment SOP (domains, DNS, LE, Sentry, 24h SLO probe crontab). Referenced by `submission/governance/rollback_sop_v1.md` §1 and §8. |
+| `docs/release_b/play_app_signing_4_steps.md` | B | PM-facing Play App Signing 4-step checklist with dual-sign. Referenced by `submission/06_packaging_signing_runbook.md` §2.1. |
+| `docs/release_b/sync_engine_exception_audit.md` | B | Audit of `useSyncEngine` exception paths. The `sync-push` `data-status` attribute + spec 05's triple assertion came out of this audit. |
+| `docs/release_b/sync_job_response_fixtures.md` | B | 4 canonical sync_job JSON responses (applied / partial / conflict / delete) with schema doc. |
+| `docs/release_b/2026-06-10_422_503_inventory.md` | B | Cross-team SLO inventory of 422/503 endpoints. |
+| `docs/release_b/data_testid_regression_audit.md` | B | Visual-regression audit of the 18 testid additions C made (App.jsx + FieldOpsTab.jsx + ComboField.jsx + ObservationFormPanel.jsx + SyncPanel.jsx). |
+| `docs/release_b/playstore_foreground_service_rationale.md` | B | Android 14+ `FOREGROUND_SERVICE_LOCATION/MICROPHONE` declaration rationale for Play Console review. |
+
 ## Outstanding architectural notes
 
 1. ~~**Per-app `.github/workflows/` directories may not run**~~ — **RESOLVED

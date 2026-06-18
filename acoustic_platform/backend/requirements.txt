@@ -1,6 +1,10 @@
 # Core web framework
 fastapi==0.115.0
 uvicorn==0.30.0
+# Production process manager: gunicorn supervises N uvicorn workers
+# (`gunicorn -k uvicorn.workers.UvicornWorker -w 2 main:app`) so the API
+# survives crashes inside a single worker and recycles cleanly.
+gunicorn==23.0.0
 python-multipart==0.0.9
 pydantic==2.6.0
 aiofiles==23.2.1
@@ -40,6 +44,11 @@ aiosqlite==0.22.1
 PyJWT==2.8.0
 passlib[bcrypt]==1.7.4
 bcrypt==4.0.1
+
+# Optional crash / error monitoring (works against either Sentry SaaS or a
+# self-hosted GlitchTip instance). Backend only initializes when SENTRY_DSN
+# env var is set, so installing the SDK in the image is safe by default.
+sentry-sdk==2.18.0
 
 # NOTE: pytest / pytest-asyncio / pytest-cov / ruff / httpx moved to
 # requirements-dev.txt (dev-only). Production runtime must not depend on them.

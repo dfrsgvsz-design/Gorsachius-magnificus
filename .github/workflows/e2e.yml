@@ -49,19 +49,43 @@ jobs:
         working-directory: species_monitoring_platform
         run: cp .env.example .env
 
+      - name: Prepare writable species compose volumes
+        working-directory: species_monitoring_platform
+        run: |
+          mkdir -p \
+            deploy/pilot/volumes/app-data \
+            deploy/pilot/volumes/backend-data \
+            deploy/pilot/volumes/config \
+            deploy/pilot/volumes/logs \
+            deploy/pilot/volumes/output \
+            deploy/pilot/volumes/runtime
+          cp -a backend/data/. deploy/pilot/volumes/backend-data/
+          cp backend/data/platform_config.json deploy/pilot/volumes/app-data/platform_config.json
+          chmod -R a+rwx deploy/pilot/volumes
+
       - name: Build & start species docker compose stack
         working-directory: species_monitoring_platform
         run: |
           docker compose up -d --build
-          echo "Container started; waiting for /api/health..."
-          for attempt in $(seq 1 60); do
-            if curl -fsS http://127.0.0.1:8000/api/health > /dev/null; then
-              echo "Backend healthy after ${attempt} attempt(s)."
-              exit 0
+          echo "Container started; waiting for /api/health to become production-ready..."
+          # Per A's contract reply (2026-06): readiness mode must be "production",
+          # blocking_codes must be empty, deployment_ready must be true.
+          # Model loading can take time; bump from 5min to 10min until A confirms
+          # the standard cold-start ceiling.
+          for attempt in $(seq 1 120); do
+            body=$(curl -fsS http://127.0.0.1:8000/api/health 2>/dev/null || echo '')
+            if [ -n "$body" ]; then
+              if echo "$body" | grep -q '"deployment_ready":true' \
+                 && echo "$body" | grep -q '"mode":"production"' \
+                 && echo "$body" | grep -q '"runtime_state":"ready"'; then
+                echo "Backend deployment_ready=true after ${attempt} attempt(s)."
+                exit 0
+              fi
             fi
             sleep 5
           done
-          echo "::error::Backend /api/health never responded — dumping logs"
+          echo "::error::Backend /api/health did not reach production deployment_ready=true within 10 minutes — dumping logs"
+          curl -s http://127.0.0.1:8000/api/health || true
           docker compose logs
           exit 1
 

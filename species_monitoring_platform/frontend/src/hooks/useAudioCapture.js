@@ -85,7 +85,17 @@ export function checkAudioCaptureSupport(env = {}) {
  *   stopAudioCapture: () => Promise<void>,
  * }}
  */
-export default function useAudioCapture({ onAttachment, onEvidenceType, onError } = {}) {
+export default function useAudioCapture({
+  onAttachment,
+  onEvidenceType,
+  onError,
+  // Optional gate check from `usePermissionGate(...).createGateCheck()`.
+  // When provided, `startAudioCapture` awaits it before calling
+  // `navigator.mediaDevices.getUserMedia` so the rationale modal can
+  // render first. When omitted, the hook keeps its original behaviour
+  // (the browser/Capacitor will surface its own permission prompt).
+  gateCheck,
+} = {}) {
   const [audioCaptureStatus, setAudioCaptureStatus] = useState('idle')
   const [serializingMedia, setSerializingMedia] = useState(false)
   const audioRecorderRef = useRef(null)
@@ -109,6 +119,13 @@ export default function useAudioCapture({ onAttachment, onEvidenceType, onError 
       return
     }
     if (audioCaptureStatus === 'recording') return
+    if (typeof gateCheck === 'function') {
+      const allowed = await gateCheck()
+      if (!allowed) {
+        onError?.('Microphone permission was not granted.')
+        return
+      }
+    }
     setSerializingMedia(true)
     onError?.(null)
     try {

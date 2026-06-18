@@ -68,6 +68,12 @@ export default function useCameraCapture({
   captureFn = capturePhotoAttachment,
   requireNative = true,
   fallbackMessage,
+  // Optional `async () => boolean` returned by `usePermissionGate
+  // ({...}).createGateCheck()`. When provided, `capturePhoto` awaits it
+  // before invoking the native API so the rationale modal can render
+  // first. When omitted, the hook keeps its original behaviour and
+  // delegates permission handling to mobileNative.capturePhotoAttachment.
+  gateCheck,
 } = {}) {
   const [cameraStatus, setCameraStatus] = useState('idle')
   const [serializingCamera, setSerializingCamera] = useState(false)
@@ -76,6 +82,15 @@ export default function useCameraCapture({
     async (source = CameraSource.Camera) => {
       if (requireNative && !isNativeMobile()) {
         return { ok: false, error: 'Camera capture is only available in the native app.' }
+      }
+      if (typeof gateCheck === 'function') {
+        const allowed = await gateCheck()
+        if (!allowed) {
+          const message = 'Camera permission was not granted.'
+          onError?.(message)
+          setCameraStatus('error')
+          return { ok: false, error: message, blockedByGate: true }
+        }
       }
       setCameraStatus('capturing')
       const result = await capturePhotoWithState({
@@ -98,7 +113,7 @@ export default function useCameraCapture({
       setCameraStatus(result.ok ? 'idle' : 'error')
       return result
     },
-    [captureFn, fallbackMessage, onAttachment, onError, requireNative],
+    [captureFn, fallbackMessage, gateCheck, onAttachment, onError, requireNative],
   )
 
   return {

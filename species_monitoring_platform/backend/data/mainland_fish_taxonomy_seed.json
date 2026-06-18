@@ -1,0 +1,25 @@
+{
+  "entries": [
+    {
+      "internal_taxon_id": "cn-fish-acipenser-sinensis",
+      "scientific_name": "Acipenser sinensis",
+      "simplified_chinese_name": "中华鲟",
+      "english_common_name": "Chinese Sturgeon",
+      "group": "estuarine_fish"
+    },
+    {
+      "internal_taxon_id": "cn-fish-hypophthalmichthys-molitrix",
+      "scientific_name": "Hypophthalmichthys molitrix",
+      "simplified_chinese_name": "鲢鱼",
+      "english_common_name": "Silver Carp",
+      "group": "freshwater_fish"
+    },
+    {
+      "internal_taxon_id": "cn-fish-larimichthys-crocea",
+      "scientific_name": "Larimichthys crocea",
+      "simplified_chinese_name": "大黄鱼",
+      "english_common_name": "Large Yellow Croaker",
+      "group": "marine_fish"
+    }
+  ]
+}
