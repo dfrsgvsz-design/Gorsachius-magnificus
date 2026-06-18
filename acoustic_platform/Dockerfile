@@ -1,16 +1,16 @@
 FROM node:20-alpine AS frontend-builder
 
 WORKDIR /build/frontend
-COPY frontend/package.json frontend/package-lock.json* ./
+COPY acoustic_platform/frontend/package.json acoustic_platform/frontend/package-lock.json* ./
 RUN npm ci
-COPY frontend/ ./
+COPY acoustic_platform/frontend/ ./
 RUN npm run build
 
 
 FROM python:3.11-slim AS python-builder
 
 WORKDIR /build/python
-COPY backend/requirements.txt ./
+COPY acoustic_platform/backend/requirements.txt ./
 RUN pip install --no-cache-dir --prefix=/install -r requirements.txt && \
     pip install --no-cache-dir --prefix=/install birdnetlib
 
@@ -19,6 +19,7 @@ FROM python:3.11-slim
 
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
+    PYTHONPATH=/app \
     PORT=8000 \
     WEB_CONCURRENCY=1
 
@@ -32,7 +33,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 COPY --from=python-builder /install /usr/local
 
 WORKDIR /app
-COPY backend/ /app/backend/
+COPY acoustic_platform/backend/ /app/backend/
+COPY shared/ /app/shared/
 COPY --from=frontend-builder /build/frontend/dist /app/frontend/dist/
 
 RUN useradd -r -m -d /home/appuser -s /usr/sbin/nologin appuser && \
